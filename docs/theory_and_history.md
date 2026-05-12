@@ -94,9 +94,7 @@ $$
 The topological phase is therefore
 
 $$
-|\mu|<2|t|,
-\qquad
-\Delta\neq 0.
+|\mu|<2|t|, \qquad \Delta\neq 0.
 $$
 
 This condition appears directly in the Kitaev-chain script as the ideal topological criterion. The finite-chain simulations then test the bulk-boundary correspondence: when the infinite system is topological, an open finite chain should develop exponentially localized boundary modes with energies approaching zero as the chain length increases.
@@ -106,9 +104,7 @@ This condition appears directly in the Kitaev-chain script as the ideal topologi
 In a finite chain, the two Majorana end modes are not perfectly independent. Their wavefunctions overlap through the bulk, which produces an exponentially small splitting away from zero energy. The near-zero Dirac fermion can be decomposed into two Majorana components by combining the positive- and negative-energy particle-hole partner states. Conceptually, if $\psi_+$ and $\psi_-$ are the two partner states near zero, one forms real particle-hole symmetric combinations analogous to
 
 $$
-\gamma_L\sim\psi_+ + \psi_-,
-\qquad
-\gamma_R\sim -i(\psi_+ - \psi_-).
+\gamma_L\sim\psi_+ + \psi_-, \qquad \gamma_R\sim -i(\psi_+ - \psi_-).
 $$
 
 The exact numerical implementation must align the arbitrary global phases of the eigenvectors before taking these combinations. Otherwise, the visualized Majorana components can be contaminated by meaningless phase conventions. The code handles this by applying the particle-hole transformation, aligning phases through the inner product, and then constructing two real Majorana-like spatial densities.
@@ -132,27 +128,19 @@ The Kitaev chain is conceptually clean, but it assumes spinless fermions and p-w
 The real-space discretized BdG Hamiltonian used in the spinful models is
 
 $$
-H_{\mathrm{lat}}=
-\sum_i\Psi_i^{\dagger}h_i\Psi_i+
-\sum_i\left(\Psi_{i+1}^{\dagger}T\Psi_i+\Psi_i^{\dagger}T^{\dagger}\Psi_{i+1}\right),
+H_{\mathrm{lat}}= \sum_i\Psi_i^{\dagger}h_i\Psi_i+ \sum_i\left(\Psi_{i+1}^{\dagger}T\Psi_i+\Psi_i^{\dagger}T^{\dagger}\Psi_{i+1}\right),
 $$
 
 with local block
 
 $$
-h_i=(2t-\mu+V_i)\tau_z+E_Z\sigma_x+
-\operatorname{Re}\Delta_i\tau_x-
-\operatorname{Im}\Delta_i\tau_y,
+h_i=(2t-\mu+V_i)\tau_z+E_Z\sigma_x+ \operatorname{Re}\Delta_i\tau_x- \operatorname{Im}\Delta_i\tau_y,
 $$
 
 and nearest-neighbor block
 
 $$
-T=-t\tau_z-i t_{\mathrm{so}}\sigma_y\tau_z,
-\qquad
-t=\frac{\hbar^2}{2m^*a^2},
-\qquad
-t_{\mathrm{so}}=\frac{\alpha_R}{2a}.
+T=-t\tau_z-i t_{\mathrm{so}}\sigma_y\tau_z, \qquad t=\frac{\hbar^2}{2m^*a^2}, \qquad t_{\mathrm{so}}=\frac{\alpha_R}{2a}.
 $$
 
 This form is central to the project. The hopping term discretizes the kinetic energy. The spin-orbit hopping is imaginary and spin-dependent because it comes from a first derivative in space. The Zeeman term mixes spin states. The pairing term mixes particle and hole sectors.
@@ -178,10 +166,7 @@ $$
 After solving the BdG eigenproblem, each eigenvector contains electron amplitudes $u_{n\sigma}(i)$ and hole amplitudes $v_{n\sigma}(i)$. The local pairing update used in the code is
 
 $$
-\Delta_i^{\mathrm{new}}=\frac{V_{\mathrm{eff}}}{2}
-\sum_{|E_n|<E_c}
-\left[u_{n\uparrow}(i)v^*_{n\downarrow}(i)-u_{n\downarrow}(i)v^*_{n\uparrow}(i)\right]
-\tanh\left(\frac{E_n}{2k_BT}\right).
+\Delta_i^{\mathrm{new}}=\frac{V_{\mathrm{eff}}}{2} \sum_{|E_n|<E_c} \left[u_{n\uparrow}(i)v^*_{n\downarrow}(i)-u_{n\downarrow}(i)v^*_{n\uparrow}(i)\right] \tanh\left(\frac{E_n}{2k_BT}\right).
 $$
 
 The factor $V_{\mathrm{eff}}$ is an effective attractive interaction. It is not a microscopic Coulomb interaction calculated from first principles; it is a controlled phenomenological parameter that sets how strongly anomalous correlations feed back into the order parameter. The cutoff $E_c$ restricts the update to quasiparticle states close enough to the Fermi level to participate in pairing. The hyperbolic tangent encodes thermal occupation: at low temperature, positive and negative quasiparticle branches contribute with nearly saturated signs, while at higher temperature the pairing correlations are reduced.
@@ -215,18 +200,13 @@ The final model changes the meaning of $\Delta(x)$. In many semiconductor-superc
 The numerical pipeline becomes
 
 $$
-\Delta_{\mathrm{ind}}(x),\; V(x),\; \mu,\; E_Z,\; \alpha_R
-\longrightarrow
-H_{\mathrm{BdG}}
-\longrightarrow
-H_{\mathrm{BdG}}\psi_n=E_n\psi_n.
+\Delta_{\mathrm{ind}}(x),\; V(x),\; \mu,\; E_Z,\; \alpha_R \longrightarrow H_{\mathrm{BdG}} \longrightarrow H_{\mathrm{BdG}}\psi_n=E_n\psi_n.
 $$
 
 The code includes a smooth superconducting coverage profile:
 
 $$
-\Delta_{\mathrm{ind}}(x_i)=\Delta_0\frac{1}{2}
-\left[1+\tanh\left(\frac{i-i_{\mathrm{SC}}}{s_{\mathrm{SC}}}\right)\right]e^{i\phi}.
+\Delta_{\mathrm{ind}}(x_i)=\Delta_0\frac{1}{2} \left[1+\tanh\left(\frac{i-i_{\mathrm{SC}}}{s_{\mathrm{SC}}}\right)\right]e^{i\phi}.
 $$
 
 Here $i_{\mathrm{SC}}$ marks the beginning of the superconducting region and $s_{\mathrm{SC}}$ controls the smoothness of the interface. This is a phenomenological but useful representation of a device where the wire may have a small uncovered normal segment near one end.
@@ -256,8 +236,7 @@ This is useful for detecting low-energy states, but it is not sufficient by itse
 The LDOS is approximated by Lorentzian broadening of discrete eigenstates:
 
 $$
-\rho(i,E)=\sum_n |\psi_n(i)|^2
-\frac{\eta/\pi}{(E-E_n)^2+\eta^2}.
+\rho(i,E)=\sum_n |\psi_n(i)|^2 \frac{\eta/\pi}{(E-E_n)^2+\eta^2}.
 $$
 
 It shows where low-energy spectral weight is located along the wire.
