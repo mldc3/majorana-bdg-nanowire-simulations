@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt
 #################### Parámetros físicos (cadena de Kitaev) ####################
 ###############################################################################
 
-# Tomamos el hopping como unidade de energía para que este normalizado
+# Tomamos el hopping como unidad de energía para que esté normalizado
 numero_sitios = 180     # demo-safe default; increase for final high-resolution figures          # Sitios de la cadena finita
 hopping = 1.0                   # Hopping entre sitios vecinos
 potencial_quimico = 0.0         # Potencial químico mu
@@ -72,7 +72,7 @@ def construir_hamiltoniano_bdg(numero_sitios, hopping, potencial_quimico, pairin
     # Construimos las matrices N x N de la parte normal y superconductiva
     matriz_normal, matriz_pairing = construir_matrices_normal_y_pairing(numero_sitios, hopping, potencial_quimico, pairing_p_wave,)
 
-    # Construimos natriz completa con los bloques
+    # Construimos matriz completa con los bloques
     hamiltoniano_bdg = np.block([[matriz_normal, matriz_pairing],[-matriz_pairing.conj(), -matriz_normal.conj()],])
 
     # Simetrizamos para eliminar posibles errores numéricos de redondeo y estar seguros que es hermítica
@@ -477,28 +477,18 @@ def graficar_diagrama_fase_mu_delta(hopping): #Grafica el diagrama de fase ideal
 ################################## Graficas ###################################
 ###############################################################################
 
-preparar_estilo_graficas()
+if __name__ == "__main__":
+    preparar_estilo_graficas()
 
-graficar_bandas_bulk_tres_regimenes(hopping,pairing_p_wave,)
+    graficar_bandas_bulk_tres_regimenes(hopping, pairing_p_wave)
+    graficar_espectro_finito_vs_mu(numero_sitios, hopping, pairing_p_wave)
+    graficar_energia_minima_vs_mu(numero_sitios, hopping, pairing_p_wave)
+    graficar_ldos_tres_regimenes(numero_sitios, hopping, pairing_p_wave)
+    graficar_modo_cero_topologico_y_trivial(numero_sitios, hopping, pairing_p_wave)
+    graficar_majoranas_separadas(numero_sitios, hopping, mu_topologico, pairing_p_wave)
+    graficar_particula_hueco_modo_cero(numero_sitios, hopping, mu_topologico, pairing_p_wave)
+    graficar_splitting_vs_longitud(hopping, mu_topologico, pairing_p_wave)
+    graficar_comparacion_pairing_localizacion(numero_sitios, hopping, mu_topologico)
+    graficar_diagrama_fase_mu_delta(hopping)
 
-graficar_espectro_finito_vs_mu(numero_sitios, hopping, pairing_p_wave,)
-
-graficar_energia_minima_vs_mu(numero_sitios,hopping,pairing_p_wave,)
-
-graficar_ldos_tres_regimenes(numero_sitios,hopping,pairing_p_wave,)
-
-graficar_modo_cero_topologico_y_trivial(numero_sitios,hopping,pairing_p_wave,)
-
-graficar_majoranas_separadas(numero_sitios,hopping, mu_topologico, pairing_p_wave,)
-
-graficar_particula_hueco_modo_cero(numero_sitios, hopping, mu_topologico, pairing_p_wave,)
-
-graficar_splitting_vs_longitud(hopping, mu_topologico, pairing_p_wave,)
-
-graficar_comparacion_pairing_localizacion(numero_sitios, hopping, mu_topologico,)
-
-graficar_diagrama_fase_mu_delta(
-hopping,)
-
-plt.show()
-
+    plt.show()

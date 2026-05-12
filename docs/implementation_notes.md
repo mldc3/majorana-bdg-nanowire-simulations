@@ -4,7 +4,7 @@
 
 The repository contains three Python scripts corresponding to three levels of modeling complexity.
 
-### `kitaev_chain_1d.py`
+### `src/kitaev_chain_1d.py`
 
 This script implements the spinless Kitaev chain. It builds the normal matrix $h$, the antisymmetric p-wave pairing matrix $\Delta$, and the BdG block matrix
 
@@ -24,7 +24,7 @@ Main diagnostics:
 - splitting versus length,
 - ideal phase diagram.
 
-### `self_consistent_bdg_nanowire.py`
+### `src/self_consistent_bdg_nanowire.py`
 
 This script implements a spinful one-dimensional BdG nanowire with Rashba spin-orbit coupling, Zeeman field, and a pairing field computed self-consistently from the eigenvectors.
 
@@ -50,7 +50,7 @@ Main diagnostics:
 - finite-size splitting,
 - interaction-strength dependence.
 
-### `proximitized_bdg_nanowire.py`
+### `src/proximitized_bdg_nanowire.py`
 
 This script implements the more realistic proximitized Rashba nanowire. The gap is not computed self-consistently. Instead, the semiconductor is assigned an induced gap profile $\Delta_{\mathrm{ind}}(x)$ representing proximity to an external superconductor.
 
@@ -105,9 +105,9 @@ Recommended workflow:
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-python kitaev_chain_1d.py
-python self_consistent_bdg_nanowire.py
-python proximitized_bdg_nanowire.py
+python src/kitaev_chain_1d.py
+python src/self_consistent_bdg_nanowire.py
+python src/proximitized_bdg_nanowire.py
 ```
 
 If a script becomes slow, reduce:
