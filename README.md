@@ -1,81 +1,82 @@
-# Majorana Zero Modes in 1D Superconducting Systems
+# Majorana Zero-Mode Diagnostics in 1D BdG Nanowire Simulations
 
-Numerical exploration of Majorana zero modes in three increasingly realistic one-dimensional Bogoliubov--de Gennes (BdG) models:
+Research-style Python simulations of Majorana zero modes in one-dimensional superconducting systems, spanning the minimal Kitaev chain, a self-consistent BdG nanowire, and a proximitized Rashba nanowire with finite-device diagnostics.
 
-1. the spinless Kitaev chain,
-2. a spinful self-consistent BdG nanowire,
-3. a proximitized Rashba nanowire with Zeeman field, induced superconductivity, smooth interfaces, and electrostatic barriers.
+This repository is organized as a compact computational physics portfolio project: it moves from an analytically transparent toy model to more realistic finite-device simulations, while keeping the scientific interpretation cautious. Near-zero-energy states are treated as candidates that require multiple consistency checks rather than as automatic proof of topological Majorana zero modes.
 
-The project is designed as a compact research-style simulation notebook in code form: it starts from the minimal topological model, adds self-consistent superconducting order, and ends with a semiconductor-superconductor nanowire model closer to the devices used in Majorana experiments.
+## Table of contents
 
-## Main idea
+- [Project overview](#project-overview)
+- [Theory and background](#theory-and-background)
+- [Numerical models](#numerical-models)
+- [Results and selected figures](#results-and-selected-figures)
+- [How to run](#how-to-run)
+- [Repository structure](#repository-structure)
+- [Scientific interpretation](#scientific-interpretation)
+- [Future improvements](#future-improvements)
 
-A Majorana zero mode is not identified by a single visual signature. In a finite numerical wire, a state close to zero energy can also be produced by ordinary Andreev physics, smooth confinement, or finite-size effects. For that reason this project combines multiple diagnostics:
+## Project overview
 
-- bulk band closing and reopening,
-- finite-chain spectra versus chemical potential and Zeeman energy,
-- local density of states,
-- localization of low-energy states at the two ends,
-- particle-hole balance,
-- Majorana-component decomposition,
-- finite-size energy splitting,
-- response to Rashba coupling, induced gap, barrier strength, mesh resolution, and interaction strength.
+The project studies low-energy states in one-dimensional superconducting systems using the Bogoliubov--de Gennes formalism. The workflow is deliberately staged:
 
-The result is a progression from a clean textbook topological superconductor to a more realistic nanowire where zero-bias-like low-energy states must be interpreted carefully.
+1. **Kitaev chain** for the clean topological benchmark.
+2. **Self-consistent BdG nanowire** for order-parameter feedback and gap suppression.
+3. **Proximitized Rashba nanowire** for a more device-oriented finite-wire model with smooth interfaces and electrostatic barriers.
 
-## Repository contents
+Across these models, the repository compares bulk topology, finite-size spectra, local density of states, localization, particle-hole balance, Majorana decomposition, and finite-length splitting. The aim is not to overstate Majorana identification, but to show how different diagnostics support or weaken a topological interpretation.
 
-This ZIP is intentionally flat so it can be uploaded directly through the GitHub web interface. After upload, ask GitHub Copilot to organize it into folders such as `src/`, `docs/`, and `assets/figures/` using the prompt included below.
+## Theory and background
 
-Core files:
+The long-form theoretical discussion, historical context, and governing equations are preserved in:
 
-| File | Purpose |
-|---|---|
-| `README.md` | Main repository landing page. |
-| `theory_and_history.md` | Full theoretical background: BdG, Kitaev model, self-consistency, and proximitized nanowires. |
-| `results_and_discussion.md` | Figure-by-figure interpretation of the numerical results. |
-| `implementation_notes.md` | Code architecture, numerical methods, observables, and reproducibility notes. |
-| `ASSETS_INDEX.md` | Complete list of selected figures and why each one is included. |
-| `kitaev_chain_1d.py` | Spinless Kitaev-chain model. |
-| `self_consistent_bdg_nanowire.py` | Self-consistent spinful BdG nanowire model. |
-| `proximitized_bdg_nanowire.py` | Proximitized Rashba nanowire model. |
-| `requirements.txt` | Python dependencies. |
+- [Theory and historical background](docs/theory_and_history.md)
+- [Implementation notes](docs/implementation_notes.md)
+- [Results and discussion](docs/results_and_discussion.md)
 
-## Selected visual highlights
+These documents cover the BdG formalism, the Kitaev-chain phase boundary, self-consistent pairing, proximitized nanowires, and the limitations of interpreting near-zero modes in finite inhomogeneous systems.
 
-### Kitaev chain: the minimal topological superconductor
+## Numerical models
 
-![Bulk bands of the Kitaev chain](fig_kitaev_bulk_bands.png)
+### `src/kitaev_chain_1d.py`
+Spinless Kitaev-chain simulation used as the minimal topological reference. It computes bulk bands, finite-chain spectra, LDOS, particle-hole content, Majorana decomposition, splitting versus length, and the ideal phase diagram.
 
-![Kitaev chain finite spectrum versus chemical potential](fig_kitaev_finite_spectrum_vs_mu.png)
+### `src/self_consistent_bdg_nanowire.py`
+Spinful one-dimensional BdG nanowire with Rashba coupling, Zeeman field, and a pairing profile updated self-consistently from the eigenvectors. It highlights how superconducting order evolves with the same parameters that drive topological transitions.
 
-![Majorana decomposition in the Kitaev chain](fig_kitaev_majorana_decomposition.png)
+### `src/proximitized_bdg_nanowire.py`
+More realistic proximitized Rashba nanowire with an induced gap profile, smooth superconducting coverage, and electrostatic barriers. It is the main finite-device model for comparing topological and quasi-Majorana-like signatures.
 
-### Self-consistent BdG model
+## Results and selected figures
 
-![Self-consistent gap convergence](fig_selfconsistent_convergence.png)
+A full figure-by-figure discussion is available in [docs/results_and_discussion.md](docs/results_and_discussion.md). The complete curated asset list is in [assets/ASSETS_INDEX.md](assets/ASSETS_INDEX.md).
 
-![Self-consistent finite spectrum versus Zeeman energy](fig_selfconsistent_spectrum_vs_zeeman.png)
+### Kitaev-chain benchmark
 
-![Self-consistent Majorana components](fig_selfconsistent_majoranas.png)
+![Kitaev bulk bands](assets/figures/kitaev/fig_kitaev_bulk_bands.png)
 
-### Proximitized nanowire model
+The bulk spectrum reproduces the expected gap closing and reopening associated with the ideal topological transition.
 
-![Realistic nanowire bulk bands](fig_realistic_bulk_bands.png)
+### Self-consistent BdG nanowire
 
-![Realistic nanowire LDOS](fig_realistic_ldos.png)
+![Self-consistent spectrum versus Zeeman](assets/figures/self_consistent/fig_selfconsistent_spectrum_vs_zeeman.png)
 
-![Realistic nanowire Majorana decomposition](fig_realistic_majoranas.png)
+The self-consistent model shows that spectral evolution and pairing evolution are coupled; the gap is not a passive fixed input.
 
-### Quasi-Majorana / smooth-potential cautionary case
+### Proximitized finite nanowire
 
-![Quasi-Majorana subgap spectrum](fig_quasi_subgap_spectrum.png)
+![Realistic nanowire LDOS](assets/figures/realistic_nanowire/fig_realistic_ldos.png)
 
-![Quasi-Majorana local observables](fig_quasi_local_observables.png)
+The proximitized wire resolves how end-localized low-energy weight develops in a finite device, but also why LDOS signatures alone are not decisive.
 
-## Quick start
+### Quasi-Majorana cautionary case
 
-Install the dependencies:
+![Quasi-Majorana subgap spectrum](assets/figures/quasi_majoranas/fig_quasi_subgap_spectrum.png)
+
+Smooth confinement can generate near-zero-energy states that mimic some Majorana-like observables without establishing a robust topological phase.
+
+## How to run
+
+Install the dependencies with `requirements.txt`:
 
 ```bash
 python -m venv .venv
@@ -83,24 +84,29 @@ source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-Run one of the scripts:
+Run any model from the repository root:
 
 ```bash
-python kitaev_chain_1d.py
-python self_consistent_bdg_nanowire.py
-python proximitized_bdg_nanowire.py
+python src/kitaev_chain_1d.py
+python src/self_consistent_bdg_nanowire.py
+python src/proximitized_bdg_nanowire.py
 ```
 
-The scripts use dense matrix diagonalization for clarity. Dense BdG simulations scale quickly with the number of lattice sites. The versions included here use demo-safe site counts; increase them only when generating final figures and only if your machine has enough memory.
+Quick verification:
 
-## Suggested final folder structure
+```bash
+python -m py_compile src/*.py
+```
 
-After upload, the repository should ideally be reorganized as:
+The simulations use dense matrix diagonalization for transparency, so runtime and memory grow quickly with system size. The default site counts are chosen to be demo-friendly rather than production-scale.
+
+## Repository structure
 
 ```text
 .
 ├── README.md
 ├── requirements.txt
+├── .gitignore
 ├── src/
 │   ├── kitaev_chain_1d.py
 │   ├── self_consistent_bdg_nanowire.py
@@ -118,6 +124,17 @@ After upload, the repository should ideally be reorganized as:
         └── quasi_majoranas/
 ```
 
-## Scientific scope
+## Scientific interpretation
 
-The goal is not to claim experimental discovery of Majorana modes. The goal is to build a physically transparent simulation pipeline showing how Majorana-like signatures emerge, how they are diagnosed, and why a careful comparison between bulk topology and finite-device observables is necessary.
+A near-zero-energy mode in a finite superconducting wire is **not** automatically evidence of a topological Majorana zero mode. Similar low-energy features can arise from finite-size splitting, smooth confinement, partially separated Andreev bound states, or other inhomogeneous device effects.
+
+For that reason, this repository emphasizes a multi-observable interpretation: bulk-gap behavior, finite-size spectra, localization, particle-hole balance, BdG charge, spin diagnostics, and Majorana decomposition should be considered together. The project is meant as a technically serious simulation study, not as a claim of experimental discovery.
+
+## Future improvements
+
+- Replace dense diagonalization with sparse eigensolvers for larger systems.
+- Add automated tests for Hermiticity, particle-hole symmetry, and selected benchmark limits.
+- Introduce command-line arguments or configuration files for parameter sweeps.
+- Cache expensive sweeps and separate raw data generation from plotting.
+- Extend the comparison between topological and quasi-Majorana regimes using matched diagnostics.
+- Add transport or conductance calculations for closer contact with experiment.

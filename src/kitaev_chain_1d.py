@@ -477,28 +477,19 @@ def graficar_diagrama_fase_mu_delta(hopping): #Grafica el diagrama de fase ideal
 ################################## Graficas ###################################
 ###############################################################################
 
-preparar_estilo_graficas()
+if __name__ == "__main__":
+    preparar_estilo_graficas()
 
-graficar_bandas_bulk_tres_regimenes(hopping,pairing_p_wave,)
+    graficar_bandas_bulk_tres_regimenes(hopping, pairing_p_wave)
+    graficar_espectro_finito_vs_mu(numero_sitios, hopping, pairing_p_wave)
+    graficar_energia_minima_vs_mu(numero_sitios, hopping, pairing_p_wave)
+    graficar_ldos_tres_regimenes(numero_sitios, hopping, pairing_p_wave)
+    graficar_modo_cero_topologico_y_trivial(numero_sitios, hopping, pairing_p_wave)
+    graficar_majoranas_separadas(numero_sitios, hopping, mu_topologico, pairing_p_wave)
+    graficar_particula_hueco_modo_cero(numero_sitios, hopping, mu_topologico, pairing_p_wave)
+    graficar_splitting_vs_longitud(hopping, mu_topologico, pairing_p_wave)
+    graficar_comparacion_pairing_localizacion(numero_sitios, hopping, mu_topologico)
+    graficar_diagrama_fase_mu_delta(hopping)
 
-graficar_espectro_finito_vs_mu(numero_sitios, hopping, pairing_p_wave,)
-
-graficar_energia_minima_vs_mu(numero_sitios,hopping,pairing_p_wave,)
-
-graficar_ldos_tres_regimenes(numero_sitios,hopping,pairing_p_wave,)
-
-graficar_modo_cero_topologico_y_trivial(numero_sitios,hopping,pairing_p_wave,)
-
-graficar_majoranas_separadas(numero_sitios,hopping, mu_topologico, pairing_p_wave,)
-
-graficar_particula_hueco_modo_cero(numero_sitios, hopping, mu_topologico, pairing_p_wave,)
-
-graficar_splitting_vs_longitud(hopping, mu_topologico, pairing_p_wave,)
-
-graficar_comparacion_pairing_localizacion(numero_sitios, hopping, mu_topologico,)
-
-graficar_diagrama_fase_mu_delta(
-hopping,)
-
-plt.show()
+    plt.show()
 
