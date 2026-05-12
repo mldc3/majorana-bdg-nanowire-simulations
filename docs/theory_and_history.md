@@ -8,23 +8,14 @@ A compact way to describe this is to introduce a Nambu spinor. In the spinful na
 
 $$
 \Psi_i=
-\begin{pmatrix}
- c_{i\uparrow}\\
- c_{i\downarrow}\\
- c_{i\downarrow}^{\dagger}\\
- -c_{i\uparrow}^{\dagger}
+\begin{pmatrix} c_{i\uparrow}\\ c_{i\downarrow}\\ c_{i\downarrow}^{\dagger}\\ -c_{i\uparrow}^{\dagger}
 \end{pmatrix}.
 $$
 
 The minus sign in the last component is a basis convention that makes the singlet pairing term especially compact. In this basis, the local BdG Hamiltonian contains Pauli matrices $\sigma_a$ acting on spin and $\tau_a$ acting on particle-hole space. A generic one-dimensional Rashba nanowire with Zeeman field and superconducting pairing is represented by
 
 $$
-H_{\mathrm{BdG}}=
-\left(\frac{p_x^2}{2m^*}-\mu+V(x)\right)\tau_z
--\frac{\alpha_R}{\hbar}p_x\sigma_y\tau_z
-+E_Z\sigma_x
-+\operatorname{Re}\Delta(x)\tau_x
--\operatorname{Im}\Delta(x)\tau_y .
+H_{\mathrm{BdG}}= \left(\frac{p_x^2}{2m^*}-\mu+V(x)\right)\tau_z -\frac{\alpha_R}{\hbar}p_x\sigma_y\tau_z +E_Z\sigma_x +\operatorname{Re}\Delta(x)\tau_x -\operatorname{Im}\Delta(x)\tau_y .
 $$
 
 Each term has a specific physical role:
@@ -65,17 +56,13 @@ The modern one-dimensional route to Majoranas starts from the Kitaev chain: a sp
 The Kitaev chain is the simplest lattice model supporting Majorana zero modes. It is a one-dimensional chain of spinless fermions with nearest-neighbor hopping, chemical potential, and p-wave superconducting pairing:
 
 $$
-H=-\mu\sum_j c_j^{\dagger}c_j
--t\sum_j\left(c_j^{\dagger}c_{j+1}+c_{j+1}^{\dagger}c_j\right)
-+\Delta\sum_j\left(c_j c_{j+1}+c_{j+1}^{\dagger}c_j^{\dagger}\right).
+H=-\mu\sum_j c_j^{\dagger}c_j -t\sum_j\left(c_j^{\dagger}c_{j+1}+c_{j+1}^{\dagger}c_j\right) +\Delta\sum_j\left(c_j c_{j+1}+c_{j+1}^{\dagger}c_j^{\dagger}\right).
 $$
 
 The normal term $t$ delocalizes particles across the chain. The chemical potential $\mu$ controls the filling. The p-wave pairing $\Delta$ couples neighboring sites and is antisymmetric under exchange, as required for spinless fermions. In the code, the normal and pairing matrices are built explicitly in real space:
 
 $$
-h_{jj}=-\mu,
-\qquad
-h_{j,j+1}=h_{j+1,j}=-t,
+h_{jj}=-\mu, \qquad h_{j,j+1}=h_{j+1,j}=-t,
 $$
 
 and
@@ -89,18 +76,13 @@ $$
 The BdG matrix then has the block structure
 
 $$
-H_{\mathrm{BdG}}=
-\begin{pmatrix}
-h & \Delta\\
--\Delta^* & -h^*
-\end{pmatrix}.
+H_{\mathrm{BdG}}= \begin{pmatrix} h & \Delta\\ -\Delta^* & -h^* \end{pmatrix}.
 $$
 
 For an infinite translationally invariant chain, Fourier transformation gives the bulk dispersion
 
 $$
-E(k)=\pm\sqrt{\left(-\mu-2t\cos k\right)^2+
-\left(2\Delta\sin k\right)^2}.
+E(k)=\pm\sqrt{\left(-\mu-2t\cos k\right)^2+ \left(2\Delta\sin k\right)^2}.
 $$
 
 The bulk gap closes when the expression under the square root can vanish. Since $\sin k=0$ at $k=0,\pi$, the gap closing occurs at
