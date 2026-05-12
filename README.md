@@ -129,12 +129,3 @@ The simulations use dense matrix diagonalization for transparency, so runtime an
 A near-zero-energy mode in a finite superconducting wire is **not** automatically evidence of a topological Majorana zero mode. Similar low-energy features can arise from finite-size splitting, smooth confinement, partially separated Andreev bound states, or other inhomogeneous device effects.
 
 For that reason, this repository emphasizes a multi-observable interpretation: bulk-gap behavior, finite-size spectra, localization, particle-hole balance, BdG charge, spin diagnostics, and Majorana decomposition should be considered together. The project is meant as a technically serious simulation study, not as a claim of experimental discovery.
-
-## Future improvements
-
-- Replace dense diagonalization with sparse eigensolvers for larger systems.
-- Add automated tests for Hermiticity, particle-hole symmetry, and selected benchmark limits.
-- Introduce command-line arguments or configuration files for parameter sweeps.
-- Cache expensive sweeps and separate raw data generation from plotting.
-- Extend the comparison between topological and quasi-Majorana regimes using matched diagnostics.
-- Add transport or conductance calculations for closer contact with experiment.
