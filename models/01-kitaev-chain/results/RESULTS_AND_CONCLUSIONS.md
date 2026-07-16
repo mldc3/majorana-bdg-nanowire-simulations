@@ -45,7 +45,7 @@ This report presents a verified set of Kitaev-chain results generated from the s
 The finite-chain calculations use
 
 $$
-H_{\mathrm{BdG}}=\begin{pmatrix}h&\Delta\\-\Delta^*&-h^*\end{pmatrix},
+H_{\mathrm{BdG}}=\begin{pmatrix}h&\Delta\\-\Delta^\ast &-h^\ast \end{pmatrix},
 $$
 
 <div align="right"><strong>(1.1)</strong></div>
@@ -259,7 +259,7 @@ For $\mu=0$, the nearest state has $E\approx-3.824\times10^{-10}t$. Approximatel
 Let $\Phi_E=(u,v)^T$ be a normalized BdG eigenvector at the smallest resolvable positive energy. In the code basis, particle–hole conjugation is
 
 $$
-\mathcal{C}\Phi_E=\tau_x\Phi_E^*=\begin{pmatrix}v^*\\u^*\end{pmatrix}.
+\mathcal{C}\Phi_E=\tau_x\Phi_E^*=\begin{pmatrix}v^\ast \\u^\ast \end{pmatrix}.
 $$
 
 <div align="right"><strong>(4.1)</strong></div>
