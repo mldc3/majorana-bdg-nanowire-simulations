@@ -201,11 +201,7 @@ $$
 Using $c_ic_i^{\dagger}=1-c_i^{\dagger} c_i$,
 
 $$
-n_i^2=c_i^{\dagger} c_ic_i^{\dagger} c_i=c_i^{\dagger}(1-c_i^{\dagger} c_i)c_i
-$$
-
-$$
-=c_i^{\dagger} c_i-c_i^{\dagger} c_i^{\dagger} c_ic_i=c_i^{\dagger} c_i=n_i.
+n_i^2=c_i^{\dagger} c_ic_i^{\dagger} c_i=c_i^{\dagger}(1-c_i^{\dagger} c_i)c_i =c_i^{\dagger} c_i-c_i^{\dagger} c_i^{\dagger} c_ic_i=c_i^{\dagger} c_i=n_i.
 $$
 
 Thus $n_i$ is a projector and its eigenvalues are $0$ and $1$. The total fermion number is
@@ -271,25 +267,13 @@ Two Majorana operators are therefore the two real components of one ordinary com
 For the first Majorana associated with mode $i$,
 
 $$
-\gamma_{2i-1}^2=(c_i+c_i^{\dagger})^2 
-$$
-
-$$
-=c_i^2+c_ic_i^{\dagger}+c_i^{\dagger} c_i+(c_i^{\dagger})^2 
-$$
-
-$$
-=\{c_i,c_i^{\dagger}\}=1.
+\gamma_{2i-1}^2=(c_i+c_i^{\dagger})^2 =c_i^2+c_ic_i^{\dagger}+c_i^{\dagger} c_i+(c_i^{\dagger})^2 =\{c_i,c_i^{\dagger}\}=1.
 $$
 
 For the second,
 
 $$
-\gamma_{2i}^2=-\left(c_i-c_i^{\dagger}\right)^2
-$$
-
-$$
-=-c_i^2+c_ic_i^{\dagger}+c_i^{\dagger} c_i-(c_i^{\dagger})^2=1.
+\gamma_{2i}^2=-\left(c_i-c_i^{\dagger}\right)^2=-c_i^2+c_ic_i^{\dagger}+c_i^{\dagger} c_i-(c_i^{\dagger})^2=1.
 $$
 
 Their mixed anticommutator is
@@ -311,11 +295,7 @@ In particular, $\gamma_a^2=1$. This does not violate Pauli exclusion because a s
 Substituting Eq. (3.4) into $n_i=c_i^{\dagger} c_i$,
 
 $$
-n_i=\frac{1}{4}(\gamma_{2i-1}-i\gamma_{2i})(\gamma_{2i-1}+i\gamma_{2i}) =\frac{1}{4}\left[\gamma_{2i-1}^2+\gamma_{2i}^2+i\gamma_{2i-1}\gamma_{2i}-i\gamma_{2i}\gamma_{2i-1}\right]
-$$
-
-$$
-=\frac{1}{4}\left[2+2i\gamma_{2i-1}\gamma_{2i}\right] =\frac{1}{2}\left(1+i\gamma_{2i-1}\gamma_{2i}\right) \rightarrow i\gamma_{2i-1}\gamma_{2i}=2n_i-1.
+n_i=\frac{1}{4}(\gamma_{2i-1}-i\gamma_{2i})(\gamma_{2i-1}+i\gamma_{2i}) =\frac{1}{4}\left[\gamma_{2i-1}^2+\gamma_{2i}^2+i\gamma_{2i-1}\gamma_{2i}-i\gamma_{2i}\gamma_{2i-1}\right] =\frac{1}{4}\left[2+2i\gamma_{2i-1}\gamma_{2i}\right] =\frac{1}{2}\left(1+i\gamma_{2i-1}\gamma_{2i}\right) \rightarrow i\gamma_{2i-1}\gamma_{2i}=2n_i-1.
 $$
 
 The occupation of the complex mode is encoded nonlinearly in a bilinear of its two Majoranas.
@@ -384,13 +364,7 @@ $$
 \dim\mathcal{F}_{\mathrm{even}}=\dim\mathcal{F}_{\mathrm{odd}}=2^{M-1}. 
 $$
 
-Internal observables of a closed parity-conserving system must commute with $\hat P$. A single $c_i$, $c_i^{\dagger}$, or $\gamma_a$ connects opposite parity sectors and is therefore not by itself an observable of the isolated system. Even bilinears such as
-
-$$
-i\gamma_a\gamma_b 
-$$
-
-commute with parity and can appear in Hamiltonians and measurable response functions. This is why the occupation information of two Majoranas is carried by their bilinear rather than by either Majorana alone.
+Internal observables of a closed parity-conserving system must commute with $\hat P$. A single $c_i$, $c_i^{\dagger}$, or $\gamma_a$ connects opposite parity sectors and is therefore not by itself an observable of the isolated system. Even bilinears such as $i\gamma_a\gamma_b $  commute with parity and can appear in Hamiltonians and measurable response functions. This is why the occupation information of two Majoranas is carried by their bilinear rather than by either Majorana alone.
 
 This statement does not prohibit single-electron tunnelling between a device and an external lead. The tunnelling operator may be odd when restricted to the device, but the full device-plus-reservoir operator is even and preserves the total parity of the enlarged closed system.
 
@@ -446,13 +420,7 @@ $$
 H=\sum_{i,j}c_i^{\dagger}h_{ij}c_j+\frac{1}{2}\sum_{i,j}\left(c_i^{\dagger}\Delta_{ij}c_j^{\dagger}+c_j\Delta_{ij}^{*}c_i\right).
 $$
 
-Hermiticity requires $h=h^{\dagger}$. Fermionic antisymmetry requires
-
-$$
-\Delta^{T}=-\Delta.
-$$
-
-To prove Eq. (4.2), note that only the antisymmetric part of a pair matrix contributes:
+Hermiticity requires $h=h^{\dagger}$. Fermionic antisymmetry requires $\Delta^{T}=-\Delta$. To prove Eq. (4.2), note that only the antisymmetric part of a pair matrix contributes:
 
 $$
 \sum_{i,j}c_i^{\dagger}\Delta_{ij}c_j^{\dagger} = \frac{1}{2}\sum_{i,j}\left(c_i^{\dagger}\Delta_{ij}c_j^{\dagger}+c_j^{\dagger}\Delta_{ji}c_i^{\dagger}\right) = \frac{1}{2}\sum_{i,j}c_i^{\dagger}\left(\Delta_{ij}-\Delta_{ji}\right)c_j^{\dagger}.
@@ -489,9 +457,7 @@ $$
 
 The last normal term must be reordered. In indices,
 
-$$ -\frac{1}{2}\sum_{i,j}c_i h_{ij}^{*}c_j^{\dagger} = -\frac{1}{2}\sum_{i,j}h_{ij}^{*}\left(\delta_{ij}-c_j^{\dagger}c_i\right). $$
-
-$$ =-\frac{1}{2}\mathrm{Tr}\,h^{*} + \frac{1}{2}\sum_{i,j}c_j^{\dagger}h_{ij}^{*}c_i = -\frac{1}{2}\mathrm{Tr}\,h + \frac{1}{2}c^{\dagger}hc.
+$$ -\frac{1}{2}\sum_{i,j}c_i h_{ij}^{*}c_j^{\dagger} = -\frac{1}{2}\sum_{i,j}h_{ij}^{*}\left(\delta_{ij}-c_j^{\dagger}c_i\right)=-\frac{1}{2}\mathrm{Tr}\,h^{*} + \frac{1}{2}\sum_{i,j}c_j^{\dagger}h_{ij}^{*}c_i = -\frac{1}{2}\mathrm{Tr}\,h + \frac{1}{2}c^{\dagger}hc.
 $$
 
 where $h=h^{\dagger}$ was used in the last step. The pair-annihilation term similarly reproduces the Hermitian conjugate of the pair-creation term when $\Delta^{T}=-\Delta$. Therefore
@@ -702,15 +668,7 @@ $$
 Then $c_j=(a_j+ib_j)/2$. First, the onsite term is
 
 $$
-c_j^{\dagger} c_j=\frac{1}{4}(a_j-ib_j)(a_j+ib_j)
-$$
-
-$$
-=\frac{1}{4}(a_j^2+b_j^2+ia_jb_j-ib_ja_j)
-$$
-
-$$
-=\frac{1}{2}+\frac{i}{2}a_jb_j. 
+c_j^{\dagger} c_j=\frac{1}{4}(a_j-ib_j)(a_j+ib_j)=\frac{1}{4}(a_j^2+b_j^2+ia_jb_j-ib_ja_j)=\frac{1}{2}+\frac{i}{2}a_jb_j. 
 $$
 
 Thus
@@ -782,11 +740,7 @@ The inverse follows from $\sum_je^{i(k-q)j}=N\delta_{kq}$.
 The onsite term is
 
 $$
--\mu\sum_jc_j^{\dagger} c_j=-\frac{\mu}{N}\sum_{j,k,q}e^{-ikj}e^{iqj}c_k^{\dagger} c_q
-$$
-
-$$
-=-\mu\sum_kc_k^{\dagger} c_k.
+-\mu\sum_jc_j^{\dagger} c_j=-\frac{\mu}{N}\sum_{j,k,q}e^{-ikj}e^{iqj}c_k^{\dagger} c_q=-\mu\sum_kc_k^{\dagger} c_k.
 $$
 
 For the forward hopping,
