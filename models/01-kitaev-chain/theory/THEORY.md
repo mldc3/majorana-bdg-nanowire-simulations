@@ -433,37 +433,37 @@ The symmetric part cancels because $c_j^{\dagger}c_i^{\dagger}=-c_i^{\dagger}c_j
 Define the $2N$-component Nambu operator
 
 $$
-\Psi= \begin{pmatrix} c \\ c^{\dagger} \end{pmatrix}, \qquad c= \begin{pmatrix} c_1 & \cdots & c_N \end{pmatrix}^{T}.
+\Psi = \begin{pmatrix} c \\ c^{\dagger} \end{pmatrix}
+$$
+
+$$
+c= \begin{pmatrix} c_1 & \cdots & c_N \end{pmatrix}^{T}.
 $$
 
 Consider the matrix
 
 $$
-H_{\mathrm{BdG}}=
-\begin{pmatrix}
-h & \Delta \\
--\Delta^{*} & -h^{*}
-\end{pmatrix}.
+H_{BdG} = \begin{pmatrix} h & \Delta \\ -\Delta^{\ast} & -h^{\ast} \end{pmatrix}.
 $$
 
-Expanding $\frac{1}{2}\Psi^{\dagger}H_{\mathrm{BdG}}\Psi$ gives four terms:
+Expanding $\frac{1}{2}\Psi^{\dagger}H_{BdG}\Psi$ gives four terms:
 
 $$
-\frac{1}{2}\Psi^{\dagger}H_{\mathrm{BdG}}\Psi =
+\frac{1}{2}\Psi^{\dagger}H_{BdG}\Psi =
 \frac{1}{2}c^{\dagger}hc +
-\frac{1}{2}c^{\dagger}\Delta c^{\dagger} - \frac{1}{2}c\Delta^{*}c -
-\frac{1}{2}ch^{*}c^{\dagger}.
+\frac{1}{2}c^{\dagger}\Delta c^{\dagger} - \frac{1}{2}c\Delta^{\ast}c -
+\frac{1}{2}ch^{\ast}c^{\dagger}.
 $$
 
 The last normal term must be reordered. In indices,
 
-$$ -\frac{1}{2}\sum_{i,j}c_i h_{ij}^{*}c_j^{\dagger} = -\frac{1}{2}\sum_{i,j}h_{ij}^{*}\left(\delta_{ij}-c_j^{\dagger}c_i\right)=-\frac{1}{2}\mathrm{Tr}\,h^{*} + \frac{1}{2}\sum_{i,j}c_j^{\dagger}h_{ij}^{*}c_i = -\frac{1}{2}\mathrm{Tr}\,h + \frac{1}{2}c^{\dagger}hc.
+$$ -\frac{1}{2}\sum_{i,j}c_i h_{ij}^{\ast}c_j^{\dagger} = -\frac{1}{2}\sum_{i,j}h_{ij}^{\ast}\left(\delta_{ij}-c_j^{\dagger}c_i\right)=-\frac{1}{2}Tr (h^{\ast}) + \frac{1}{2}\sum_{i,j}c_j^{\dagger}h_{ij}^{\ast}c_i = -\frac{1}{2}Tr(h) + \frac{1}{2}c^{\dagger}hc.
 $$
 
 where $h=h^{\dagger}$ was used in the last step. The pair-annihilation term similarly reproduces the Hermitian conjugate of the pair-creation term when $\Delta^{T}=-\Delta$. Therefore
 
 $$
-H=\frac{1}{2}\Psi^{\dagger}H_{\mathrm{BdG}}\Psi+\frac{1}{2}\mathrm{Tr}\,h.
+H=\frac{1}{2}\Psi^{\dagger}H_{BdG}\Psi+\frac{1}{2}Tr (h).
 $$
 
 The factor $1/2$ is necessary because Nambu space contains both a degree of freedom and its Hermitian conjugate. The trace term is a constant and does not alter the BdG eigenproblem.
@@ -474,22 +474,22 @@ Taking the adjoint of Eq. (4.6),
 
 $$
 H_{\mathrm{BdG}}^{\dagger} = \begin{pmatrix}
-h^{\dagger} & \left(-\Delta^{*}\right)^{\dagger} \\
-\Delta^{\dagger} & \left(-h^{*}\right)^{\dagger}
+h^{\dagger} & \left(-\Delta^{\ast}\right)^{\dagger} \\
+\Delta^{\dagger} & \left(-h^{\ast}\right)^{\dagger}
 \end{pmatrix} = \begin{pmatrix}
 h & -\Delta^{T} \\
-\Delta^{\dagger} & -h^{*}
+\Delta^{\dagger} & -h^{\ast}
 \end{pmatrix}.
 $$
 
-Since $\Delta^{T}=-\Delta$ and $\Delta^{\dagger}=\left(\Delta^{*}\right)^{T}=-\Delta^{*}$, one obtains $H_{\mathrm{BdG}}^{\dagger}=H_{\mathrm{BdG}}$.
+Since $\Delta^{T}=-\Delta$ and $\Delta^{\dagger}=\left(\Delta^{\ast}\right)^{T}=-\Delta^{\ast}$, one obtains $H_{\mathrm{BdG}}^{\dagger}=H_{\mathrm{BdG}}$.
 
 ### 4.4 Bogoliubov transformation
 
 A quasiparticle annihilation operator is a linear combination
 
 $$
-\eta_n=\sum_j\left(u_{nj}^{*}c_j+v_{nj}^{*}c_j^{\dagger}\right).
+\eta_n=\sum_j\left(u_{nj}^{\ast}c_j+v_{nj}^{\ast}c_j^{\dagger}\right).
 $$
 
 Its adjoint is
@@ -501,11 +501,11 @@ $$
 Canonical fermionic anticommutation requires
 
 $$
-\left\{\eta_n,\eta_m^{\dagger}\right\} = \sum_j\left(u_{nj}^{*}u_{mj}+v_{nj}^{*}v_{mj}\right) = \delta_{nm},
+{ \eta_n,\eta_m^{\dagger} } 
 $$
 
 $$
-\left\{\eta_n,\eta_m\right\} = \sum_j\left(u_{nj}^{*}v_{mj}^{*}+v_{nj}^{*}u_{mj}^{*}\right) = 0.
+{ \eta_n,\eta_m } = \sum_j\left(u_{nj}^{\ast}v_{mj}^{\ast}+v_{nj}^{\ast}u_{mj}^{\ast}\right) = 0.
 $$
 
 For one normalized mode this gives
@@ -554,15 +554,15 @@ $$
 u \\
 v
 \end{pmatrix} = \begin{pmatrix}
-v^{*} \\
-u^{*}
+v^{\ast} \\
+u^{\ast}
 \end{pmatrix}.
 $$
 
 The BdG matrix obeys
 
 $$
-\tau_xH_{\mathrm{BdG}}^{*}\tau_x=-H_{\mathrm{BdG}}.
+\tau_xH_{\mathrm{BdG}}^{\ast}\tau_x=-H_{\mathrm{BdG}}.
 $$
 
 If $H_{\mathrm{BdG}}\Phi_E=E\Phi_E$
@@ -584,7 +584,7 @@ $$
 A global phase $\Phi_0\mapsto e^{-i\chi/2}\Phi_0$ sets $\chi=0$, so
 
 $$
-\mathcal{C}\Phi_0=\Phi_0\quad\Longleftrightarrow\quad v=u^{*}.
+\mathcal{C}\Phi_0=\Phi_0\quad\Longleftrightarrow\quad v=u^{\ast}.
 $$
 
 The corresponding operator satisfies
