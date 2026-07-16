@@ -455,11 +455,7 @@ $$
 To prove Eq. (4.2), note that only the antisymmetric part of a pair matrix contributes:
 
 $$
-\sum_{i,j}c_i^{\dagger}\Delta_{ij}c_j^{\dagger}
-=
-\frac{1}{2}\sum_{i,j}\left(c_i^{\dagger}\Delta_{ij}c_j^{\dagger}+c_j^{\dagger}\Delta_{ji}c_i^{\dagger}\right)
-=
-\frac{1}{2}\sum_{i,j}c_i^{\dagger}\left(\Delta_{ij}-\Delta_{ji}\right)c_j^{\dagger}.
+\sum_{i,j}c_i^{\dagger}\Delta_{ij}c_j^{\dagger} = \frac{1}{2}\sum_{i,j}\left(c_i^{\dagger}\Delta_{ij}c_j^{\dagger}+c_j^{\dagger}\Delta_{ji}c_i^{\dagger}\right) = \frac{1}{2}\sum_{i,j}c_i^{\dagger}\left(\Delta_{ij}-\Delta_{ji}\right)c_j^{\dagger}.
 $$
 
 The symmetric part cancels because $c_j^{\dagger}c_i^{\dagger}=-c_i^{\dagger}c_j^{\dagger}$.
@@ -469,16 +465,7 @@ The symmetric part cancels because $c_j^{\dagger}c_i^{\dagger}=-c_i^{\dagger}c_j
 Define the $2N$-component Nambu operator
 
 $$
-\Psi=
-\begin{pmatrix}
-c \\
-c^{\dagger}
-\end{pmatrix},
-\qquad
-c=
-\begin{pmatrix}
-c_1 & \cdots & c_N
-\end{pmatrix}^{T}.
+\Psi= \begin{pmatrix} c \\ c^{\dagger} \end{pmatrix}, \qquad c= \begin{pmatrix} c_1 & \cdots & c_N \end{pmatrix}^{T}.
 $$
 
 Consider the matrix
@@ -494,34 +481,17 @@ $$
 Expanding $\frac{1}{2}\Psi^{\dagger}H_{\mathrm{BdG}}\Psi$ gives four terms:
 
 $$
-\frac{1}{2}\Psi^{\dagger}H_{\mathrm{BdG}}\Psi
-=
-\frac{1}{2}c^{\dagger}hc
-+
-\frac{1}{2}c^{\dagger}\Delta c^{\dagger}
--
-\frac{1}{2}c\Delta^{*}c
--
+\frac{1}{2}\Psi^{\dagger}H_{\mathrm{BdG}}\Psi =
+\frac{1}{2}c^{\dagger}hc +
+\frac{1}{2}c^{\dagger}\Delta c^{\dagger} - \frac{1}{2}c\Delta^{*}c -
 \frac{1}{2}ch^{*}c^{\dagger}.
 $$
 
 The last normal term must be reordered. In indices,
 
-$$
--\frac{1}{2}\sum_{i,j}c_i h_{ij}^{*}c_j^{\dagger}
-=
--\frac{1}{2}\sum_{i,j}h_{ij}^{*}\left(\delta_{ij}-c_j^{\dagger}c_i\right).
-$$
+$$ -\frac{1}{2}\sum_{i,j}c_i h_{ij}^{*}c_j^{\dagger} = -\frac{1}{2}\sum_{i,j}h_{ij}^{*}\left(\delta_{ij}-c_j^{\dagger}c_i\right). $$
 
-$$
-=
--\frac{1}{2}\mathrm{Tr}\,h^{*}
-+
-\frac{1}{2}\sum_{i,j}c_j^{\dagger}h_{ij}^{*}c_i
-=
--\frac{1}{2}\mathrm{Tr}\,h
-+
-\frac{1}{2}c^{\dagger}hc.
+$$ =-\frac{1}{2}\mathrm{Tr}\,h^{*} + \frac{1}{2}\sum_{i,j}c_j^{\dagger}h_{ij}^{*}c_i = -\frac{1}{2}\mathrm{Tr}\,h + \frac{1}{2}c^{\dagger}hc.
 $$
 
 where $h=h^{\dagger}$ was used in the last step. The pair-annihilation term similarly reproduces the Hermitian conjugate of the pair-creation term when $\Delta^{T}=-\Delta$. Therefore
@@ -537,14 +507,10 @@ The factor $1/2$ is necessary because Nambu space contains both a degree of free
 Taking the adjoint of Eq. (4.6),
 
 $$
-H_{\mathrm{BdG}}^{\dagger}
-=
-\begin{pmatrix}
+H_{\mathrm{BdG}}^{\dagger} = \begin{pmatrix}
 h^{\dagger} & \left(-\Delta^{*}\right)^{\dagger} \\
 \Delta^{\dagger} & \left(-h^{*}\right)^{\dagger}
-\end{pmatrix}
-=
-\begin{pmatrix}
+\end{pmatrix} = \begin{pmatrix}
 h & -\Delta^{T} \\
 \Delta^{\dagger} & -h^{*}
 \end{pmatrix}.
@@ -569,19 +535,11 @@ $$
 Canonical fermionic anticommutation requires
 
 $$
-\left\{\eta_n,\eta_m^{\dagger}\right\}
-=
-\sum_j\left(u_{nj}^{*}u_{mj}+v_{nj}^{*}v_{mj}\right)
-=
-\delta_{nm},
+\left\{\eta_n,\eta_m^{\dagger}\right\} = \sum_j\left(u_{nj}^{*}u_{mj}+v_{nj}^{*}v_{mj}\right) = \delta_{nm},
 $$
 
 $$
-\left\{\eta_n,\eta_m\right\}
-=
-\sum_j\left(u_{nj}^{*}v_{mj}^{*}+v_{nj}^{*}u_{mj}^{*}\right)
-=
-0.
+\left\{\eta_n,\eta_m\right\} = \sum_j\left(u_{nj}^{*}v_{mj}^{*}+v_{nj}^{*}u_{mj}^{*}\right) = 0.
 $$
 
 For one normalized mode this gives
@@ -629,9 +587,7 @@ $$
 \begin{pmatrix}
 u \\
 v
-\end{pmatrix}
-=
-\begin{pmatrix}
+\end{pmatrix} = \begin{pmatrix}
 v^{*} \\
 u^{*}
 \end{pmatrix}.
@@ -836,11 +792,7 @@ $$
 For the forward hopping,
 
 $$
-\sum_jc_j^{\dagger} c_{j+1}=\frac{1}{N}\sum_{j,k,q}e^{-ikj}e^{iq(j+1)}c_k^{\dagger} c_q
-$$
-
-$$
-=\sum_ke^{ik}c_k^{\dagger} c_k. 
+\sum_jc_j^{\dagger} c_{j+1}=\frac{1}{N}\sum_{j,k,q}e^{-ikj}e^{iq(j+1)}c_k^{\dagger} c_q =\sum_ke^{ik}c_k^{\dagger} c_k. 
 $$
 
 The Hermitian conjugate contributes $e^{-ik}$, so
@@ -860,21 +812,13 @@ $$
 The creation part of the code’s pairing term is
 
 $$
-\sum_j\Delta c_j^{\dagger} c_{j+1}^{\dagger}=\frac{\Delta}{N}\sum_{j,k,q}e^{-ikj}e^{-iq(j+1)}c_k^{\dagger} c_q^{\dagger}
-$$
-
-$$
-=\Delta\sum_ke^{ik}c_k^{\dagger} c_{-k}^{\dagger}.
+\sum_j\Delta c_j^{\dagger} c_{j+1}^{\dagger}=\frac{\Delta}{N}\sum_{j,k,q}e^{-ikj}e^{-iq(j+1)}c_k^{\dagger} c_q^{\dagger} =\Delta\sum_ke^{ik}c_k^{\dagger} c_{-k}^{\dagger}.
 $$
 
 Because $c_{-k}^{\dagger} c_k^{\dagger}=-c_k^{\dagger} c_{-k}^{\dagger}$, only the odd part of $e^{ik}$ contributes when the sum is symmetrized over $k$ and $-k$:
 
 $$
-\sum_ke^{ik}c_k^{\dagger} c_{-k}^{\dagger}=\frac{1}{2}\sum_k\left(e^{ik}-e^{-ik}\right)c_k^{\dagger} c_{-k}^{\dagger}
-$$
-
-$$
-=i\sum_k\sin k\,c_k^{\dagger} c_{-k}^{\dagger}.
+\sum_ke^{ik}c_k^{\dagger} c_{-k}^{\dagger}=\frac{1}{2}\sum_k\left(e^{ik}-e^{-ik}\right)c_k^{\dagger} c_{-k}^{\dagger} =i\sum_k\sin k\,c_k^{\dagger} c_{-k}^{\dagger}.
 $$
 
 In the conventional $\frac{1}{2}\sum_k$ Nambu representation, the off-diagonal pair amplitude is therefore proportional to $2i\Delta\sin k$. It vanishes at $k=0$ and $k=\pi$, as required for odd-parity $p$-wave pairing.
@@ -894,14 +838,10 @@ $$
 A matrix consistent with the real-space convention is
 
 $$
-H_{\mathrm{BdG}}(k)
-=
-\begin{pmatrix}
+H_{\mathrm{BdG}}(k) = \begin{pmatrix}
 \xi_k & 2i\Delta\sin k \\
 -2i\Delta\sin k & -\xi_k
-\end{pmatrix}
-=
-\xi_k\tau_z-2\Delta\sin k\,\tau_y.
+\end{pmatrix} = \xi_k\tau_z-2\Delta\sin k\,\tau_y.
 $$
 
 The sign of the $\tau_y$ term changes under a global phase change of $\Delta$ and has no effect on the eigenvalues.
@@ -911,26 +851,14 @@ The sign of the $\tau_y$ term changes under a global phase change of $\Delta$ an
 The characteristic equation is
 
 $$
-0
-=
-\det\!\left[H_{\mathrm{BdG}}(k)-EI_2\right]
-=
-\det
+0 = \det\!\left[H_{\mathrm{BdG}}(k)-EI_2\right] = \det
 \begin{pmatrix}
 \xi_k-E & 2i\Delta\sin k \\
 -2i\Delta\sin k & -\xi_k-E
-\end{pmatrix}
-=
-(\xi_k-E)(-\xi_k-E)-(2i\Delta\sin k)(-2i\Delta\sin k).
-$$
-
-$$
-=
+\end{pmatrix} = (\xi_k-E)(-\xi_k-E)-(2i\Delta\sin k)(-2i\Delta\sin k) =
 E^2-\xi_k^2-4\lvert\Delta\rvert^2\sin^2k
 \rightarrow
-E_{\pm}(k)
-=
-\pm\sqrt{(-\mu-2t\cos k)^2+(2\lvert\Delta\rvert\sin k)^2}.
+E_{\pm}(k) = \pm\sqrt{(-\mu-2t\cos k)^2+(2\lvert\Delta\rvert\sin k)^2}.
 $$
 
 This is the exact formula implemented by `bandas_bulk_kitaev`.
@@ -979,19 +907,14 @@ $$
 Using $\xi_0=-\mu-2t$ and $\xi_\pi=-\mu+2t$,
 
 $$
-\mathcal{M}
-=
-\mathrm{sgn}\!\left[(-\mu-2t)(-\mu+2t)\right]
-=
+\mathcal{M} = \mathrm{sgn}\!\left[(-\mu-2t)(-\mu+2t)\right] =
 \mathrm{sgn}\!\left(\mu^2-4t^2\right).
 $$
 
 Therefore
 
 $$
-\mathcal{M}
-=
-\begin{cases}
+\mathcal{M} = \begin{cases}
 -1, & \lvert\mu\rvert<2\lvert t\rvert\quad\text{topological}, \\
 +1, & \lvert\mu\rvert>2\lvert t\rvert\quad\text{trivial}.
 \end{cases}
