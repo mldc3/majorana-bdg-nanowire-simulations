@@ -1,0 +1,1 @@
+Cambia la longitud de localización y la estructura oscilatoria de los modos.

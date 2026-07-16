@@ -1,0 +1,1 @@
+Controla el gap inducido y la renormalización Z por proximidad.
