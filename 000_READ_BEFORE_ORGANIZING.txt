@@ -1,4 +1,0 @@
-These are temporary, globally unique upload names. Upload the files loose to the repository root.
-Do not manually rename them. After all three batches are uploaded, run the supplied Copilot organization-and-validation prompt.
-The authoritative temporary-name to final-path mapping is 000_UPLOAD_MAPPING.json.
-Copilot must delete both temporary helper files only after all mapped files have been moved and fully verified.
