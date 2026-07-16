@@ -192,7 +192,7 @@ where the product of fluctuations has been neglected. This is the only approxima
 Set
 
 $$
-\Delta(x,x')=V_{\mathrm{eff}}(x,x')\langle\psi_\downarrow(x')\psi_\uparrow(x)\rangle,
+\Delta(x,x')=V_{eff}(x,x')\langle\psi_\downarrow(x')\psi_\uparrow(x)\rangle,
 $$
 
 **(4.4)**
@@ -214,7 +214,7 @@ $$
 **(4.6)**
 
 $$
-\phantom{H_{\mathrm{MF}}=H_0}+\int dx\,dx'\frac{|\Delta(x,x')|^2}{V_{\mathrm{eff}}(x,x')}.
+H_{MF}=H_0+\int dx\,dx'\frac{|\Delta(x,x')|^2}{V_{eff}(x,x')}.
 $$
 
 **(4.7)**
@@ -246,7 +246,7 @@ $$
 **(5.2)**
 
 $$
-\phantom{[\psi_\uparrow(x),H_0]}=h_{\uparrow\beta}\psi_\beta(x).
+[\psi_\uparrow(x),H_0]=h_{\uparrow\beta}\psi_\beta(x).
 $$
 
 **(5.3)**
@@ -260,7 +260,7 @@ $$
 **(5.4)**
 
 $$
-\phantom{\left[\psi_\uparrow(x),\int dx_1\,dx_2\,\Delta(x_1,x_2)\psi_\uparrow^\dagger(x_1)\psi_\downarrow^\dagger(x_2)\right]}=\int dx_2\,\Delta(x,x_2)\psi_\downarrow^\dagger(x_2).
+\left[\psi_\uparrow(x),\int dx_1\,dx_2\,\Delta(x_1,x_2)\psi_\uparrow^\dagger(x_1)\psi_\downarrow^\dagger(x_2)\right]=\int dx_2\,\Delta(x,x_2)\psi_\downarrow^\dagger(x_2).
 $$
 
 **(5.5)**
@@ -302,7 +302,7 @@ The chosen ordering is exactly the convention used by the code. It is related to
 A quasiparticle operator is sought as
 
 $$
-\gamma_n=\int dx\left[u_{n\uparrow}^*(x)\psi_\uparrow(x)+u_{n\downarrow}^*(x)\psi_\downarrow(x)+v_{n\downarrow}^*(x)\psi_\downarrow^\dagger(x)-v_{n\uparrow}^*(x)\psi_\uparrow^\dagger(x)\right].
+\gamma_n=\int dx\left[u_{n\uparrow}^\ast (x)\psi_\uparrow(x)+u_{n\downarrow}^\ast (x)\psi_\downarrow(x)+v_{n\downarrow}^\ast(x)\psi_\downarrow^\dagger(x)-v_{n\uparrow}^\ast(x)\psi_\uparrow^\dagger(x)\right].
 $$
 
 **(6.1)**
@@ -310,7 +310,10 @@ $$
 Its adjoint is obtained by conjugating coefficients and operators. Canonical anticommutation requires
 
 $$
-\{\gamma_n,\gamma_m^\dagger\}=\delta_{nm},\qquad \{\gamma_n,\gamma_m\}=0,
+\{\gamma_n,\gamma_m^\dagger\}=\delta_{nm},
+$$
+$$
+\{\gamma_n,\gamma_m\}=0,
 $$
 
 **(6.2)**
@@ -380,7 +383,7 @@ The opposite signs in the two singlet pair couplings express the antisymmetric s
 Define
 
 $$
-\Phi_n(x)=\begin{pmatrix}u_{n\uparrow}\\u_{n\downarrow}\\v_{n\downarrow}\\-v_{n\uparrow}\end{pmatrix}.
+\Phi_n(x)=\begin{pmatrix}u_{n\uparrow} \\ u_{n\downarrow} \\ v_{n\downarrow} \\ -v_{n\uparrow}\end{pmatrix}.
 $$
 
 **(7.5)**
@@ -396,12 +399,12 @@ $$
 For local singlet pairing and a one-body spin matrix $h_0$, a basis-independent block form is
 
 $$
-H_{\mathrm{BdG}}=\begin{pmatrix}h_0&\Delta i\sigma_y\\-\Delta^* i\sigma_y&-h_0^*\end{pmatrix}
+H_{\mathrm{BdG}}=\begin{pmatrix}h_0&\Delta i\sigma_y \\ -\Delta^* i\sigma_y&-h_0^*\end{pmatrix}
 $$
 
 **(7.7)**
 
-in the conventional $(\psi_\uparrow,\psi_\downarrow,\psi_\uparrow^\dagger,\psi_\downarrow^\dagger)$ ordering. After transforming to the code ordering, the pairing term becomes $\operatorname{Re}\Delta\,\tau_x-\operatorname{Im}\Delta\,\tau_y$.
+in the conventional $(\psi_\uparrow,\psi_\downarrow,\psi_\uparrow^\dagger,\psi_\downarrow^\dagger)$ ordering. After transforming to the code ordering, the pairing term becomes $Re\Delta\,\tau_x-Im\Delta\,\tau_y$.
 
 ## 7.3 Nambu doubling is a redundancy
 
@@ -484,7 +487,7 @@ Using $1-2f(E)=\tanh[E/(2k_BT)]$ converts the occupation factors into the form u
 For the basis vector
 
 $$
-\Phi_n(i)=\begin{pmatrix}u_{n\uparrow}(i)\\u_{n\downarrow}(i)\\v_{n\downarrow}(i)\\-v_{n\uparrow}(i)\end{pmatrix},
+\Phi_n(i)=\begin{pmatrix}u_{n\uparrow}(i) \\ u_{n\downarrow}(i) \\ v_{n\downarrow}(i) \\ -v_{n\uparrow}(i)\end{pmatrix},
 $$
 
 **(9.3)**
@@ -492,7 +495,7 @@ $$
 the local singlet combination is
 
 $$
-F_n(i)=u_{n\uparrow}(i)v_{n\downarrow}^*(i)-u_{n\downarrow}(i)v_{n\uparrow}^*(i).
+F_n(i)=u_{n\uparrow}(i)v_{n\downarrow}^\ast (i)-u_{n\downarrow}(i)v_{n\uparrow}^\ast (i).
 $$
 
 **(9.4)**
@@ -500,7 +503,7 @@ $$
 Because the fourth stored component is $-v_{n\uparrow}$, the same quantity is written computationally as
 
 $$
-F_n(i)=u_{n\uparrow}(i)v_{n\downarrow}^*(i)+u_{n\downarrow}(i)[-v_{n\uparrow}(i)]^*.
+F_n(i)=u_{n\uparrow}(i)v_{n\downarrow}^\ast (i)+u_{n\downarrow}(i)[-v_{n\uparrow}(i)]^\ast .
 $$
 
 **(9.5)**
@@ -510,7 +513,7 @@ $$
 When the sum is restricted to positive energies,
 
 $$
-\Delta_i=V_{\mathrm{eff}}\sum_{\substack{|E_n|<E_c\\E_n>0}}F_n(i)\tanh\left(\frac{E_n}{2k_BT}\right).
+\Delta_i=V_{\mathrm{eff}}\sum_{|E_n|<E_c \\ E_n>0}F_n(i)\tanh\left(\frac{E_n}{2k_BT}\right).
 $$
 
 **(9.6)**
@@ -518,7 +521,7 @@ $$
 If both members of every $\pm E_n$ pair are included, the equivalent expression contains a factor one half:
 
 $$
-\Delta_i=\frac{V_{\mathrm{eff}}}{2}\sum_{|E_n|<E_c}F_n(i)\tanh\left(\frac{E_n}{2k_BT}\right).
+\Delta_i=\frac{V_{eff}}{2}\sum_{|E_n|<E_c}F_n(i)\tanh\left(\frac{E_n}{2k_BT}\right).
 $$
 
 **(9.7)**
@@ -527,7 +530,7 @@ This is the form implemented by `calcular_delta_autoconsistente`.
 
 ## 9.4 Energy cutoff
 
-The effective attraction is assumed to act only in a finite energy window $|E_n|<E_c$. The cutoff is part of the effective model. Changing it while keeping $V_{\mathrm{eff}}$ fixed changes the converged gap; in a microscopic treatment the interaction and cutoff must be calibrated together.
+The effective attraction is assumed to act only in a finite energy window $|E_n|<E_c$. The cutoff is part of the effective model. Changing it while keeping $V_{eff}$ fixed changes the converged gap; in a microscopic treatment the interaction and cutoff must be calibrated together.
 
 ## 9.5 Gauge freedom and phase fixing
 
@@ -540,7 +543,7 @@ A global transformation $\psi\mapsto e^{i\theta/2}\psi$ changes $\Delta\mapsto e
 The continuum electronic Hamiltonian is
 
 $$
-h_0(x)=\left[\frac{p_x^2}{2m^*}-\mu+V(x)\right]\sigma_0+\frac{\alpha_R}{\hbar}p_x\sigma_y+E_Z\sigma_x.
+h_0(x)=\left[\frac{p_x^2}{2m^\ast}-\mu+V(x)\right]\sigma_0+\frac{\alpha_R}{\hbar}p_x\sigma_y+E_Z\sigma_x.
 $$
 
 **(10.1)**
@@ -552,7 +555,7 @@ The terms have distinct roles: kinetic energy defines the dispersion; $\mu$ sele
 In the code basis,
 
 $$
-H_{\mathrm{BdG}}(x)=\left[\frac{p_x^2}{2m^*}-\mu+V(x)\right]\tau_z+\frac{\alpha_R}{\hbar}p_x\sigma_y\tau_z+E_Z\sigma_x+\operatorname{Re}\Delta(x)\tau_x-\operatorname{Im}\Delta(x)\tau_y.
+H_{BdG}(x)=\left[\frac{p_x^2}{2m^\ast}-\mu+V(x)\right]\tau_z+\frac{\alpha_R}{\hbar}p_x\sigma_y\tau_z+E_Z\sigma_x+Re\Delta(x)\tau_x-Im\Delta(x)\tau_y.
 $$
 
 **(10.2)**
@@ -650,7 +653,7 @@ The action on site $i$ is represented by opposite imaginary amplitudes to the ri
 Collecting all terms,
 
 $$
-h_i=(2t-\mu+V_i)\tau_z+E_Z\sigma_x+\operatorname{Re}\Delta_i\tau_x-\operatorname{Im}\Delta_i\tau_y,
+h_i=(2t-\mu+V_i)\tau_z+E_Z\sigma_x+Re\Delta_i\tau_x-Im\Delta_i\tau_y,
 $$
 
 **(11.8)**
@@ -664,7 +667,7 @@ $$
 The complete open-chain matrix is block tridiagonal:
 
 $$
-H=\begin{pmatrix}h_0&T&0&\cdots\\T^\dagger&h_1&T&\cdots\\0&T^\dagger&h_2&\ddots\\\vdots&\vdots&\ddots&\ddots\end{pmatrix},\qquad T=-t\tau_z+it_{\mathrm{so}}\sigma_y\tau_z.
+H=\begin{pmatrix}h_0&T&0& \cdots \\ T^\dagger&h_1 & T & \cdots \\ 0&T^\dagger&h_2&\ddots \\ \vdots & \vdots & \ddots & \ddots \end{pmatrix},\qquad T=-t\tau_z+it_{\mathrm{so}}\sigma_y\tau_z.
 $$
 
 **(11.10)**
@@ -710,7 +713,7 @@ $$
 **(12.4)**
 
 $$
-\phantom{E_\pm^2(k)=}\pm2\sqrt{E_Z^2|\Delta|^2+\xi_k^2(E_Z^2+\alpha_k^2)}.
+E_\pm^2(k)=\pm2\sqrt{E_Z^2|\Delta|^2+\xi_k^2(E_Z^2+\alpha_k^2)}.
 $$
 
 **(12.5)**
