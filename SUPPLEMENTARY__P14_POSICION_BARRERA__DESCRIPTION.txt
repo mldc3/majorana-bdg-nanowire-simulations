@@ -1,0 +1,1 @@
+Desplaza las puertas/barreras desde el borde hacia el interior.

@@ -1,0 +1,1 @@
+Controla el tamaño de las regiones de borde menos proximitizadas.

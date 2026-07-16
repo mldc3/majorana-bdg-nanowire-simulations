@@ -1,0 +1,1 @@
+Mide sensibilidad de Hartree a la ocupación térmica normal.

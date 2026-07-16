@@ -1,0 +1,1 @@
+Introduce una perturbación asimétrica controlada para ver cuándo dejan de ser espejo los perfiles.
