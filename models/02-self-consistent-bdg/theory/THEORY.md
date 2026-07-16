@@ -1,15 +1,79 @@
 # Self-Consistent Bogoliubov–de Gennes Nanowire
 
-*Complete theoretical development from superconducting mean field to the lattice equations used in the simulation*
+## Complete theoretical development from superconducting mean field to the lattice equations used in the simulation
 
-> Continuation of the Kitaev-chain documentation for the repository `majorana-bdg-nanowire-simulations`. The material starts from the second-quantized framework already established there and develops the Bogoliubov–de Gennes formalism and the self-consistent nanowire model.
+Continuation of the Kitaev-chain documentation for the repository `majorana-bdg-nanowire-simulations`. The material starts from the second-quantized framework already established there and develops the Bogoliubov–de Gennes formalism and the self-consistent nanowire model.
 
-Technical study document in English  
-Source model: `src/self_consistent_bdg_nanowire.py`
+**Technical study document in English**
 
-# Scope and relation to the Kitaev-chain section
+**Source model:** `src/self_consistent_bdg_nanowire.py`
 
-## Starting point
+---
+
+## Contents
+
+1. [Scope and relation to the Kitaev-chain section](#1-scope-and-relation-to-the-kitaev-chain-section)
+   1. [Starting point](#11-starting-point)
+   2. [What is self-consistent in this model?](#12-what-is-self-consistent-in-this-model)
+   3. [Physical system](#13-physical-system)
+2. [Why the Bogoliubov–de Gennes formalism is needed](#2-why-the-bogoliubovde-gennes-formalism-is-needed)
+   1. [Superconductors do not conserve particle number at mean-field level](#21-superconductors-do-not-conserve-particle-number-at-mean-field-level)
+   2. [BCS interpretation](#22-bcs-interpretation)
+   3. [BdG is an eigenvalue problem plus a closure condition](#23-bdg-is-an-eigenvalue-problem-plus-a-closure-condition)
+3. [Microscopic interacting Hamiltonian](#3-microscopic-interacting-hamiltonian)
+   1. [One-body and interaction terms](#31-one-body-and-interaction-terms)
+   2. [Local singlet specialization](#32-local-singlet-specialization)
+4. [Mean-field decoupling step by step](#4-mean-field-decoupling-step-by-step)
+   1. [Fluctuation decomposition](#41-fluctuation-decomposition)
+   2. [Definition of the order parameter](#42-definition-of-the-order-parameter)
+   3. [Why the result is quadratic](#43-why-the-result-is-quadratic)
+5. [Equations of motion](#5-equations-of-motion)
+   1. [Fermionic commutator identity](#51-fermionic-commutator-identity)
+   2. [Compact matrix form before diagonalization](#52-compact-matrix-form-before-diagonalization)
+6. [Bogoliubov transformation](#6-bogoliubov-transformation)
+   1. [Canonical quasiparticles](#61-canonical-quasiparticles)
+   2. [Diagonalization condition](#62-diagonalization-condition)
+7. [Bogoliubov–de Gennes equations](#7-bogoliubovde-gennes-equations)
+   1. [Component equations](#71-component-equations)
+   2. [Nambu matrix](#72-nambu-matrix)
+   3. [Nambu doubling is a redundancy](#73-nambu-doubling-is-a-redundancy)
+8. [Particle–hole symmetry in the code basis](#8-particlehole-symmetry-in-the-code-basis)
+   1. [Antiunitary operator](#81-antiunitary-operator)
+   2. [Matrix check](#82-matrix-check)
+9. [Derivation of the self-consistency equation](#9-derivation-of-the-self-consistency-equation)
+   1. [Inverse Bogoliubov transformation](#91-inverse-bogoliubov-transformation)
+   2. [Spin-singlet anomalous amplitude](#92-spin-singlet-anomalous-amplitude)
+   3. [Positive-energy and all-energy forms](#93-positive-energy-and-all-energy-forms)
+   4. [Energy cutoff](#94-energy-cutoff)
+   5. [Gauge freedom and phase fixing](#95-gauge-freedom-and-phase-fixing)
+10. [Continuum model of the Rashba–Zeeman nanowire](#10-continuum-model-of-the-rashbazeeman-nanowire)
+    1. [Normal Hamiltonian](#101-normal-hamiltonian)
+    2. [BdG Hamiltonian](#102-bdg-hamiltonian)
+    3. [Topological criterion in the continuum limit](#103-topological-criterion-in-the-continuum-limit)
+11. [Spatial discretization without omitted steps](#11-spatial-discretization-without-omitted-steps)
+    1. [Lattice points and Taylor expansions](#111-lattice-points-and-taylor-expansions)
+    2. [Discrete kinetic term](#112-discrete-kinetic-term)
+    3. [Discrete Rashba term](#113-discrete-rashba-term)
+    4. [Local and hopping blocks](#114-local-and-hopping-blocks)
+12. [Homogeneous bulk Hamiltonian and bands](#12-homogeneous-bulk-hamiltonian-and-bands)
+    1. [Fourier transform](#121-fourier-transform)
+    2. [Analytical dispersion](#122-analytical-dispersion)
+    3. [Bulk gap](#123-bulk-gap)
+13. [Observables derived from BdG eigenvectors](#13-observables-derived-from-bdg-eigenvectors)
+    1. [Total BdG density](#131-total-bdg-density)
+    2. [Electron and hole sectors](#132-electron-and-hole-sectors)
+    3. [Electronic local density of states](#133-electronic-local-density-of-states)
+    4. [Majorana combinations](#134-majorana-combinations)
+    5. [Finite-length splitting](#135-finite-length-splitting)
+14. [Complete equation-to-code map](#14-complete-equation-to-code-map)
+15. [Conclusions](#15-conclusions)
+16. [Bibliography](#bibliography)
+
+---
+
+# 1 Scope and relation to the Kitaev-chain section
+
+## 1.1 Starting point
 
 The preceding Kitaev-chain documentation introduced Fock space, fermionic creation and annihilation operators, canonical anticommutation relations, fermion parity, Majorana operators, Nambu doubling, and the basic meaning of particle–hole symmetry. Those foundations will not be repeated here. They are assumed throughout this document.
 
@@ -19,1709 +83,754 @@ The present objective is different. We begin with an interacting spinful electro
 >
 > Second quantization supplies the operator language; the BdG construction supplies the quasiparticle eigenproblem; self-consistency closes the problem by requiring the pair potential used in the Hamiltonian to equal the anomalous expectation value calculated from the resulting eigenstates.
 
-## What is self-consistent in this model?
+## 1.2 What is self-consistent in this model?
 
-The pairing field is not inserted once and held fixed. A trial spatial profile $\Delta^{(0)}(x)$ is used to construct a BdG Hamiltonian. Its eigenvectors determine a new anomalous pair amplitude and hence a new profile $\Delta^{\mathrm{calc}}(x)$. The Hamiltonian is rebuilt with a mixed profile, and the procedure is repeated until successive profiles differ by less than a prescribed tolerance. Thus the superconducting order parameter and the quasiparticle spectrum are solved together.
+The pairing field is not inserted once and held fixed. A trial spatial profile $\Delta^{(0)}(x)$ is used to construct a BdG Hamiltonian. Its eigenvectors determine a new anomalous pair amplitude and hence a new profile $\Delta_{\mathrm{calc}}(x)$. The Hamiltonian is rebuilt with a mixed profile, and the procedure is repeated until successive profiles differ by less than a prescribed tolerance. Thus the superconducting order parameter and the quasiparticle spectrum are solved together.
 
-## Physical system
+## 1.3 Physical system
 
 The model describes a one-dimensional spinful electronic channel with effective mass $m^*$, chemical potential $\mu$, a possible electrostatic profile $V(x)$, Rashba spin–orbit coupling $\alpha_R$, a Zeeman energy $E_Z$, and local spin-singlet pairing $\Delta(x)$. In continuum form the single-particle part is
-
 
 $$
 h_0=\frac{p_x^2}{2m^*}-\mu+V(x)+\frac{\alpha_R}{\hbar}p_x\sigma_y+E_Z\sigma_x.
 $$
 
+**(1.1)**
 
-The pairing field couples particles and holes. The combination of spin–orbit coupling, Zeeman splitting, and $s$-wave pairing can produce an effective low-energy spinless superconducting sector and, after a bulk gap closing and reopening, end-localized near-zero modes.
+The pairing field couples particles and holes. The combination of spin–orbit coupling, Zeeman splitting, and s-wave pairing can produce an effective low-energy spinless superconducting sector and, after a bulk gap closing and reopening, end-localized near-zero modes.
 
-# Why the Bogoliubov–de Gennes formalism is needed
+# 2 Why the Bogoliubov–de Gennes formalism is needed
 
-## Superconductors do not conserve particle number at mean-field level
+## 2.1 Superconductors do not conserve particle number at mean-field level
 
 A normal quadratic Hamiltonian contains terms of the form $\psi^\dagger\psi$. It moves particles between one-particle states but does not mix sectors with different particle number. A superconducting mean-field Hamiltonian also contains $\psi^\dagger\psi^\dagger$ and $\psi\psi$. These terms create and annihilate pairs. The quasiparticles that diagonalize such a Hamiltonian must therefore mix annihilation and creation operators.
 
 The mean-field Hamiltonian does preserve fermion parity because every term changes particle number by an even integer. This is precisely the algebraic setting in which BdG particle–hole redundancy and Majorana self-conjugacy arise.
 
-## BCS interpretation
+## 2.2 BCS interpretation
 
 An effective attraction in the spin-singlet channel correlates time-reversed electronic states. The condensate is characterized by the anomalous average $\langle\psi_\downarrow\psi_\uparrow\rangle$. A nonzero value defines an order parameter $\Delta$ and opens an excitation gap. The elementary excitations are Bogoliubov quasiparticles: coherent electron–hole superpositions whose amplitudes are denoted $u$ and $v$.
 
-## BdG is an eigenvalue problem plus a closure condition
+## 2.3 BdG is an eigenvalue problem plus a closure condition
 
 For a prescribed $\Delta$, BdG theory is a linear Hermitian eigenproblem. When $\Delta$ is generated by the same electronic degrees of freedom, the eigenproblem is nonlinear as a whole because $\Delta$ depends on its own eigenvectors. The standard solution is fixed-point iteration.
 
-# Microscopic interacting Hamiltonian
+# 3 Microscopic interacting Hamiltonian
 
-## One-body and interaction terms
+## 3.1 One-body and interaction terms
 
 We start from
 
+$$
+H=H_0+H_{\mathrm{int}},
+$$
+
+**(3.1)**
 
 $$
-\begin{aligned} H&=H_0+H_{\mathrm{int}},\\ H_0&=\sum_{\alpha\beta}\int\mathrm{d} x\,\mathrm{d} x'\, \psi_\alpha^\dagger(x)h_{\alpha\beta}(x,x')\psi_\beta(x'),\\ H_{\mathrm{int}}&=-\int\mathrm{d} x\,\mathrm{d} x'\,V_{\mathrm{eff}}(x,x') \psi_\uparrow^\dagger(x)\psi_\downarrow^\dagger(x') \psi_\downarrow(x')\psi_\uparrow(x). \end{aligned}
+H_0=\sum_{\alpha\beta}\int dx\,dx'\,\psi_\alpha^\dagger(x)h_{\alpha\beta}(x,x')\psi_\beta(x'),
 $$
 
+**(3.2)**
+
+$$
+H_{\mathrm{int}}=-\int dx\,dx'\,V_{\mathrm{eff}}(x,x')\psi_\uparrow^\dagger(x)\psi_\downarrow^\dagger(x')\psi_\downarrow(x')\psi_\uparrow(x).
+$$
+
+**(3.3)**
 
 The effective interaction is written with $V_{\mathrm{eff}}>0$ and an explicit minus sign, so the selected channel is attractive. The spin indices of the one-body operator may include spin mixing; this is required for Rashba and Zeeman terms.
 
-## Local singlet specialization
+## 3.2 Local singlet specialization
 
-For a local $s$-wave model,
-
+For a local s-wave model,
 
 $$
-V_{\mathrm{eff}}(x,x')=V_{\mathrm{eff}}\,\delta(x-x'),
+V_{\mathrm{eff}}(x,x')=V_{\mathrm{eff}}\delta(x-x'),
 $$
 
+**(3.4)**
 
 and the relevant pair operator is $\psi_\downarrow(x)\psi_\uparrow(x)$. The orbital part is even under exchange, so the spin part is antisymmetric, i.e. a singlet. The corresponding order parameter is
-
 
 $$
 \Delta(x)=V_{\mathrm{eff}}\langle\psi_\downarrow(x)\psi_\uparrow(x)\rangle.
 $$
 
+**(3.5)**
 
-# Mean-field decoupling step by step
+# 4 Mean-field decoupling step by step
 
-## Fluctuation decomposition
+## 4.1 Fluctuation decomposition
 
 Define
-
 
 $$
 A=\psi_\uparrow^\dagger(x)\psi_\downarrow^\dagger(x'),\qquad B=\psi_\downarrow(x')\psi_\uparrow(x).
 $$
 
+**(4.1)**
 
 Write $A=\langle A\rangle+\delta A$ and $B=\langle B\rangle+\delta B$. Then
 
+$$
+AB=\langle A\rangle\langle B\rangle+\langle A\rangle\delta B+\delta A\langle B\rangle+\delta A\delta B
+$$
+
+**(4.2)**
 
 $$
-\begin{aligned} AB&=\langle A\rangle\langle B\rangle+\langle A\rangle\delta B +\delta A\langle B\rangle+\delta A\delta B\\ &\simeq A\langle B\rangle+\langle A\rangle B-\langle A\rangle\langle B\rangle, \end{aligned}
+AB\simeq A\langle B\rangle+\langle A\rangle B-\langle A\rangle\langle B\rangle,
 $$
 
+**(4.3)**
 
 where the product of fluctuations has been neglected. This is the only approximation in the algebraic reduction from a quartic interaction to a quadratic Hamiltonian.
 
-## Definition of the order parameter
+## 4.2 Definition of the order parameter
 
 Set
-
 
 $$
 \Delta(x,x')=V_{\mathrm{eff}}(x,x')\langle\psi_\downarrow(x')\psi_\uparrow(x)\rangle,
 $$
 
+**(4.4)**
 
 with
-
 
 $$
 \Delta^*(x,x')=V_{\mathrm{eff}}(x,x')\langle\psi_\uparrow^\dagger(x)\psi_\downarrow^\dagger(x')\rangle.
 $$
 
+**(4.5)**
 
 Substitution gives
 
+$$
+H_{\mathrm{MF}}=H_0+\int dx\,dx'\left[\Delta(x,x')\psi_\uparrow^\dagger(x)\psi_\downarrow^\dagger(x')+\Delta^*(x,x')\psi_\downarrow(x')\psi_\uparrow(x)\right]
+$$
+
+**(4.6)**
 
 $$
-\begin{aligned} H_{\mathrm{MF}}={}&H_0+ \int\mathrm{d} x\,\mathrm{d} x'\left[ \Delta(x,x')\psi_\uparrow^\dagger(x)\psi_\downarrow^\dagger(x') +\Delta^*(x,x')\psi_\downarrow(x')\psi_\uparrow(x) \right]\\ &+\int\mathrm{d} x\,\mathrm{d} x'\frac{|\Delta(x,x')|^2}{V_{\mathrm{eff}}(x,x')}. \end{aligned}
+\phantom{H_{\mathrm{MF}}=H_0}+\int dx\,dx'\frac{|\Delta(x,x')|^2}{V_{\mathrm{eff}}(x,x')}.
 $$
 
+**(4.7)**
 
-The final term is a $c$-number. It is essential when comparing thermodynamic energies, but it drops out of the operator equations of motion and of the BdG eigenvectors.
+The final term is a c-number. It is essential when comparing thermodynamic energies, but it drops out of the operator equations of motion and of the BdG eigenvectors.
 
-## Why the result is quadratic
+## 4.3 Why the result is quadratic
 
 Every operator-dependent term now contains exactly two field operators. Consequently the Hamiltonian can be diagonalized by a linear canonical transformation. The price is that $\Delta$ must later satisfy the expectation-value definition used to introduce it.
 
-# Equations of motion
+# 5 Equations of motion
 
-## Fermionic commutator identity
+## 5.1 Fermionic commutator identity
 
 For fermionic operators one repeatedly uses
-
 
 $$
 [A,BC]=\{A,B\}C-B\{A,C\}.
 $$
 
+**(5.1)**
 
 For the normal term,
 
+$$
+[\psi_\uparrow(x),H_0]=\int dx'\,[\psi_\uparrow(x),\psi_\alpha^\dagger(x')h_{\alpha\beta}\psi_\beta(x')]
+$$
+
+**(5.2)**
 
 $$
-\begin{aligned} [\psi_\uparrow(x),H_0] &=\int\mathrm{d} x'\,[\psi_\uparrow(x),\psi_\alpha^\dagger(x')h_{\alpha\beta}\psi_\beta(x')]\\ &=h_{\uparrow\beta}\psi_\beta(x). \end{aligned}
+\phantom{[\psi_\uparrow(x),H_0]}=h_{\uparrow\beta}\psi_\beta(x).
 $$
 
+**(5.3)**
 
 For the pair-creation term,
 
+$$
+\left[\psi_\uparrow(x),\int dx_1\,dx_2\,\Delta(x_1,x_2)\psi_\uparrow^\dagger(x_1)\psi_\downarrow^\dagger(x_2)\right]
+$$
+
+**(5.4)**
 
 $$
-\begin{aligned} &[\psi_\uparrow(x),\int\mathrm{d} x_1\mathrm{d} x_2\,\Delta(x_1,x_2) \psi_\uparrow^\dagger(x_1)\psi_\downarrow^\dagger(x_2)]\\ &\qquad=\int\mathrm{d} x_2\,\Delta(x,x_2)\psi_\downarrow^\dagger(x_2). \end{aligned}
+\phantom{\left[\psi_\uparrow(x),\int dx_1\,dx_2\,\Delta(x_1,x_2)\psi_\uparrow^\dagger(x_1)\psi_\downarrow^\dagger(x_2)\right]}=\int dx_2\,\Delta(x,x_2)\psi_\downarrow^\dagger(x_2).
 $$
 
+**(5.5)**
 
 The pair-annihilation term commutes with $\psi_\uparrow$ in the required ordinary commutator after the fermionic anticommutators are applied. Hence
 
-
 $$
-\mathrm{i}\hbar\partial_t\psi_\uparrow(x)=h_{\uparrow\beta}\psi_\beta(x) +\int\mathrm{d} x'\,\Delta(x,x')\psi_\downarrow^\dagger(x').
+i\hbar\partial_t\psi_\uparrow(x)=h_{\uparrow\beta}\psi_\beta(x)+\int dx'\,\Delta(x,x')\psi_\downarrow^\dagger(x').
 $$
 
+**(5.6)**
 
 Similarly,
 
-
 $$
-\mathrm{i}\hbar\partial_t\psi_\downarrow(x)=h_{\downarrow\beta}\psi_\beta(x) -\int\mathrm{d} x'\,\Delta(x',x)\psi_\uparrow^\dagger(x'),
+i\hbar\partial_t\psi_\downarrow(x)=h_{\downarrow\beta}\psi_\beta(x)-\int dx'\,\Delta(x',x)\psi_\uparrow^\dagger(x'),
 $$
 
+**(5.7)**
 
 and Hermitian conjugation supplies the equations for the creation fields.
 
-## Compact matrix form before diagonalization
+## 5.2 Compact matrix form before diagonalization
 
 Introduce the field Nambu spinor
 
-
 $$
-\widehat\Psi(x)= \begin{pmatrix} \psi_\uparrow(x)\\ \psi_\downarrow(x)\\ \psi_\downarrow^\dagger(x)\\ -\psi_\uparrow^\dagger(x) \end{pmatrix}.
+\widehat{\Psi}(x)=\begin{pmatrix}\psi_\uparrow(x)\\\psi_\downarrow(x)\\\psi_\downarrow^\dagger(x)\\-\psi_\uparrow^\dagger(x)\end{pmatrix}.
 $$
 
+**(5.8)**
 
 The chosen ordering is exactly the convention used by the code. It is related to other common Nambu bases by a unitary permutation and sign change; physical predictions are unchanged, but every matrix representation must remain consistent with the chosen basis.
 
-# Bogoliubov transformation
+# 6 Bogoliubov transformation
 
-## Canonical quasiparticles
+## 6.1 Canonical quasiparticles
 
 A quasiparticle operator is sought as
 
-
 $$
-\gamma_n=\int\mathrm{d} x\left[ u_{n\uparrow}^*(x)\psi_\uparrow(x)+u_{n\downarrow}^*(x)\psi_\downarrow(x) +v_{n\downarrow}^*(x)\psi_\downarrow^\dagger(x) -v_{n\uparrow}^*(x)\psi_\uparrow^\dagger(x) \right].
+\gamma_n=\int dx\left[u_{n\uparrow}^*(x)\psi_\uparrow(x)+u_{n\downarrow}^*(x)\psi_\downarrow(x)+v_{n\downarrow}^*(x)\psi_\downarrow^\dagger(x)-v_{n\uparrow}^*(x)\psi_\uparrow^\dagger(x)\right].
 $$
 
+**(6.1)**
 
 Its adjoint is obtained by conjugating coefficients and operators. Canonical anticommutation requires
-
 
 $$
 \{\gamma_n,\gamma_m^\dagger\}=\delta_{nm},\qquad \{\gamma_n,\gamma_m\}=0,
 $$
 
+**(6.2)**
 
 which implies the normalization
 
-
 $$
-\int\mathrm{d} x\left(|u_{n\uparrow}|^2+|u_{n\downarrow}|^2+|v_{n\uparrow}|^2+|v_{n\downarrow}|^2\right)=1.
+\int dx\left(|u_{n\uparrow}|^2+|u_{n\downarrow}|^2+|v_{n\uparrow}|^2+|v_{n\downarrow}|^2\right)=1.
 $$
 
+**(6.3)**
 
-## Diagonalization condition
+## 6.2 Diagonalization condition
 
 If
-
 
 $$
 H_{\mathrm{MF}}=E_{\mathrm{GS}}+\sum_n E_n\gamma_n^\dagger\gamma_n,
 $$
 
+**(6.4)**
 
 then
-
 
 $$
 [\gamma_n,H_{\mathrm{MF}}]=E_n\gamma_n.
 $$
 
+**(6.5)**
 
 Substituting the transformation and matching the independent field operators yields the BdG equations. This is equivalent to inserting the quasiparticle expansion into the Heisenberg equations of motion.
 
-# Bogoliubov–de Gennes equations
+# 7 Bogoliubov–de Gennes equations
 
-## Component equations
+## 7.1 Component equations
 
 Before adding spin-mixing terms, the spin-diagonal form used in the microscopic derivation is
 
+$$
+h_\uparrow u_{n\uparrow}+\Delta v_{n\downarrow}=E_nu_{n\uparrow},
+$$
+
+**(7.1)**
 
 $$
-\begin{aligned} h_\uparrow u_{n\uparrow}+\Delta v_{n\downarrow}&=E_nu_{n\uparrow},\\ h_\downarrow u_{n\downarrow}-\Delta v_{n\uparrow}&=E_nu_{n\downarrow},\\ \Delta^*u_{n\downarrow}-h_\uparrow^*v_{n\uparrow}&=E_nv_{n\uparrow},\\ \Delta^*u_{n\uparrow}-h_\downarrow^*v_{n\downarrow}&=E_nv_{n\downarrow}. \end{aligned}
+h_\downarrow u_{n\downarrow}-\Delta v_{n\uparrow}=E_nu_{n\downarrow},
 $$
 
+**(7.2)**
+
+$$
+\Delta^*u_{n\downarrow}-h_\uparrow^*v_{n\uparrow}=E_nv_{n\uparrow},
+$$
+
+**(7.3)**
+
+$$
+\Delta^*u_{n\uparrow}-h_\downarrow^*v_{n\downarrow}=E_nv_{n\downarrow}.
+$$
+
+**(7.4)**
 
 The opposite signs in the two singlet pair couplings express the antisymmetric spin structure. Rashba and transverse Zeeman terms add off-diagonal spin entries to the one-body operator; the compact Nambu matrix below incorporates those entries without changing the singlet pairing convention.
 
-## Nambu matrix
+## 7.2 Nambu matrix
 
 Define
-
 
 $$
 \Phi_n(x)=\begin{pmatrix}u_{n\uparrow}\\u_{n\downarrow}\\v_{n\downarrow}\\-v_{n\uparrow}\end{pmatrix}.
 $$
 
+**(7.5)**
 
 Then
-
 
 $$
 H_{\mathrm{BdG}}\Phi_n=E_n\Phi_n.
 $$
 
+**(7.6)**
 
 For local singlet pairing and a one-body spin matrix $h_0$, a basis-independent block form is
 
-
 $$
-H_{\mathrm{BdG}}=\begin{pmatrix} h_0 & \Delta\,\mathrm{i}\sigma_y\\ -\Delta^*\,\mathrm{i}\sigma_y & -h_0^* \end{pmatrix}
+H_{\mathrm{BdG}}=\begin{pmatrix}h_0&\Delta i\sigma_y\\-\Delta^* i\sigma_y&-h_0^*\end{pmatrix}
 $$
 
+**(7.7)**
 
 in the conventional $(\psi_\uparrow,\psi_\downarrow,\psi_\uparrow^\dagger,\psi_\downarrow^\dagger)$ ordering. After transforming to the code ordering, the pairing term becomes $\operatorname{Re}\Delta\,\tau_x-\operatorname{Im}\Delta\,\tau_y$.
 
-## Nambu doubling is a redundancy
+## 7.3 Nambu doubling is a redundancy
 
 The BdG matrix has twice as many components as the electronic single-particle problem. This does not double the number of independent physical excitations. Particle–hole symmetry maps every positive-energy eigenvector to a negative-energy partner. One may construct the quasiparticle spectrum from one member of each pair.
 
-# Particle–hole symmetry in the code basis
+# 8 Particle–hole symmetry in the code basis
 
-## Antiunitary operator
+## 8.1 Antiunitary operator
 
 In the basis $(u_\uparrow,u_\downarrow,v_\downarrow,-v_\uparrow)^T$, the local particle–hole operation is
 
-
 $$
-\mathcal{C}=\tau_y\sigma_y K,
+\mathcal{C}=\tau_y\sigma_yK,
 $$
 
+**(8.1)**
 
 where $K$ denotes complex conjugation. It satisfies
-
 
 $$
 \mathcal{C}H_{\mathrm{BdG}}\mathcal{C}^{-1}=-H_{\mathrm{BdG}}.
 $$
 
+**(8.2)**
 
 Thus, if $H_{\mathrm{BdG}}\Phi_n=E_n\Phi_n$, then
-
 
 $$
 H_{\mathrm{BdG}}(\mathcal{C}\Phi_n)=-E_n(\mathcal{C}\Phi_n).
 $$
 
+**(8.3)**
 
-At exactly zero energy, a state can be chosen to satisfy $\mathcal{C}\Phi_0=\mathrm{e}^{\mathrm{i}\chi}\Phi_0$; after a phase choice, it is self-conjugate and represents a Majorana solution at the BdG level.
+At exactly zero energy, a state can be chosen to satisfy $\mathcal{C}\Phi_0=e^{i\chi}\Phi_0$; after a phase choice, it is self-conjugate and represents a Majorana solution at the BdG level.
 
-## Matrix check
+## 8.2 Matrix check
 
 For $N$ sites the global unitary part is
-
 
 $$
 U_C=I_N\otimes(\tau_y\sigma_y).
 $$
 
+**(8.4)**
 
 The script evaluates the relative residual
 
-
 $$
-\epsilon_C=\frac{\left\lVert U_C H^*U_C^\dagger+H\right\rVert}{\left\lVert H\right\rVert}.
+\epsilon_C=\frac{\left\|U_CH^*U_C^\dagger+H\right\|}{\|H\|}.
 $$
 
+**(8.5)**
 
 This is a structural test of basis consistency, not a topological invariant.
 
-# Derivation of the self-consistency equation
+# 9 Derivation of the self-consistency equation
 
-## Inverse Bogoliubov transformation
+## 9.1 Inverse Bogoliubov transformation
 
 The field operators can be expanded in a complete set of BdG modes. In the selected convention, the anomalous expectation value at one point is built from products of electron and hole amplitudes. Thermal quasiparticle averages are
-
 
 $$
 \langle\gamma_n^\dagger\gamma_m\rangle=\delta_{nm}f(E_n),\qquad \langle\gamma_n\gamma_m^\dagger\rangle=\delta_{nm}[1-f(E_n)],
 $$
 
+**(9.1)**
 
 where
 
-
 $$
-f(E)=\frac{1}{\mathrm{e}^{E/(k_{\mathrm B} T)}+1}.
+f(E)=\frac{1}{e^{E/(k_BT)}+1}.
 $$
 
+**(9.2)**
 
-Using $1-2f(E)=\tanh[E/(2k_{\mathrm B} T)]$ converts the occupation factors into the form used in the code.
+Using $1-2f(E)=\tanh[E/(2k_BT)]$ converts the occupation factors into the form used in the code.
 
-## Spin-singlet anomalous amplitude
+## 9.2 Spin-singlet anomalous amplitude
 
 For the basis vector
-
 
 $$
 \Phi_n(i)=\begin{pmatrix}u_{n\uparrow}(i)\\u_{n\downarrow}(i)\\v_{n\downarrow}(i)\\-v_{n\uparrow}(i)\end{pmatrix},
 $$
 
+**(9.3)**
 
 the local singlet combination is
 
-
 $$
-F_n(i)=u_{n\uparrow}(i)v_{n\downarrow}^*(i) -u_{n\downarrow}(i)v_{n\uparrow}^*(i).
+F_n(i)=u_{n\uparrow}(i)v_{n\downarrow}^*(i)-u_{n\downarrow}(i)v_{n\uparrow}^*(i).
 $$
 
+**(9.4)**
 
 Because the fourth stored component is $-v_{n\uparrow}$, the same quantity is written computationally as
 
-
 $$
-F_n(i)=u_{n\uparrow}(i)v_{n\downarrow}^*(i) +u_{n\downarrow}(i)[-v_{n\uparrow}(i)]^*.
+F_n(i)=u_{n\uparrow}(i)v_{n\downarrow}^*(i)+u_{n\downarrow}(i)[-v_{n\uparrow}(i)]^*.
 $$
 
+**(9.5)**
 
-## Positive-energy and all-energy forms
+## 9.3 Positive-energy and all-energy forms
 
 When the sum is restricted to positive energies,
 
-
 $$
-\Delta_i=V_{\mathrm{eff}}\sum_{E_n>0}^{|E_n|<E_c}F_n(i)\tanh\left(\frac{E_n}{2k_{\mathrm B} T}\right).
+\Delta_i=V_{\mathrm{eff}}\sum_{\substack{|E_n|<E_c\\E_n>0}}F_n(i)\tanh\left(\frac{E_n}{2k_BT}\right).
 $$
 
+**(9.6)**
 
 If both members of every $\pm E_n$ pair are included, the equivalent expression contains a factor one half:
 
-
 $$
-\boxed{\Delta_i=\frac{V_{\mathrm{eff}}}{2}\sum_{|E_n|<E_c}F_n(i) \tanh\left(\frac{E_n}{2k_{\mathrm B} T}\right).}
+\Delta_i=\frac{V_{\mathrm{eff}}}{2}\sum_{|E_n|<E_c}F_n(i)\tanh\left(\frac{E_n}{2k_BT}\right).
 $$
 
+**(9.7)**
 
 This is the form implemented by `calcular_delta_autoconsistente`.
 
-## Energy cutoff
+## 9.4 Energy cutoff
 
 The effective attraction is assumed to act only in a finite energy window $|E_n|<E_c$. The cutoff is part of the effective model. Changing it while keeping $V_{\mathrm{eff}}$ fixed changes the converged gap; in a microscopic treatment the interaction and cutoff must be calibrated together.
 
-## Gauge freedom and phase fixing
+## 9.5 Gauge freedom and phase fixing
 
-A global transformation $\psi\mapsto\mathrm{e}^{\mathrm{i}\theta/2}\psi$ changes $\Delta\mapsto\mathrm{e}^{\mathrm{i}\theta}\Delta$ but leaves gauge-invariant observables unchanged. During iteration, numerical eigenvectors carry arbitrary phases. The script removes the average phase of $\Delta_i$ and chooses its mean real part positive. This does not alter the spectrum; it selects a stable gauge representative.
+A global transformation $\psi\mapsto e^{i\theta/2}\psi$ changes $\Delta\mapsto e^{i\theta}\Delta$ but leaves gauge-invariant observables unchanged. During iteration, numerical eigenvectors carry arbitrary phases. The script removes the average phase of $\Delta_i$ and chooses its mean real part positive. This does not alter the spectrum; it selects a stable gauge representative.
 
-# Continuum model of the Rashba–Zeeman nanowire
+# 10 Continuum model of the Rashba–Zeeman nanowire
 
-## Normal Hamiltonian
+## 10.1 Normal Hamiltonian
 
 The continuum electronic Hamiltonian is
 
-
 $$
-h_0(x)=\left(\frac{p_x^2}{2m^*}-\mu+V(x)\right)\sigma_0 +\frac{\alpha_R}{\hbar}p_x\sigma_y+E_Z\sigma_x.
+h_0(x)=\left[\frac{p_x^2}{2m^*}-\mu+V(x)\right]\sigma_0+\frac{\alpha_R}{\hbar}p_x\sigma_y+E_Z\sigma_x.
 $$
 
+**(10.1)**
 
 The terms have distinct roles: kinetic energy defines the dispersion; $\mu$ selects the occupied portion of the band; $V(x)$ permits inhomogeneity; Rashba coupling locks spin to momentum; and the Zeeman term breaks time-reversal symmetry and separates the spin-split branches.
 
-## BdG Hamiltonian
+## 10.2 BdG Hamiltonian
 
 In the code basis,
 
-
 $$
-\boxed{H_{\mathrm{BdG}}(x)=\left[\frac{p_x^2}{2m^*}-\mu+V(x)\right]\tau_z +\frac{\alpha_R}{\hbar}p_x\sigma_y\tau_z +E_Z\sigma_x +\operatorname{Re}\Delta(x)\tau_x-\operatorname{Im}\Delta(x)\tau_y.}
+H_{\mathrm{BdG}}(x)=\left[\frac{p_x^2}{2m^*}-\mu+V(x)\right]\tau_z+\frac{\alpha_R}{\hbar}p_x\sigma_y\tau_z+E_Z\sigma_x+\operatorname{Re}\Delta(x)\tau_x-\operatorname{Im}\Delta(x)\tau_y.
 $$
 
+**(10.2)**
 
 The factor $\tau_z$ on normal kinetic and spin–orbit terms expresses the opposite sign with which particles and holes inherit the normal-state Hamiltonian. The Zeeman term has the displayed form in this Nambu convention.
 
-## Topological criterion in the continuum limit
+## 10.3 Topological criterion in the continuum limit
 
 At $k=0$ the Rashba term vanishes. The gap closes when
-
 
 $$
 E_Z^2=\mu^2+|\Delta|^2.
 $$
 
+**(10.3)**
 
 For a homogeneous infinite wire, the low-density continuum criterion is therefore
-
 
 $$
 E_Z>\sqrt{\mu^2+|\Delta|^2}.
 $$
 
+**(10.4)**
 
 In a self-consistent calculation $\Delta$ itself depends on $E_Z$, so the phase boundary is not obtained by inserting one immutable gap value. Finite length, a discrete lattice, and spatial inhomogeneity further distinguish the numerical near-zero-energy map from a strict bulk invariant.
 
-# Spatial discretization without omitted steps
+# 11 Spatial discretization without omitted steps
 
-## Lattice points and Taylor expansions
+## 11.1 Lattice points and Taylor expansions
 
 Let $x_i=ia$ and $\Phi_i=\Phi(x_i)$. Taylor expansion gives
 
+$$
+\Phi_{i+1}=\Phi_i+a\partial_x\Phi_i+\frac{a^2}{2}\partial_x^2\Phi_i+\mathcal{O}(a^3),
+$$
+
+**(11.1)**
 
 $$
-\begin{aligned} \Phi_{i+1}&=\Phi_i+a\partial_x\Phi_i+\frac{a^2}{2}\partial_x^2\Phi_i+O(a^3),\\ \Phi_{i-1}&=\Phi_i-a\partial_x\Phi_i+\frac{a^2}{2}\partial_x^2\Phi_i+O(a^3). \end{aligned}
+\Phi_{i-1}=\Phi_i-a\partial_x\Phi_i+\frac{a^2}{2}\partial_x^2\Phi_i+\mathcal{O}(a^3).
 $$
 
+**(11.2)**
 
 Subtracting and adding yield
-
 
 $$
 \partial_x\Phi_i\simeq\frac{\Phi_{i+1}-\Phi_{i-1}}{2a},\qquad \partial_x^2\Phi_i\simeq\frac{\Phi_{i+1}-2\Phi_i+\Phi_{i-1}}{a^2}.
 $$
 
+**(11.3)**
 
-## Discrete kinetic term
+## 11.2 Discrete kinetic term
 
 Since $p_x^2/(2m^*)=-\hbar^2\partial_x^2/(2m^*)$, define
-
 
 $$
 t=\frac{\hbar^2}{2m^*a^2}.
 $$
 
+**(11.4)**
 
 Then
 
-
 $$
--\frac{\hbar^2}{2m^*}\partial_x^2\Phi_i \simeq 2t\Phi_i-t\Phi_{i+1}-t\Phi_{i-1}.
+-\frac{\hbar^2}{2m^*}\partial_x^2\Phi_i\simeq2t\Phi_i-t\Phi_{i+1}-t\Phi_{i-1}.
 $$
 
+**(11.5)**
 
 The $2t$ contribution enters the on-site block and the two $-t$ contributions enter the nearest-neighbour blocks.
 
-## Discrete Rashba term
+## 11.3 Discrete Rashba term
 
-With $p_x=-\mathrm{i}\hbar\partial_x$,
-
+With $p_x=-i\hbar\partial_x$,
 
 $$
-\frac{\alpha_R}{\hbar}p_x\sigma_y\tau_z=-\mathrm{i}\alpha_R\partial_x\sigma_y\tau_z.
+\frac{\alpha_R}{\hbar}p_x\sigma_y\tau_z=-i\alpha_R\partial_x\sigma_y\tau_z.
 $$
 
+**(11.6)**
 
 The sign written in the final matrix depends on the chosen direction of the hopping block. Define
-
 
 $$
 t_{\mathrm{so}}=\frac{\alpha_R}{2a}.
 $$
 
+**(11.7)**
 
 The action on site $i$ is represented by opposite imaginary amplitudes to the right and left, ensuring Hermiticity.
 
-## Local and hopping blocks
+## 11.4 Local and hopping blocks
 
 Collecting all terms,
 
-
 $$
-h_i=(2t-\mu+V_i)\tau_z+E_Z\sigma_x +\operatorname{Re}\Delta_i\tau_x-\operatorname{Im}\Delta_i\tau_y,
-$$
-
-
-$$
-H_{i,i+1}=-t\tau_z+\mathrm{i} t_{\mathrm{so}}\sigma_y\tau_z, \qquad H_{i+1,i}=H_{i,i+1}^\dagger.
+h_i=(2t-\mu+V_i)\tau_z+E_Z\sigma_x+\operatorname{Re}\Delta_i\tau_x-\operatorname{Im}\Delta_i\tau_y,
 $$
 
+**(11.8)**
+
+$$
+H_{i,i+1}=-t\tau_z+it_{\mathrm{so}}\sigma_y\tau_z,\qquad H_{i+1,i}=H_{i,i+1}^\dagger.
+$$
+
+**(11.9)**
 
 The complete open-chain matrix is block tridiagonal:
 
-
 $$
-H=\begin{pmatrix} h_0&T&0&\cdots\\ T^\dagger&h_1&T&\cdots\\ 0&T^\dagger&h_2&\ddots\\ \vdots&\vdots&\ddots&\ddots \end{pmatrix},\qquad T=-t\tau_z+\mathrm{i} t_{\mathrm{so}}\sigma_y\tau_z.
+H=\begin{pmatrix}h_0&T&0&\cdots\\T^\dagger&h_1&T&\cdots\\0&T^\dagger&h_2&\ddots\\\vdots&\vdots&\ddots&\ddots\end{pmatrix},\qquad T=-t\tau_z+it_{\mathrm{so}}\sigma_y\tau_z.
 $$
 
+**(11.10)**
 
 Each block is $4\times4$; the full matrix is $4N\times4N$.
 
-# Homogeneous bulk Hamiltonian and bands
+# 12 Homogeneous bulk Hamiltonian and bands
 
-## Fourier transform
+## 12.1 Fourier transform
 
-For uniform $\Delta$ and $V=0$, write $\Phi_i=N^{-1/2}\sum_k\mathrm{e}^{\mathrm{i} k i}\Phi_k$. The two hopping directions produce
-
+For uniform $\Delta$ and $V=0$, write $\Phi_i=N^{-1/2}\sum_k e^{iki}\Phi_k$. The two hopping directions produce
 
 $$
-T\mathrm{e}^{\mathrm{i} k}+T^\dagger\mathrm{e}^{-\mathrm{i} k}=-2t\cos k\,\tau_z-2t_{\mathrm{so}}\sin k\,\sigma_y\tau_z.
+Te^{ik}+T^\dagger e^{-ik}=-2t\cos k\,\tau_z-2t_{\mathrm{so}}\sin k\,\sigma_y\tau_z.
 $$
 
+**(12.1)**
 
 Hence
 
-
 $$
-H(k)=\xi_k\tau_z+\alpha_k\sigma_y\tau_z+E_Z\sigma_x +\Delta_R\tau_x-\Delta_I\tau_y,
+H(k)=\xi_k\tau_z+\alpha_k\sigma_y\tau_z+E_Z\sigma_x+\Delta_R\tau_x-\Delta_I\tau_y,
 $$
 
+**(12.2)**
 
 with
-
 
 $$
 \xi_k=2t-\mu-2t\cos k,\qquad \alpha_k=-2t_{\mathrm{so}}\sin k.
 $$
 
+**(12.3)**
 
-## Analytical dispersion
+## 12.2 Analytical dispersion
 
 Squaring and diagonalizing the remaining spin structure gives four bands $\pm E_-(k)$ and $\pm E_+(k)$, where
 
+$$
+E_\pm^2(k)=\xi_k^2+\alpha_k^2+E_Z^2+|\Delta|^2
+$$
+
+**(12.4)**
 
 $$
-\begin{aligned} E_{\pm}^2(k)={}&\xi_k^2+\alpha_k^2+E_Z^2+|\Delta|^2\\ &\pm2\sqrt{E_Z^2|\Delta|^2+\xi_k^2(E_Z^2+\alpha_k^2)}. \end{aligned}
+\phantom{E_\pm^2(k)=}\pm2\sqrt{E_Z^2|\Delta|^2+\xi_k^2(E_Z^2+\alpha_k^2)}.
 $$
 
+**(12.5)**
 
 The script evaluates this expression and independently diagonalizes the $4\times4$ matrix at each $k$. Agreement of both curves checks the analytical formula and the matrix convention.
 
-## Bulk gap
+## 12.3 Bulk gap
 
 The positive bulk excitation gap is
-
 
 $$
 E_{\mathrm{gap}}^{\mathrm{bulk}}=\min_k E_-(k).
 $$
 
+**(12.6)**
 
 A bulk topological transition requires this quantity to close and reopen. By contrast, $\min_n|E_n|$ in an open finite wire can be exponentially small because of hybridized end states even while the bulk remains gapped.
 
-# Observables derived from BdG eigenvectors
+# 13 Observables derived from BdG eigenvectors
 
-## Total BdG density
+## 13.1 Total BdG density
 
 For a normalized eigenvector,
 
-
 $$
-\rho_n(i)=|u_{n\uparrow}(i)|^2+|u_{n\downarrow}(i)|^2 +|v_{n\downarrow}(i)|^2+|-v_{n\uparrow}(i)|^2.
+\rho_n(i)=|u_{n\uparrow}(i)|^2+|u_{n\downarrow}(i)|^2+|v_{n\downarrow}(i)|^2+|-v_{n\uparrow}(i)|^2.
 $$
 
+**(13.1)**
 
 The spatial sum is normalized to one. This quantity shows whether a state is extended, bulk-localized, or concentrated at the boundaries.
 
-## Electron and hole sectors
+## 13.2 Electron and hole sectors
 
 Define
 
-
 $$
-\rho_n^{(e)}(i)=|u_{n\uparrow}|^2+|u_{n\downarrow}|^2, \qquad \rho_n^{(h)}(i)=|v_{n\downarrow}|^2+|v_{n\uparrow}|^2.
+\rho_n^{(e)}(i)=|u_{n\uparrow}|^2+|u_{n\downarrow}|^2,\qquad \rho_n^{(h)}(i)=|v_{n\downarrow}|^2+|v_{n\uparrow}|^2.
 $$
 
+**(13.2)**
 
 A Majorana-like zero mode has balanced integrated electron and hole weights, although balance alone does not establish topology.
 
-## Electronic local density of states
+## 13.3 Electronic local density of states
 
 Using only one representative from each positive-energy pair, the broadened electronic LDOS is
 
-
 $$
-\rho(i,E)=\sum_{E_n>0}\left[ \rho_n^{(e)}(i)L_\eta(E-E_n)+\rho_n^{(h)}(i)L_\eta(E+E_n) \right],
+\rho(i,E)=\sum_{E_n>0}\left[\rho_n^{(e)}(i)L_\eta(E-E_n)+\rho_n^{(h)}(i)L_\eta(E+E_n)\right],
 $$
 
+**(13.3)**
 
 where
-
 
 $$
 L_\eta(x)=\frac{\eta}{\pi(x^2+\eta^2)}.
 $$
 
+**(13.4)**
 
 This is the quantity visualized as a function of energy and position.
 
-## Majorana combinations
+## 13.4 Majorana combinations
 
 Given a resolved particle–hole pair $\Phi_{+E}$ and $\Phi_{-E}$ with aligned phases, define
 
-
 $$
-\Gamma_1=\frac{\Phi_{+E}+\Phi_{-E}}{\sqrt{2}},\qquad \Gamma_2=-\mathrm{i}\frac{\Phi_{+E}-\Phi_{-E}}{\sqrt{2}}.
+\Gamma_1=\frac{\Phi_{+E}+\Phi_{-E}}{\sqrt{2}},\qquad \Gamma_2=-i\frac{\Phi_{+E}-\Phi_{-E}}{\sqrt{2}}.
 $$
 
+**(13.5)**
 
 In a long topological wire these combinations can localize predominantly at opposite ends. Their overlap produces the finite-size energy splitting.
 
-## Finite-length splitting
+## 13.5 Finite-length splitting
 
 For overlapping end modes,
 
-
 $$
-E_{\mathrm{split}}(L)\sim A\mathrm{e}^{-L/\xi}\cos(k_F L+\varphi).
+E_{\mathrm{split}}(L)\sim Ae^{-L/\xi}\cos(k_FL+\phi).
 $$
 
+**(13.6)**
 
 The exponential envelope reflects localization, while the cosine produces the nonmonotonic nodes visible in finite-length sweeps.
 
-# Complete equation-to-code map
+# 14 Complete equation-to-code map
 
-| Theory object                      | Implementation object                                          |
-|:-----------------------------------|:---------------------------------------------------------------|
-| $t=\hbar^2/(2m^*a^2)$              | `hopping` and `calcular_hoppings_discretos`                    |
-| $t_{\mathrm{so}}=\alpha_R/(2a)$    | `hopping_spin_orbita`                                          |
-| $h_i$                              | `bloque_local` in `construir_hamiltoniano_bdg`                 |
-| $H_{i,i+1}$                        | `bloque_hopping`                                               |
-| $H_{\mathrm{BdG}}\Phi_n=E_n\Phi_n$ | `diagonalizar_hamiltoniano`                                    |
-| Self-consistent gap equation       | `calcular_delta_autoconsistente`                               |
-| Fixed-point update                 | `diagonalizar_autoconsistente`                                 |
-| $\rho_n(i)$                        | `densidad_estado`                                              |
-| $\rho_n^{(e)},\rho_n^{(h)}$        | `densidad_electron_y_hueco`                                    |
-| $\rho(i,E)$                        | `calcular_ldos`                                                |
-| $H(k)$ and $E_\pm(k)$              | `bandas_bulk_por_diagonalizacion` and `bandas_bulk_analiticas` |
-| $\min_kE_-(k)$                     | `gap_bulk_minimo`                                              |
-| $\Gamma_1,\Gamma_2$                | `construir_majoranas_desde_pareja`                             |
+| Theory object | Implementation object |
+|---|---|
+| $t=\hbar^2/(2m^*a^2)$ | `hopping` and `calcular_hoppings_discretos` |
+| $t_{\mathrm{so}}=\alpha_R/(2a)$ | `hopping_spin_orbita` |
+| $h_i$ | `bloque_local` in `construir_hamiltoniano_bdg` |
+| $H_{i,i+1}$ | `bloque_hopping` |
+| $H_{\mathrm{BdG}}\Phi_n=E_n\Phi_n$ | `diagonalizar_hamiltoniano` |
+| Self-consistent gap equation | `calcular_delta_autoconsistente` |
+| Fixed-point update | `diagonalizar_autoconsistente` |
+| $\rho_n(i)$ | `densidad_estado` |
+| $\rho_n^{(e)},\rho_n^{(h)}$ | `densidad_electron_y_hueco` |
+| $\rho(i,E)$ | `calcular_ldos` |
+| $H(k)$ and $E_\pm(k)$ | `bandas_bulk_por_diagonalizacion` and `bandas_bulk_analiticas` |
+| $\min_k E_-(k)$ | `gap_bulk_minimo` |
+| $\Gamma_1,\Gamma_2$ | `construir_majoranas_desde_pareja` |
 
-# Conclusions
+# 15 Conclusions
 
 The self-consistent BdG model begins with an interacting spinful Hamiltonian and replaces the pairing interaction by an order parameter determined from an anomalous expectation value. The Bogoliubov transformation converts the quadratic mean-field Hamiltonian into a Hermitian eigenproblem in Nambu space. The same eigenvectors then regenerate the pairing field, closing the nonlinear problem.
 
 For the nanowire, central finite differences yield a $4N\times4N$ block-tridiagonal matrix containing kinetic hopping, Rashba hopping, Zeeman splitting, electrostatic potential, and a local complex pair potential. The resulting spectrum supports bulk, finite-size, local-density, particle–hole, and Majorana-decomposition diagnostics. The essential conceptual distinction is that self-consistency makes the superconducting gap an output that responds to the Zeeman field and interaction strength rather than a passive external constant.
 
-# References
+# Bibliography
 
-1. P. G. de Gennes, *Superconductivity of Metals and Alloys*.
-2. M. Tinkham, *Introduction to Superconductivity*.
-3. J.-X. Zhu, *Bogoliubov-de Gennes Method and Its Applications*, Lecture Notes in Physics 924 (2016).
-4. R. M. Lutchyn, J. D. Sau, and S. Das Sarma, semiconductor nanowire proposal for topological superconductivity, Physical Review Letters 105 (2010).
-5. Y. Oreg, G. Refael, and F. von Oppen, helical-liquid nanowire proposal, Physical Review Letters 105 (2010).
+[1] P. G. de Gennes, *Superconductivity of Metals and Alloys*.
 
----
+[2] M. Tinkham, *Introduction to Superconductivity*.
 
-# Self-Consistent BdG Nanowire
+[3] J.-X. Zhu, *Bogoliubov-de Gennes Method and Its Applications*, Lecture Notes in Physics 924 (2016).
 
-*Numerical implementation, algorithmic workflow, and line-by-line code architecture*
+[4] R. M. Lutchyn, J. D. Sau, and S. Das Sarma, semiconductor nanowire proposal for topological superconductivity, *Physical Review Letters* 105 (2010).
 
-> Continuation of the Kitaev-chain documentation for the repository `majorana-bdg-nanowire-simulations`. The material starts from the second-quantized framework already established there and develops the Bogoliubov–de Gennes formalism and the self-consistent nanowire model.
-
-Technical study document in English  
-Source model: `src/self_consistent_bdg_nanowire.py`
-
-# Role of the script and documentation policy
-
-The file `self_consistent_bdg_nanowire.py` is documented exactly as supplied. No numerical routine, parameter, formula, plotting function, or figure has been modified for this package. The purpose of this document is to explain what the source does, how each mathematical object is represented, and how the full execution path produces the archived results.
-
-## High-level workflow
-
-The script performs five nested tasks:
-
-1.  construct a real-space $4N\times4N$ BdG Hamiltonian for a trial pairing profile;
-
-2.  diagonalize it and update $\Delta_i$ from the eigenvectors;
-
-3.  repeat until the mixed pairing profile converges;
-
-4.  derive observables and parameter sweeps from converged solutions;
-
-5.  render thirteen figures covering convergence, bulk bands, finite spectra, LDOS, edge states, interaction dependence, and a $(\mu,E_Z)$ map.
-
-# Physical constants and default numerical scales
-
-## Units
-
-The source uses practical units: energies in meV, lengths in nm, and temperatures in K. It sets `meV = nm = kelvin = 1.0`; these names document dimensions rather than perform unit conversion.
-
-## Default parameters
-
-| Quantity           | Source value            | Role                    |
-|:-------------------|:------------------------|:------------------------|
-| $k_B$              | $0.08617333262$ meV/K   | thermal factor          |
-| $\hbar^2/(2m_e)$   | $38.0998212$ meV nm$^2$ | kinetic conversion      |
-| $m^*/m_e$          | $0.015$                 | effective mass          |
-| $\alpha_R$         | $100$ meV nm            | Rashba coupling         |
-| $N$                | $180$                   | default finite chain    |
-| $a$                | $20$ nm                 | lattice spacing         |
-| $\mu$              | $0$ meV                 | chemical potential      |
-| $T$                | $0.02$ K                | temperature             |
-| $V_{\mathrm{eff}}$ | $4.0$ meV               | effective attraction    |
-| $E_c$              | $4.0$ meV               | self-consistency cutoff |
-| $\Delta^{(0)}$     | $0.30$ meV              | uniform seed            |
-| maximum iterations | $120$                   | stopping safeguard      |
-| tolerance          | $2\times10^{-5}$ meV    | maximum sitewise update |
-| mixing             | $0.35$                  | fixed-point damping     |
-
-The derived hopping scales are $t\simeq6.34997$ meV and $t_{\mathrm{so}}=2.5$ meV. The default geometric length is $Na=3600$ nm.
-
-# Matrix representation
-
-## Local basis and Kronecker products
-
-The code first creates $2\times2$ Pauli matrices and forms $4\times4$ operators as Kronecker products. The convention is “Nambu first, spin second,” so
-
-
-$$
-\sigma_a=\tau_0\otimes\sigma_a^{(2)},\qquad \tau_a=\tau_a^{(2)}\otimes\sigma_0.
-$$
-
-
-The stored local component order is
-
-
-$$
-(u_\uparrow,u_\downarrow,v_\downarrow,-v_\uparrow).
-$$
-
-
-The source precomputes $\sigma_y\tau_z$ for Rashba hopping and $\tau_y\sigma_y$ for particle–hole conjugation.
-
-## Profiles
-
-`convertir_a_perfil_delta` accepts either a scalar or an array. A scalar is broadcast into a complex length-$N$ profile. `perfil_delta_inicial_uniforme` creates the seed. `potencial_electrostatico_nulo` returns $V_i=0$ for all sites.
-
-## Assembly of the BdG matrix
-
-`construir_hamiltoniano_bdg` allocates a dense complex matrix of shape $(4N,4N)$. For site $i$ it places
-
-
-$$
-(2t-\mu+V_i)\tau_z+E_Z\sigma_x+\operatorname{Re}\Delta_i\tau_x-\operatorname{Im}\Delta_i\tau_y
-$$
-
-
-on the diagonal. Between adjacent sites it places
-
-
-$$
--t\tau_z+\mathrm{i} t_{\mathrm{so}}\sigma_y\tau_z
-$$
-
-
-and the conjugate-transposed block in the reverse direction. The final explicit symmetrization
-
-
-$$
-H\leftarrow\frac{H+H^\dagger}{2}
-$$
-
-
-removes roundoff-level anti-Hermitian components.
-
-# Diagonalization and structural tests
-
-## Hermitian eigensolver
-
-`diagonalizar_hamiltoniano` calls `scipy.linalg.eigh` with the divide-and-conquer driver `evd`. It then explicitly sorts the eigenvalues and applies the same permutation to the eigenvectors. For a Hermitian matrix, all eigenvalues are real up to numerical precision and the columns of the eigenvector matrix are orthonormal.
-
-## Hermiticity residual
-
-`error_hermiticidad` returns
-
-
-$$
-\epsilon_H=\frac{\left\lVert H-H^\dagger\right\rVert}{\max(\left\lVert H\right\rVert,10^{-30})}.
-$$
-
-
-This scale-free residual is printed for a test Hamiltonian in the main block.
-
-## Particle–hole residual
-
-The global unitary matrix is assembled as $I_N\otimes\tau_y\sigma_y$. The code evaluates
-
-
-$$
-\epsilon_C=\frac{\left\lVert U_CH^*U_C^\dagger+H\right\rVert}{\max(\left\lVert H\right\rVert,10^{-30})}.
-$$
-
-
-A small result verifies that the matrix convention implements BdG particle–hole symmetry.
-
-# Self-consistent solver
-
-## Gauge fixing
-
-`fijar_fase_global_delta` computes the average complex value of the profile. It rotates the entire profile by the opposite average phase and, if necessary, multiplies it by $-1$ so that the mean real part is positive. This keeps the iteration on a consistent gauge branch.
-
-## Raw gap update
-
-`calcular_delta_autoconsistente` initializes a complex zero array. It loops through every eigenpair, discards states outside the absolute cutoff, reshapes the vector into $N\times4$, and extracts
-
-
-$$
-u_\uparrow,\quad u_\downarrow,\quad v_\downarrow,\quad -v_\uparrow.
-$$
-
-
-It forms
-
-
-$$
-F_n(i)=u_{n\uparrow}(i)v_{n\downarrow}^*(i) +u_{n\downarrow}(i)[-v_{n\uparrow}(i)]^*,
-$$
-
-
-and accumulates
-
-
-$$
-\Delta_i^{\mathrm{calc}}\mathrel{+}=\frac{V_{\mathrm{eff}}}{2}F_n(i) \tanh\left(\frac{E_n}{2k_{\mathrm B} T}\right).
-$$
-
-
-After the sum, the global phase is fixed.
-
-## Mixed fixed-point iteration
-
-The central loop in `diagonalizar_autoconsistente` is
-
-
-$$
-\begin{aligned} H^{(m)}&=H[\Delta^{(m)}],\\ \{E_n^{(m)},\Phi_n^{(m)}\}&=\operatorname{eigh}(H^{(m)}),\\ \Delta_{\mathrm{calc}}^{(m)}&=\mathcal F[\{E_n^{(m)},\Phi_n^{(m)}\}],\\ \Delta^{(m+1)}&=(1-\lambda)\Delta^{(m)}+\lambda\Delta_{\mathrm{calc}}^{(m)}, \end{aligned}
-$$
-
-
-with $\lambda=0.35$. The error is
-
-
-$$
-\epsilon^{(m)}=\max_i|\Delta_i^{(m+1)}-\Delta_i^{(m)}|.
-$$
-
-
-The loop stops when $\epsilon^{(m)}$ is below the tolerance or when the iteration cap is reached.
-
-## Returned result dictionary
-
-The returned dictionary contains the final energies, eigenvectors, Hamiltonian, full pairing profile, mean absolute pairing, both convergence histories, a Boolean convergence flag, the number of iterations, and the Hermiticity and particle–hole residuals. This design allows the plotting layer to reuse expensive solutions without diagonalizing the same case again.
-
-# Observables
-
-## Component extraction
-
-`separar_componentes_bdg` reshapes a vector of length $4N$ into an $N\times4$ array and returns independent copies of the four columns. This makes all subsequent formulas explicit in terms of the chosen basis.
-
-## Normalized total density
-
-`densidad_estado` computes the four-component norm at every site and divides by the total. The result is a probability-like spatial profile with unit sum.
-
-## Electron–hole content
-
-`densidad_electron_y_hueco` groups the first two components as electron weight and the last two as hole weight, then normalizes their combined sum. The two curves reveal local electron–hole balance.
-
-## Minimum-energy state
-
-The helper `indice_estado_mas_cercano_a_cero` applies `argmin(abs(energies))`. The separate helper `energia_minima_absoluta` returns the corresponding magnitude. These finite-system quantities are used in edge-state plots, length sweeps, and the phase-like map.
-
-## Particle–hole transform and phase alignment
-
-`transformar_particula_hueco` applies $\tau_y\sigma_yK$ site by site. `alinear_fase` removes the arbitrary relative global phase between two eigenvectors using their complex overlap.
-
-## Majorana decomposition
-
-`construir_majoranas_desde_pareja` selects the nonnegative state nearest zero and the negative state whose energy most closely matches its particle–hole partner. After phase alignment, it constructs the two real Majorana combinations and labels them left or right according to the weight in the first half of the chain.
-
-## LDOS
-
-`lorentziana` implements
-
-
-$$
-L_\eta(E-E_n)=\frac{\eta}{\pi[(E-E_n)^2+\eta^2]}.
-$$
-
-
-`calcular_ldos` uses positive-energy eigenstates and adds electron weight at $+E_n$ and hole weight at $-E_n$ over a user-defined energy grid. The output is a real array of shape $(N_E,N)$.
-
-# Bulk calculations
-
-## Numerical diagonalization of $H(k)$
-
-`bandas_bulk_por_diagonalizacion` samples $k\in[-\pi,\pi]$, constructs the $4\times4$ homogeneous Bloch Hamiltonian, and calls `eigvalsh` at every point.
-
-## Analytical bands
-
-`bandas_bulk_analiticas` evaluates the closed form
-
-
-$$
-E_{\pm}^2=\xi_k^2+\alpha_k^2+E_Z^2+|\Delta|^2 \pm2\sqrt{E_Z^2|\Delta|^2+\xi_k^2(E_Z^2+\alpha_k^2)}.
-$$
-
-
-The plotting routine overlays these curves with the directly diagonalized eigenvalues.
-
-## Bulk-gap extraction
-
-`gap_bulk_minimo` extracts the smallest positive band energy over the sampled momentum points. For each Zeeman value, the bulk pairing used in this calculation is the mean of the central half of a separately converged finite-wire profile.
-
-## Ideal continuum guide
-
-`es_topologico_ideal` evaluates $E_Z>\sqrt{\mu^2+\Delta_{\mathrm{mean}}^2}$ while requiring a noncollapsed superconducting gap. The function is an interpretive guide and is not used to construct the Hamiltonian.
-
-# Parameter sweeps
-
-## Zeeman continuation
-
-`barrer_zeeman` solves consecutive Zeeman values and uses the converged profile from one point as the seed for the next. It stores full spectra, minimum energies, mean gaps, and profiles.
-
-## Bulk gap versus Zeeman field
-
-`barrer_gap_bulk_zeeman` converges a finite wire, averages the central pairing profile, and computes the homogeneous bulk gap for each field.
-
-## Length sweep
-
-`barrer_longitud_cadena` rebuilds and solves a new self-consistent problem for every $N$ in the requested array, then stores $\min|E|$.
-
-## $(\mu,E_Z)$ map
-
-`calcular_mapa_mu_zeeman_minimo` performs a nested sweep and stores
-
-
-$$
-\log_{10}[\max(\min|E|,10^{-6}\ \mathrm{meV})].
-$$
-
-
-The floor sets the darkest plotted scale and prevents $\log 0$.
-
-## Representative regimes and interaction strengths
-
-`calcular_resultados_regimenes` solves the trivial, intermediate, and topological parameter sets once. `calcular_resultados_interaccion` solves three values of $V_{\mathrm{eff}}$ at the selected topological Zeeman field.
-
-# Plotting layer: exact figure provenance
-
-| Function                                        | Quantity plotted                                            |
-|:------------------------------------------------|:------------------------------------------------------------|
-| `graficar_convergencia_gap`                     | mean $|\Delta_i|$ and maximum update error versus iteration |
-| `graficar_perfil_gap_autoconsistente`           | $|\Delta_i|$ in three Zeeman regimes                        |
-| `graficar_gap_bulk_vs_zeeman`                   | homogeneous minimum bulk gap versus $E_Z$                   |
-| `graficar_bandas_bulk_tres_regimenes`           | analytical and diagonalized bulk bands                      |
-| `graficar_espectro_finito_vs_zeeman`            | all subgap finite-wire levels versus $E_Z$                  |
-| `graficar_ldos_tres_regimenes`                  | broadened LDOS in position–energy space                     |
-| `graficar_modo_cero_topologico_y_trivial`       | density of the state closest to zero                        |
-| `graficar_particula_hueco_modo_cero`            | electron and hole densities                                 |
-| `graficar_majoranas_separadas`                  | densities of the two Majorana combinations                  |
-| `graficar_splitting_vs_longitud`                | $\min|E|$ versus $N$ on a logarithmic scale                 |
-| `graficar_comparacion_interaccion_localizacion` | edge-state density for three attractions                    |
-| `graficar_perfil_gap_vs_interaccion`            | pairing profile for three attractions                       |
-| `graficar_mapa_mu_zeeman_minimo`                | finite-wire log minimum energy in the parameter plane       |
-
-# Computational cost
-
-A dense Hermitian matrix requires memory proportional to $(4N)^2$ and a full eigendecomposition costs approximately $O((4N)^3)$. Self-consistency multiplies this by the iteration count. Parameter maps multiply it again by the number of grid points. The code therefore uses smaller site counts for the two-dimensional map and reuses converged profiles during sweeps.
-
-For $N=180$, the matrix dimension is $720$. One complex dense matrix alone contains $720^2$ complex entries. The eigensolver and its work arrays require additional memory. The dominant wall time is not plotting but repeated dense diagonalization.
-
-# Main execution sequence
-
-When the file is run as a script, it sets the plotting style, constructs one test Hamiltonian, prints the two structural residuals, solves the three representative regimes, solves the interaction comparison, executes the Zeeman and bulk-gap sweeps, computes the $(\mu,E_Z)$ map, calls all thirteen plotting functions, and finally displays the figures.
-
-# Complete unchanged source listing
-
-The listing below is the exact source file included in the supplied repository and copied unchanged into this package.
-
-    """
-    self_consistent_bdg_nanowire.py
-
-    Numerical study of Majorana zero modes in one-dimensional superconducting systems.
-    This file was prepared for a GitHub repository from the original practice scripts.
-    The numerical model is intentionally explicit: dense BdG matrices are built in real space
-    so that the Hamiltonian, observables, and generated figures can be read directly.
-
-    For publication-quality figures, increase the site counts carefully. Dense diagonalization
-    scales poorly with system size.
-    """
-
-    import os
-    import numpy as np
-    import scipy.linalg as la
-    import matplotlib.pyplot as plt
-
-    ###############################################################################
-    ################ Constantes fisicas y parametros del nanohilo #################
-    ###############################################################################
-
-    # Trabajamos en unidades practicas: energia en meV, longitud en nm y temperatura en K.
-    meV = 1.0
-    nm = 1.0
-    kelvin = 1.0
-
-    constante_boltzmann = 0.08617333262 * meV / kelvin              # k_B en meV/K.
-    hbar2_sobre_2m_e = 38.0998212 * meV * nm**2                     # hbar^2/(2m_e) en meV nm^2.
-
-    masa_efectiva = 0.015                                           # m*/m_e.
-    alpha_rashba = 100.0 * meV * nm                                 # Acoplo Rashba alpha_R.
-    numero_sitios = 180                                             # Valor para probar. Para figuras finales prueba 180, 220 o 260 si el Mac aguanta.
-    numero_sitios_mapa = 80                                         # Valor para mapas 2D. Para final puedes probar 48 o 56.
-    paso_espacial = 20.0 * nm
-    hopping = hbar2_sobre_2m_e / (masa_efectiva * paso_espacial**2) # t = hbar^2/(2m*a^2).
-    hopping_spin_orbita = alpha_rashba / (2.0 * paso_espacial)      # t_so = alpha_R/(2a).
-    potencial_quimico = 0.0 * meV                                   # mu.
-    temperatura = 0.02 * kelvin                                     # Temperatura para tanh(E/2kBT).
-    interaccion_atractiva = 4.0 * meV                               # V_eff positivo: mide la atraccion efectiva.
-    energia_corte = 4.0 * meV                                       # Corte energetico para la suma autoconsistente.
-    delta_semilla = 0.30 * meV                                      # Semilla inicial del gap; el valor final sale de la autoconsistencia.
-    delta_minima_superconductora = 10**(-3) * meV                   # Por debajo de esto consideramos que el gap colapso.
-
-    # Parametros numericos del bucle de autoconsistencia.
-    max_iteraciones = 120
-    tolerancia_delta = 2*10**(-5) * meV
-    mezcla_delta = 0.35
-
-    # Barridos y visualizacion.
-    numero_energias = 360
-    ensanchamiento_ldos = 0.035 * meV
-    numero_puntos_barrido = 31
-    numero_k_bulk = 450
-    carpeta_figuras = "figuras_autoconsistente"
-
-    # Casos representativos. El valor intermedio esta cerca de la zona donde el gap tiende a cerrarse.
-    zeeman_trivial = 0.0 * meV
-    zeeman_intermedio = 0.50 * meV
-    zeeman_topologico = 0.56 * meV
-
-    # Valores de V_eff para comparar como cambia el gap autoconsistente y la localizacion del modo.
-    interaccion_debil = 4.0 * meV
-    interaccion_media = 4.1 * meV
-    interaccion_fuerte = 4.2 * meV
-
-
-    def calcular_hoppings_discretos(alpha_rashba_usado, paso_espacial_usado): #Calcula t y t_so para un valor concreto de alpha_R y del paso a.
-        hopping_calculado = hbar2_sobre_2m_e / (masa_efectiva * paso_espacial_usado**2)
-        hopping_so_calculado = alpha_rashba_usado / (2.0 * paso_espacial_usado)
-        return hopping_calculado, hopping_so_calculado
-
-
-    ###################### MATRICES DE PAULI ######################
-
-    matriz_identidad_2 = np.eye(2, dtype=complex)
-    matriz_sigma_x_2 = np.array([[0.0, 1.0], [1.0, 0.0]], dtype=complex)
-    matriz_sigma_y_2 = np.array([[0.0, -1.0j], [1.0j, 0.0]], dtype=complex)
-    matriz_sigma_z_2 = np.array([[1.0, 0.0], [0.0, -1.0]], dtype=complex)
-
-    matriz_tau_x_2 = np.array([[0.0, 1.0], [1.0, 0.0]], dtype=complex)
-    matriz_tau_y_2 = np.array([[0.0, -1.0j], [1.0j, 0.0]], dtype=complex)
-    matriz_tau_z_2 = np.array([[1.0, 0.0], [0.0, -1.0]], dtype=complex)
-
-    # En la base (Nambu, espin) usamos productos de Kronecker tau \otimes sigma.
-    sigma_x = np.kron(matriz_identidad_2, matriz_sigma_x_2)
-    sigma_y = np.kron(matriz_identidad_2, matriz_sigma_y_2)
-    tau_x = np.kron(matriz_tau_x_2, matriz_identidad_2)
-    tau_y = np.kron(matriz_tau_y_2, matriz_identidad_2)
-    tau_z = np.kron(matriz_tau_z_2, matriz_identidad_2)
-    sigma_y_tau_z = sigma_y @ tau_z
-
-    # Operador unitario de la simetria particula-hueco en esta base: C psi = (tau_y sigma_y) psi^*.
-    operador_particula_hueco_local = tau_y @ sigma_y
-
-
-    ###################### PERFILES ESPACIALES ######################
-
-    def convertir_a_perfil_delta(delta, numero_sitios): #Convierte un numero complejo o un array en un perfil Delta_i de longitud N.
-        if np.ndim(delta) == 0:
-            return np.full(numero_sitios, complex(delta), dtype=complex)
-        return np.asarray(delta, dtype=complex).copy()
-
-
-    def perfil_delta_inicial_uniforme(numero_sitios, delta_inicial): #Semilla uniforme para iniciar el bucle autoconsistente.
-        return np.full(numero_sitios, delta_inicial + 0.0j, dtype=complex)
-
-
-    def potencial_electrostatico_nulo(numero_sitios): #Devuelve V_i = 0 en todo el hilo.
-        return np.zeros(numero_sitios, dtype=float)
-
-
-    ###############################################################################
-    ############################## Hamiltoniano BdG ###############################
-    ###############################################################################
-
-    def construir_hamiltoniano_bdg(numero_sitios, potencial_quimico, energia_zeeman, perfil_delta, potencial, hopping_usado, hopping_spin_orbita_usado): #Construye la matriz BdG 4N x 4N del nanohilo.
-        potencial = np.asarray(potencial, dtype=float).copy()
-        perfil_delta = convertir_a_perfil_delta(perfil_delta, numero_sitios)
-        if len(potencial) != numero_sitios:
-            raise ValueError("El perfil V_i no tiene el mismo numero de sitios que la cadena.")
-        if len(perfil_delta) != numero_sitios:
-            raise ValueError("El perfil Delta_i no tiene el mismo numero de sitios que la cadena.")
-
-        hamiltoniano = np.zeros((4 * numero_sitios, 4 * numero_sitios), dtype=complex)
-        bloque_hopping = -hopping_usado * tau_z + 1.0j * hopping_spin_orbita_usado * sigma_y_tau_z
-
-        for i in range(numero_sitios):
-            bloque_i = slice(4 * i, 4 * (i + 1))
-            delta_i = perfil_delta[i]
-            bloque_local = (2.0 * hopping_usado - potencial_quimico + potencial[i]) * tau_z + energia_zeeman * sigma_x + delta_i.real * tau_x - delta_i.imag * tau_y
-            hamiltoniano[bloque_i, bloque_i] = bloque_local
-            if i < numero_sitios - 1:
-                bloque_j = slice(4 * (i + 1), 4 * (i + 2))
-                hamiltoniano[bloque_i, bloque_j] = bloque_hopping
-                hamiltoniano[bloque_j, bloque_i] = bloque_hopping.conj().T
-
-        hamiltoniano = 0.5 * (hamiltoniano + hamiltoniano.conj().T)
-        return hamiltoniano
-
-
-    def diagonalizar_hamiltoniano(hamiltoniano): #Diagonaliza una matriz BdG hermitica y ordena los autovalores.
-        energias, vectores = la.eigh(hamiltoniano, overwrite_a=True, check_finite=False, driver="evd")
-        orden = np.argsort(energias)
-        energias = energias[orden]
-        vectores = vectores[:, orden]
-        return energias, vectores
-
-
-    def error_hermiticidad(hamiltoniano): #Mide cuanto se aparta H de su conjugada hermitica.
-        norma_h = max(la.norm(hamiltoniano), 10**(-30))
-        return float(la.norm(hamiltoniano - hamiltoniano.conj().T) / norma_h)
-
-
-    def error_simetria_particula_hueco(hamiltoniano, numero_sitios): #Comprueba C H^* C^dagger = -H.
-        operador_global = np.kron(np.eye(numero_sitios, dtype=complex), operador_particula_hueco_local)
-        prueba = operador_global @ hamiltoniano.conj() @ operador_global.conj().T + hamiltoniano
-        norma_h = max(la.norm(hamiltoniano), 10**(-30))
-        return float(la.norm(prueba) / norma_h)
-
-
-    ###############################################################################
-    ################### Autoconsistencia del gap superconductivo ##################
-    ###############################################################################
-
-    def fijar_fase_global_delta(perfil_delta): #Fija la fase global de Delta para que el promedio sea real y positivo.
-        perfil_delta = np.asarray(perfil_delta, dtype=complex).copy()
-        promedio = np.mean(perfil_delta)
-        if abs(promedio) > 10**(-14):
-            perfil_delta = perfil_delta * np.exp(-1.0j * np.angle(promedio))
-        if np.mean(perfil_delta.real) < 0.0:
-            perfil_delta = -perfil_delta
-        return perfil_delta
-
-
-    def calcular_delta_autoconsistente(energias, vectores, numero_sitios, interaccion_atractiva, temperatura_usada, energia_corte_usada): #Calcula Delta_i desde las soluciones BdG.
-        delta_nueva = np.zeros(numero_sitios, dtype=complex)
-        for n in range(len(energias)):
-            energia_n = energias[n]
-            if abs(energia_n) > energia_corte_usada:
-                continue
-            psi = vectores[:, n].reshape(numero_sitios, 4)
-            u_arriba = psi[:, 0]
-            u_abajo = psi[:, 1]
-            v_abajo = psi[:, 2]
-            menos_v_arriba = psi[:, 3]
-            correlacion_anomala = u_arriba * np.conj(v_abajo) + u_abajo * np.conj(menos_v_arriba)
-            factor_termico = np.tanh(energia_n / (2.0 * constante_boltzmann * temperatura_usada))
-            delta_nueva += 0.5 * interaccion_atractiva * correlacion_anomala * factor_termico
-        delta_nueva = fijar_fase_global_delta(delta_nueva)
-        return delta_nueva
-
-
-    def diagonalizar_autoconsistente(numero_sitios, potencial_quimico, energia_zeeman, interaccion_atractiva, delta_inicial, potencial, hopping_usado, hopping_spin_orbita_usado, temperatura_usada, energia_corte_usada, max_iteraciones_usadas, tolerancia_usada, mezcla_usada): #Resuelve el problema BdG autoconsistente.
-        perfil_delta = fijar_fase_global_delta(convertir_a_perfil_delta(delta_inicial, numero_sitios))
-        historial_error = []
-        historial_delta_media = []
-        convergido = False
-
-        for iteracion in range(max_iteraciones_usadas):
-            hamiltoniano = construir_hamiltoniano_bdg(numero_sitios, potencial_quimico, energia_zeeman, perfil_delta, potencial, hopping_usado, hopping_spin_orbita_usado)
-            energias, vectores = diagonalizar_hamiltoniano(hamiltoniano)
-            delta_calculada = calcular_delta_autoconsistente(energias, vectores, numero_sitios, interaccion_atractiva, temperatura_usada, energia_corte_usada)
-            delta_siguiente = (1.0 - mezcla_usada) * perfil_delta + mezcla_usada * delta_calculada
-            delta_siguiente = fijar_fase_global_delta(delta_siguiente)
-            error = np.max(np.abs(delta_siguiente - perfil_delta))
-            historial_error.append(float(error))
-            historial_delta_media.append(float(np.mean(np.abs(delta_siguiente))))
-            perfil_delta = delta_siguiente
-            if error < tolerancia_usada:
-                convergido = True
-                break
-
-        hamiltoniano = construir_hamiltoniano_bdg(numero_sitios, potencial_quimico, energia_zeeman, perfil_delta, potencial, hopping_usado, hopping_spin_orbita_usado)
-        energias, vectores = diagonalizar_hamiltoniano(hamiltoniano)
-        resultado = {"energias": energias, "vectores": vectores, "hamiltoniano": hamiltoniano, "delta": perfil_delta, "delta_media": float(np.mean(np.abs(perfil_delta))), "historial_error": np.array(historial_error), "historial_delta_media": np.array(historial_delta_media), "convergido": convergido, "iteraciones": iteracion + 1, "error_hermiticidad": error_hermiticidad(hamiltoniano), "error_particula_hueco": error_simetria_particula_hueco(hamiltoniano, numero_sitios)}
-        return resultado
-
-
-    def resolver_autoconsistente_estandar(numero_sitios, potencial_quimico, energia_zeeman, interaccion_atractiva, delta_inicial): #Llama al solver usando siempre todos los parametros fisicos y numericos.
-        potencial = potencial_electrostatico_nulo(numero_sitios)
-        return diagonalizar_autoconsistente(numero_sitios, potencial_quimico, energia_zeeman, interaccion_atractiva, delta_inicial, potencial, hopping, hopping_spin_orbita, temperatura, energia_corte, max_iteraciones, tolerancia_delta, mezcla_delta)
-
-
-    ###############################################################################
-    ############################# Observables fisicos #############################
-    ###############################################################################
-
-    def separar_componentes_bdg(vector_estado, numero_sitios): #Separa un autovector en u_up, u_down, v_down y -v_up.
-        psi = vector_estado.reshape(numero_sitios, 4)
-        u_arriba = psi[:, 0].copy()
-        u_abajo = psi[:, 1].copy()
-        v_abajo = psi[:, 2].copy()
-        menos_v_arriba = psi[:, 3].copy()
-        return u_arriba, u_abajo, v_abajo, menos_v_arriba
-
-
-    def densidad_estado(vector_estado, numero_sitios): #Calcula |u_up|^2 + |u_down|^2 + |v_up|^2 + |v_down|^2.
-        u_arriba, u_abajo, v_abajo, menos_v_arriba = separar_componentes_bdg(vector_estado, numero_sitios)
-        densidad = np.abs(u_arriba)**2 + np.abs(u_abajo)**2 + np.abs(v_abajo)**2 + np.abs(menos_v_arriba)**2
-        densidad = densidad / max(float(np.sum(densidad)), 10**(-30))
-        return densidad
-
-
-    def densidad_electron_y_hueco(vector_estado, numero_sitios): #Devuelve por separado la densidad electronica y la densidad de hueco.
-        u_arriba, u_abajo, v_abajo, menos_v_arriba = separar_componentes_bdg(vector_estado, numero_sitios)
-        densidad_electron = np.abs(u_arriba)**2 + np.abs(u_abajo)**2
-        densidad_hueco = np.abs(v_abajo)**2 + np.abs(menos_v_arriba)**2
-        norma = max(float(np.sum(densidad_electron + densidad_hueco)), 10**(-30))
-        return densidad_electron / norma, densidad_hueco / norma
-
-
-    def indice_estado_mas_cercano_a_cero(energias): #Encuentra el autovalor mas cercano a E = 0.
-        return int(np.argmin(np.abs(energias)))
-
-
-    def energia_minima_absoluta(energias): #Devuelve min |E|.
-        return float(np.min(np.abs(energias)))
-
-
-    def transformar_particula_hueco(vector_estado, numero_sitios): #Aplica C = tau_y sigma_y K.
-        psi = vector_estado.reshape(numero_sitios, 4)
-        psi_ph = np.zeros_like(psi)
-        for i in range(numero_sitios):
-            psi_ph[i, :] = operador_particula_hueco_local @ np.conj(psi[i, :])
-        return psi_ph.reshape(4 * numero_sitios)
-
-
-    def alinear_fase(estado_referencia, estado_objetivo): #Elimina la fase global arbitraria entre dos autovectores.
-        solapamiento = np.vdot(estado_referencia, estado_objetivo)
-        if abs(solapamiento) < 10**(-30):
-            return estado_objetivo.copy()
-        return estado_objetivo * np.exp(-1.0j * np.angle(solapamiento))
-
-
-    def construir_majoranas_desde_pareja(energias, vectores, numero_sitios): #Construye dos combinaciones tipo Majorana desde la pareja +-E mas cercana a cero.
-        indices_positivos = np.where(energias >= 0.0)[0]
-        indices_negativos = np.where(energias < 0.0)[0]
-        indice_positivo = indices_positivos[np.argmin(np.abs(energias[indices_positivos]))]
-        indice_negativo = indices_negativos[np.argmin(np.abs(energias[indices_negativos] + energias[indice_positivo]))]
-        estado_positivo = vectores[:, indice_positivo]
-        estado_negativo = vectores[:, indice_negativo]
-        estado_phs = transformar_particula_hueco(estado_positivo, numero_sitios)
-        estado_negativo = alinear_fase(estado_phs, estado_negativo)
-        majorana_1 = (estado_positivo + estado_negativo) / np.sqrt(2.0)
-        majorana_2 = -1.0j * (estado_positivo - estado_negativo) / np.sqrt(2.0)
-        densidad_1 = densidad_estado(majorana_1, numero_sitios)
-        densidad_2 = densidad_estado(majorana_2, numero_sitios)
-        mitad = numero_sitios // 2
-        if np.sum(densidad_1[:mitad]) >= np.sum(densidad_2[:mitad]):
-            densidad_izquierda = densidad_1
-            densidad_derecha = densidad_2
-        else:
-            densidad_izquierda = densidad_2
-            densidad_derecha = densidad_1
-        return densidad_izquierda, densidad_derecha
-
-
-    def lorentziana(energia, centro, anchura): #Funcion lorentziana para suavizar la LDOS.
-        return anchura / (np.pi * ((energia - centro)**2 + anchura**2))
-
-
-    def calcular_ldos(numero_sitios, energias, vectores, energias_ldos, anchura): #Calcula la LDOS electronica local.
-        ldos = np.zeros((len(energias_ldos), numero_sitios), dtype=float)
-        for n, energia_n in enumerate(energias):
-            if energia_n <= 1*10**(-12):
-                continue
-            psi = vectores[:, n].reshape(numero_sitios, 4)
-            peso_electron = np.abs(psi[:, 0])**2 + np.abs(psi[:, 1])**2
-            peso_hueco = np.abs(psi[:, 2])**2 + np.abs(psi[:, 3])**2
-            for i, energia in enumerate(energias_ldos):
-                ldos[i, :] += peso_electron * lorentziana(energia, energia_n, anchura) + peso_hueco * lorentziana(energia, -energia_n, anchura)
-        return ldos
-
-
-    ###############################################################################
-    ######################### Bandas bulk del sistema infinito ####################
-    ###############################################################################
-
-    def bandas_bulk_por_diagonalizacion(potencial_quimico, energia_zeeman, delta_uniforme, numero_k, hopping_usado, hopping_spin_orbita_usado): #Bandas bulk diagonalizando H(k) punto a punto.
-        k = np.linspace(-np.pi, np.pi, numero_k)
-        bandas = np.zeros((numero_k, 4), dtype=float)
-        for i, k_i in enumerate(k):
-            xi_k = 2.0 * hopping_usado - potencial_quimico - 2.0 * hopping_usado * np.cos(k_i)
-            rashba_k = -2.0 * hopping_spin_orbita_usado * np.sin(k_i)
-            hamiltoniano_k = xi_k * tau_z + rashba_k * sigma_y_tau_z + energia_zeeman * sigma_x + np.real(delta_uniforme) * tau_x - np.imag(delta_uniforme) * tau_y
-            bandas[i, :] = la.eigvalsh(hamiltoniano_k, check_finite=False)
-        return k, bandas
-
-
-    def bandas_bulk_analiticas(potencial_quimico, energia_zeeman, delta_uniforme, numero_k, hopping_usado, hopping_spin_orbita_usado): #Solucion analitica discreta para comparar con la diagonalizacion de H(k).
-        k = np.linspace(-np.pi, np.pi, numero_k)
-        xi_k = 2.0 * hopping_usado - potencial_quimico - 2.0 * hopping_usado * np.cos(k)
-        rashba_k = -2.0 * hopping_spin_orbita_usado * np.sin(k)
-        delta_abs = np.abs(delta_uniforme)
-        termino_base = xi_k**2 + rashba_k**2 + energia_zeeman**2 + delta_abs**2
-        termino_raiz = np.sqrt(energia_zeeman**2 * delta_abs**2 + xi_k**2 * (energia_zeeman**2 + rashba_k**2))
-        energia_menor = np.sqrt(np.maximum(termino_base - 2.0 * termino_raiz, 0.0))
-        energia_mayor = np.sqrt(np.maximum(termino_base + 2.0 * termino_raiz, 0.0))
-        bandas = np.column_stack((-energia_mayor, -energia_menor, energia_menor, energia_mayor))
-        return k, bandas
-
-
-    def gap_bulk_minimo(potencial_quimico, energia_zeeman, delta_uniforme, numero_k, hopping_usado, hopping_spin_orbita_usado): #Calcula min_k E_+(k).
-        k, bandas = bandas_bulk_por_diagonalizacion(potencial_quimico, energia_zeeman, delta_uniforme, numero_k, hopping_usado, hopping_spin_orbita_usado)
-        bandas_positivas = bandas[bandas > 10**(-12)]
-        if bandas_positivas.size == 0:
-            return 0.0
-        return float(np.min(bandas_positivas))
-
-
-    def es_topologico_ideal(potencial_quimico, energia_zeeman, delta_media): #Criterio orientativo E_Z > sqrt(mu^2 + |Delta|^2).
-        umbral = np.sqrt(potencial_quimico**2 + delta_media**2)
-        return bool(energia_zeeman > umbral and delta_media > delta_minima_superconductora)
-
-
-    ###############################################################################
-    ############################## Barridos fisicos ###############################
-    ###############################################################################
-
-    def barrer_zeeman(numero_sitios, potencial_quimico, valores_zeeman, interaccion_atractiva): #Barre E_Z y calcula el espectro finito autoconsistente.
-        todos_los_espectros = []
-        energias_minimas = []
-        gaps_medios = []
-        deltas_finales = []
-        delta_inicial = perfil_delta_inicial_uniforme(numero_sitios, delta_semilla)
-        for energia_zeeman in valores_zeeman:
-            resultado = resolver_autoconsistente_estandar(numero_sitios, potencial_quimico, energia_zeeman, interaccion_atractiva, delta_inicial)
-            todos_los_espectros.append(resultado["energias"])
-            energias_minimas.append(energia_minima_absoluta(resultado["energias"]))
-            gaps_medios.append(resultado["delta_media"])
-            deltas_finales.append(resultado["delta"])
-            delta_inicial = resultado["delta"]
-        return np.array(todos_los_espectros), np.array(energias_minimas), np.array(gaps_medios), deltas_finales
-
-
-    def barrer_gap_bulk_zeeman(valores_zeeman, numero_sitios_barrido): #Barre E_Z y calcula el gap bulk usando Delta autoconsistente del centro del hilo.
-        gaps_bulk = []
-        gaps_medios = []
-        delta_inicial = perfil_delta_inicial_uniforme(numero_sitios_barrido, delta_semilla)
-        for energia_zeeman in valores_zeeman:
-            resultado = resolver_autoconsistente_estandar(numero_sitios_barrido, potencial_quimico, energia_zeeman, interaccion_atractiva, delta_inicial)
-            zona_central = resultado["delta"][numero_sitios_barrido // 4 : 3 * numero_sitios_barrido // 4]
-            delta_bulk = np.mean(zona_central)
-            gaps_bulk.append(gap_bulk_minimo(potencial_quimico, energia_zeeman, delta_bulk, numero_k_bulk, hopping, hopping_spin_orbita))
-            gaps_medios.append(resultado["delta_media"])
-            delta_inicial = resultado["delta"]
-        return np.array(gaps_bulk), np.array(gaps_medios)
-
-
-    def barrer_longitud_cadena(valores_longitud, potencial_quimico, energia_zeeman, interaccion_atractiva): #Barre la longitud N para estudiar el splitting de los modos de borde.
-        energias_minimas = []
-        for N in valores_longitud:
-            N = int(N)
-            delta_inicial = perfil_delta_inicial_uniforme(N, delta_semilla)
-            resultado = resolver_autoconsistente_estandar(N, potencial_quimico, energia_zeeman, interaccion_atractiva, delta_inicial)
-            energias_minimas.append(energia_minima_absoluta(resultado["energias"]))
-        return np.array(energias_minimas)
-
-
-    def calcular_mapa_mu_zeeman_minimo(valores_mu, valores_zeeman, numero_sitios_mapa): #Calcula log10(min|E|) en el plano (mu,E_Z) para la cadena finita.
-        mapa_minimo = np.zeros((len(valores_zeeman), len(valores_mu)), dtype=float)
-        for i, energia_zeeman in enumerate(valores_zeeman):
-            delta_inicial = perfil_delta_inicial_uniforme(numero_sitios_mapa, delta_semilla)
-            for j, mu in enumerate(valores_mu):
-                resultado = resolver_autoconsistente_estandar(numero_sitios_mapa, mu, energia_zeeman, interaccion_atractiva, delta_inicial)
-                mapa_minimo[i, j] = energia_minima_absoluta(resultado["energias"])
-                delta_inicial = resultado["delta"]
-        mapa_log = np.log10(np.maximum(mapa_minimo, 10**(-6) * meV))
-        return mapa_log
-
-
-    def calcular_resultados_regimenes(numero_sitios): #Calcula una vez los tres regimenes principales para no repetir diagonalizaciones caras.
-        resultados = {}
-        casos = [("trivial", zeeman_trivial), ("intermedio", zeeman_intermedio), ("topologico", zeeman_topologico)]
-        for nombre, energia_zeeman in casos:
-            delta_inicial = perfil_delta_inicial_uniforme(numero_sitios, delta_semilla)
-            resultados[nombre] = resolver_autoconsistente_estandar(numero_sitios, potencial_quimico, energia_zeeman, interaccion_atractiva, delta_inicial)
-        return resultados
-
-
-    def calcular_resultados_interaccion(numero_sitios): #Calcula los perfiles al variar V_eff.
-        resultados = []
-        for valor_interaccion in [interaccion_debil, interaccion_media, interaccion_fuerte]:
-            delta_inicial = perfil_delta_inicial_uniforme(numero_sitios, delta_semilla)
-            resultado = resolver_autoconsistente_estandar(numero_sitios, potencial_quimico, zeeman_topologico, valor_interaccion, delta_inicial)
-            resultados.append((valor_interaccion, resultado))
-        return resultados
-
-
-    ###############################################################################
-    ################################## Graficar ###################################
-    ###############################################################################
-
-    def preparar_estilo_graficas(): #Estilo sencillo para que las figuras sean claras en el TFG.
-        plt.style.use("default")
-        plt.rcParams.update({"figure.figsize": (9, 5.5), "axes.grid": True, "grid.alpha": 0.25, "font.size": 11, "axes.titlesize": 13, "axes.labelsize": 12, "legend.fontsize": 10, "savefig.dpi": 300, "savefig.bbox": "tight"})
-
-
-    def guardar_figura(figura, nombre_archivo): #Guarda la figura en la carpeta de resultados.
-        os.makedirs(carpeta_figuras, exist_ok=True)
-        figura.savefig(os.path.join(carpeta_figuras, nombre_archivo))
-
-
-    def graficar_convergencia_gap(resultado_topologico): #Muestra como converge Delta durante el proceso autoconsistente.
-        figura, ejes = plt.subplots(1, 2, figsize=(12, 4))
-        ejes[0].plot(resultado_topologico["historial_delta_media"], linewidth=2.2)
-        ejes[0].set_title(r"Convergencia de $\langle|\Delta_i|\rangle$")
-        ejes[0].set_xlabel("Iteracion")
-        ejes[0].set_ylabel("Gap medio (meV)")
-        ejes[1].semilogy(resultado_topologico["historial_error"], linewidth=2.2)
-        ejes[1].set_title("Error maximo entre iteraciones")
-        ejes[1].set_xlabel("Iteracion")
-        ejes[1].set_ylabel("Error (meV)")
-        figura.suptitle("Bucle autoconsistente BdG")
-        figura.tight_layout()
-        guardar_figura(figura, "convergencia_gap_autoconsistente.png")
-        return figura
-
-
-    def graficar_perfil_gap_autoconsistente(resultados_regimenes): #Dibuja Delta_i en los tres regimenes.
-        figura, eje = plt.subplots(figsize=(9, 5))
-        casos = [("trivial", zeeman_trivial), ("intermedio", zeeman_intermedio), ("topologico", zeeman_topologico)]
-        for nombre, energia_zeeman in casos:
-            resultado = resultados_regimenes[nombre]
-            eje.plot(np.arange(numero_sitios), np.abs(resultado["delta"]), linewidth=2.0, label=f"{nombre}: $E_Z={energia_zeeman:.2f}$ meV")
-        eje.set_title(r"Perfil espacial del gap autoconsistente $|\Delta_i|$")
-        eje.set_xlabel("Sitio i")
-        eje.set_ylabel(r"$|\Delta_i|$ (meV)")
-        eje.legend()
-        figura.tight_layout()
-        guardar_figura(figura, "perfil_gap_autoconsistente.png")
-        return figura
-
-
-    def graficar_gap_bulk_vs_zeeman(valores_zeeman, gaps_bulk): #Grafica el gap bulk minimo frente a E_Z.
-        figura, eje = plt.subplots(figsize=(9, 5))
-        eje.plot(valores_zeeman, gaps_bulk, marker="o", markersize=4, linewidth=2.0)
-        eje.set_title(r"Gap bulk minimo frente a $E_Z$")
-        eje.set_xlabel(r"Energia de Zeeman $E_Z$ (meV)")
-        eje.set_ylabel(r"$E_{\mathrm{gap}}^{\mathrm{bulk}}$ (meV)")
-        figura.tight_layout()
-        guardar_figura(figura, "gap_bulk_vs_zeeman_autoconsistente.png")
-        return figura
-
-
-    def graficar_bandas_bulk_tres_regimenes(resultados_regimenes): #Grafica bandas teoricas y bandas obtenidas al diagonalizar H(k).
-        casos = [("trivial", zeeman_trivial), ("intermedio", zeeman_intermedio), ("topologico", zeeman_topologico)]
-        figura, ejes = plt.subplots(1, 3, figsize=(14, 4.2), sharey=True)
-        colores = ["tab:blue", "tab:orange", "tab:green", "tab:red"]
-        for eje, (nombre, energia_zeeman) in zip(ejes, casos):
-            resultado = resultados_regimenes[nombre]
-            zona_central = resultado["delta"][numero_sitios // 4 : 3 * numero_sitios // 4]
-            delta_bulk = np.mean(zona_central)
-            k, bandas_teoricas = bandas_bulk_analiticas(potencial_quimico, energia_zeeman, delta_bulk, numero_k_bulk, hopping, hopping_spin_orbita)
-            k, bandas_numericas = bandas_bulk_por_diagonalizacion(potencial_quimico, energia_zeeman, delta_bulk, numero_k_bulk, hopping, hopping_spin_orbita)
-            for banda in range(4):
-                etiqueta_teorica = "formula analitica" if banda == 0 and nombre == "trivial" else None
-                etiqueta_numerica = "diagonalizacion de $H(k)$" if banda == 0 and nombre == "trivial" else None
-                eje.plot(k / np.pi, bandas_teoricas[:, banda], linewidth=1.8, color=colores[banda], label=etiqueta_teorica)
-                eje.plot(k / np.pi, bandas_numericas[:, banda], linestyle="--", linewidth=1.2, color="black", alpha=0.75, label=etiqueta_numerica)
-            eje.axhline(0.0, color="black", linewidth=1.0, alpha=0.45)
-            eje.set_title(rf"{nombre}: $E_Z={energia_zeeman:.2f}$ meV, $\langle\Delta\rangle={resultado['delta_media']:.2f}$ meV")
-            eje.set_xlabel(r"$ka/\pi$")
-        ejes[0].set_ylabel("Energia (meV)")
-        ejes[0].legend(loc="lower left", framealpha=0.9)
-        figura.suptitle("Bandas bulk del nanohilo BdG autoconsistente")
-        figura.tight_layout()
-        guardar_figura(figura, "bandas_bulk_autoconsistente.png")
-        return figura
-
-
-    def graficar_espectro_finito_vs_zeeman(valores_zeeman, espectros, gaps_medios): #Grafica el espectro finito frente a E_Z.
-        figura, eje = plt.subplots(figsize=(9, 5.2))
-        for i, energia_zeeman in enumerate(valores_zeeman):
-            energias_cerca_cero = espectros[i][np.abs(espectros[i]) < 1.5 * meV]
-            eje.scatter(np.full_like(energias_cerca_cero, energia_zeeman), energias_cerca_cero, s=8, color="black", alpha=0.65)
-        delta_referencia = max(gaps_medios[0], 10**(-12))
-        zeeman_guia = np.sqrt(potencial_quimico**2 + delta_referencia**2)
-        eje.axvline(zeeman_guia, linestyle="--", linewidth=2.0, label=r"$E_Z\simeq\sqrt{\mu^2+\Delta^2}$")
-        eje.axhline(0.0, color="black", linewidth=1.0, alpha=0.5)
-        eje.set_title("Espectro finito autoconsistente frente al campo de Zeeman")
-        eje.set_xlabel(r"Energia de Zeeman $E_Z$ (meV)")
-        eje.set_ylabel("Energia (meV)")
-        eje.legend()
-        figura.tight_layout()
-        guardar_figura(figura, "espectro_finito_vs_zeeman_autoconsistente.png")
-        return figura
-
-
-    def graficar_ldos_tres_regimenes(resultados_regimenes): #Grafica LDOS(E,i) con la barra de color fuera de los paneles.
-        casos = [("trivial", zeeman_trivial), ("intermedio", zeeman_intermedio), ("topologico", zeeman_topologico)]
-        energias_ldos = np.linspace(-1.5 * meV, 1.5 * meV, numero_energias)
-        figura = plt.figure(figsize=(14, 4.4))
-        rejilla = figura.add_gridspec(1, 4, width_ratios=[1, 1, 1, 0.045], wspace=0.12)
-        ejes = [figura.add_subplot(rejilla[0, i]) for i in range(3)]
-        eje_barra = figura.add_subplot(rejilla[0, 3])
-        imagen = None
-        for eje, (nombre, energia_zeeman) in zip(ejes, casos):
-            resultado = resultados_regimenes[nombre]
-            ldos = calcular_ldos(numero_sitios, resultado["energias"], resultado["vectores"], energias_ldos, ensanchamiento_ldos)
-            imagen = eje.imshow(ldos, aspect="auto", origin="lower", extent=[0, numero_sitios - 1, energias_ldos[0], energias_ldos[-1]], cmap="magma")
-            eje.axhline(0.0, color="white", linewidth=1.0, alpha=0.85)
-            eje.set_title(f"{nombre}: $E_Z={energia_zeeman:.2f}$ meV")
-            eje.set_xlabel("Sitio i")
-        ejes[0].set_ylabel("Energia (meV)")
-        for eje in ejes[1:]:
-            eje.tick_params(labelleft=False)
-        barra = figura.colorbar(imagen, cax=eje_barra)
-        barra.set_label("LDOS")
-        figura.suptitle(r"LDOS$(E,i)$ del nanohilo autoconsistente")
-        guardar_figura(figura, "ldos_tres_regimenes_autoconsistente.png")
-        return figura
-
-
-    def graficar_modo_cero_topologico_y_trivial(resultados_regimenes): #Compara la densidad del estado mas cercano a cero en un caso trivial y uno topologico.
-        casos = [("trivial", zeeman_trivial), ("topologico", zeeman_topologico)]
-        figura, ejes = plt.subplots(1, 2, figsize=(12, 4.2), sharey=True)
-        for eje, (nombre, energia_zeeman) in zip(ejes, casos):
-            resultado = resultados_regimenes[nombre]
-            indice = indice_estado_mas_cercano_a_cero(resultado["energias"])
-            densidad = densidad_estado(resultado["vectores"][:, indice], numero_sitios)
-            eje.plot(np.arange(numero_sitios), densidad, linewidth=2.2)
-            eje.set_title(f"{nombre}: $E={resultado['energias'][indice]:.3e}$ meV")
-            eje.set_xlabel("Sitio i")
-        ejes[0].set_ylabel("Densidad normalizada")
-        figura.suptitle("Estado BdG mas cercano a energia cero")
-        figura.tight_layout()
-        guardar_figura(figura, "modo_cero_topologico_y_trivial_autoconsistente.png")
-        return figura
-
-
-    def graficar_particula_hueco_modo_cero(resultado_topologico): #Grafica la parte electronica y de hueco del estado mas cercano a cero.
-        indice = indice_estado_mas_cercano_a_cero(resultado_topologico["energias"])
-        estado = resultado_topologico["vectores"][:, indice]
-        densidad_electron, densidad_hueco = densidad_electron_y_hueco(estado, numero_sitios)
-        figura, eje = plt.subplots(figsize=(9, 5))
-        eje.plot(np.arange(numero_sitios), densidad_electron, linewidth=2.2, label="parte electronica")
-        eje.plot(np.arange(numero_sitios), densidad_hueco, linewidth=2.2, linestyle="--", label="parte de hueco")
-        eje.set_title("Contenido electron-hueco del estado mas cercano a cero")
-        eje.set_xlabel("Sitio i")
-        eje.set_ylabel("Densidad normalizada")
-        eje.legend()
-        figura.tight_layout()
-        guardar_figura(figura, "particula_hueco_modo_cero_autoconsistente.png")
-        return figura
-
-
-    def graficar_majoranas_separadas(resultado_topologico): #Grafica las dos combinaciones tipo Majorana localizadas a izquierda y derecha.
-        densidad_izquierda, densidad_derecha = construir_majoranas_desde_pareja(resultado_topologico["energias"], resultado_topologico["vectores"], numero_sitios)
-        figura, eje = plt.subplots(figsize=(9, 5))
-        eje.plot(np.arange(numero_sitios), densidad_izquierda, linewidth=2.3, label="Majorana izquierda")
-        eje.plot(np.arange(numero_sitios), densidad_derecha, linewidth=2.3, label="Majorana derecha")
-        eje.set_title("Descomposicion del modo casi cero en dos Majoranas")
-        eje.set_xlabel("Sitio i")
-        eje.set_ylabel("Densidad normalizada")
-        eje.legend()
-        figura.tight_layout()
-        guardar_figura(figura, "majoranas_separadas_autoconsistente.png")
-        return figura
-
-
-    def graficar_splitting_vs_longitud(): #Grafica la energia minima frente a la longitud N.
-        valores_longitud = np.arange(40, 181, 10)
-        energias_minimas = barrer_longitud_cadena(valores_longitud, potencial_quimico, zeeman_topologico, interaccion_atractiva)
-        figura, eje = plt.subplots(figsize=(9, 5))
-        eje.plot(valores_longitud, energias_minimas, marker="o", markersize=4, linewidth=1.7)
-        eje.set_yscale("log")
-        eje.set_title("Splitting de los modos de borde frente a la longitud")
-        eje.set_xlabel("Numero de sitios N")
-        eje.set_ylabel(r"$\min |E|$ (meV)")
-        figura.tight_layout()
-        guardar_figura(figura, "splitting_longitud_autoconsistente.png")
-        return figura
-
-
-    def graficar_comparacion_interaccion_localizacion(resultados_interaccion): #Compara como cambia la localizacion al variar V_eff.
-        figura, eje = plt.subplots(figsize=(9, 5))
-        for valor_interaccion, resultado in resultados_interaccion:
-            indice = indice_estado_mas_cercano_a_cero(resultado["energias"])
-            densidad = densidad_estado(resultado["vectores"][:, indice], numero_sitios)
-            eje.plot(np.arange(numero_sitios), densidad, linewidth=2.0, label=rf"$V_{{eff}}={valor_interaccion:.1f}$ meV, $\langle\Delta\rangle={resultado['delta_media']:.2f}$ meV")
-        eje.set_title("Efecto de la interaccion atractiva en el modo de borde")
-        eje.set_xlabel("Sitio i")
-        eje.set_ylabel("Densidad normalizada")
-        eje.legend()
-        figura.tight_layout()
-        guardar_figura(figura, "comparacion_interaccion_localizacion_autoconsistente.png")
-        return figura
-
-
-    def graficar_perfil_gap_vs_interaccion(resultados_interaccion): #Compara el perfil |Delta_i| al variar V_eff.
-        figura, eje = plt.subplots(figsize=(9, 5))
-        for valor_interaccion, resultado in resultados_interaccion:
-            eje.plot(np.arange(numero_sitios), np.abs(resultado["delta"]), linewidth=2.0, label=rf"$V_{{eff}}={valor_interaccion:.1f}$ meV")
-        eje.set_title(r"Perfil autoconsistente $|\Delta_i|$ al variar $V_{eff}$")
-        eje.set_xlabel("Sitio i")
-        eje.set_ylabel(r"$|\Delta_i|$ (meV)")
-        eje.legend()
-        figura.tight_layout()
-        guardar_figura(figura, "perfil_gap_vs_interaccion_autoconsistente.png")
-        return figura
-
-
-    def graficar_mapa_mu_zeeman_minimo(mapa_log, valores_mu, valores_zeeman): #Grafica log10(min|E|) en el plano (mu,E_Z).
-        figura, eje = plt.subplots(figsize=(8.5, 5.5))
-        imagen = eje.imshow(mapa_log, origin="lower", aspect="auto", extent=[valores_mu[0], valores_mu[-1], valores_zeeman[0], valores_zeeman[-1]], cmap="magma")
-        eje.set_title(r"Mapa finito de $\log_{10}(\min |E|)$")
-        eje.set_xlabel(r"Potencial quimico $\mu$ (meV)")
-        eje.set_ylabel(r"Energia de Zeeman $E_Z$ (meV)")
-        barra = figura.colorbar(imagen, ax=eje, pad=0.03)
-        barra.set_label(r"$\log_{10}(E/\mathrm{meV})$")
-        figura.tight_layout()
-        guardar_figura(figura, "mapa_mu_zeeman_minimo_autoconsistente.png")
-        return figura
-
-
-    ###############################################################################
-    ################################## Ejecucion ##################################
-    ###############################################################################
-
-    if __name__ == "__main__":
-        preparar_estilo_graficas()
-
-        potencial_prueba = potencial_electrostatico_nulo(numero_sitios)
-        hamiltoniano_prueba = construir_hamiltoniano_bdg(numero_sitios, potencial_quimico, zeeman_topologico, delta_semilla, potencial_prueba, hopping, hopping_spin_orbita)
-        print("Error hermiticidad:", error_hermiticidad(hamiltoniano_prueba))
-        print("Error simetria particula-hueco:", error_simetria_particula_hueco(hamiltoniano_prueba, numero_sitios))
-
-        resultados_regimenes = calcular_resultados_regimenes(numero_sitios)
-        resultado_topologico = resultados_regimenes["topologico"]
-        resultados_interaccion = calcular_resultados_interaccion(numero_sitios)
-
-        valores_zeeman = np.linspace(0.0, 0.75 * meV, numero_puntos_barrido)
-        espectros, energias_minimas, gaps_medios, deltas_finales = barrer_zeeman(numero_sitios, potencial_quimico, valores_zeeman, interaccion_atractiva)
-
-        valores_zeeman_bulk = np.linspace(0.0, 0.75 * meV, 19)
-        gaps_bulk, gaps_medios_bulk = barrer_gap_bulk_zeeman(valores_zeeman_bulk, max(60, numero_sitios // 2))
-
-        valores_mu_mapa = np.linspace(-0.8 * meV, 0.8 * meV, 13)
-        valores_zeeman_mapa = np.linspace(0.0, 0.8 * meV, 13)
-        mapa_log = calcular_mapa_mu_zeeman_minimo(valores_mu_mapa, valores_zeeman_mapa, numero_sitios_mapa)
-
-        graficar_convergencia_gap(resultado_topologico)
-        graficar_perfil_gap_autoconsistente(resultados_regimenes)
-        graficar_gap_bulk_vs_zeeman(valores_zeeman_bulk, gaps_bulk)
-        graficar_bandas_bulk_tres_regimenes(resultados_regimenes)
-        graficar_espectro_finito_vs_zeeman(valores_zeeman, espectros, gaps_medios)
-        graficar_ldos_tres_regimenes(resultados_regimenes)
-        graficar_modo_cero_topologico_y_trivial(resultados_regimenes)
-        graficar_particula_hueco_modo_cero(resultado_topologico)
-        graficar_majoranas_separadas(resultado_topologico)
-        graficar_splitting_vs_longitud()
-        graficar_comparacion_interaccion_localizacion(resultados_interaccion)
-        graficar_perfil_gap_vs_interaccion(resultados_interaccion)
-        graficar_mapa_mu_zeeman_minimo(mapa_log, valores_mu_mapa, valores_zeeman_mapa)
-
-        plt.show()
-
-# Conclusions
-
-The implementation mirrors the mathematical model directly. Every site contributes one $4\times4$ local Nambu–spin block; every bond contributes a kinetic plus Rashba block; diagonalization supplies the amplitudes used in the anomalous gap equation; mixing stabilizes the nonlinear fixed-point loop; and the converged result is reused to calculate bulk and finite-system diagnostics. The code favors explicitness and physical readability over sparse-matrix optimization.
+[5] Y. Oreg, G. Refael, and F. von Oppen, helical-liquid nanowire proposal, *Physical Review Letters* 105 (2010).
