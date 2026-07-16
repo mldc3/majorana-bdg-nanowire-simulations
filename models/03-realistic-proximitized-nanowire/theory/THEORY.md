@@ -240,7 +240,7 @@ the corresponding matrix is
 
 
 $$
-H_\Delta=\operatorname{Re}\Delta_{\mathrm{ind}}(x)\tau_x- \operatorname{Im}\Delta_{\mathrm{ind}}(x)\tau_y.
+H_\Delta=Re\Delta_{ind}(x)\tau_x- Im\Delta_{ind}(x)\tau_y.
 $$
 
 <p align="right"><strong>(4.10)</strong></p>
@@ -254,7 +254,7 @@ Combining the four ingredients gives
 
 
 $$
-\boxed{ H_{\mathrm{BdG}}= \left(\frac{p_x^2}{2m^*}-\mu+V_{\mathrm{pot}}(x)\right)\tau_z +\frac{\alpha_R}{\hbar}p_x\sigma_y\tau_z +\Gamma\sigma_x +\Delta_{\mathrm{ind}}(x)\tau_x .}
+\boxed{ H_{BdG}= \left(\frac{p_x^2}{2m^*}-\mu+V_{pot}(x)\right)\tau_z +\frac{\alpha_R}{\hbar}p_x\sigma_y\tau_z +\Gamma\sigma_x +\Delta_{ind}(x)\tau_x .}
 $$
 
 <p align="right"><strong>(4.11)</strong></p>
@@ -863,7 +863,7 @@ At each site,
 
 
 $$
-\Phi_i= \begin{pmatrix} u_{\uparrow,i}\\u_{\downarrow,i}\\v_{\downarrow,i}\\-v_{\uparrow,i}\end{pmatrix},
+\Phi_i= \begin{pmatrix} u_{\uparrow,i} \\ u_{\downarrow,i} \\ v_{\downarrow,i} \\ -v_{\uparrow,i}\end{pmatrix},
 $$
 
 <p align="right"><strong>(6.2)</strong></p>
@@ -953,7 +953,7 @@ The local $4\times4$ block is
 
 
 $$
-H_{ii}=Z_i(2t-\mu+V_{\mathrm{eff},i})\tau_z +Z_i\Gamma\sigma_x +\operatorname{Re}\Delta_i\tau_x -\operatorname{Im}\Delta_i\tau_y,
+H_{ii}=Z_i(2t-\mu+V_{eff,i})\tau_z +Z_i\Gamma\sigma_x +Re\Delta_i\tau_x -Im\Delta_i\tau_y,
 $$
 
 <p align="right"><strong>(6.10)</strong></p>
