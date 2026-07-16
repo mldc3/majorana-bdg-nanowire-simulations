@@ -156,7 +156,6 @@ The expected signatures are exact $\pm E$ symmetry, finite-size levels represent
 
 #### Result and interpretation
 
-
 The spectrum is symmetric around $E=0$ across the entire sweep, as required by BdG particle–hole symmetry. Outside $|\mu|<2t$, the closest levels remain at finite energy and approach the bulk continuum. Near $\mu=\pm2t$, the finite-size level spacing prevents an exact zero at the transition: for $N=48$, the smallest positive energy at $\mu=2t$ is approximately $0.0333t$. This is the expected finite-chain replacement of the thermodynamic gap closing.
 
 Inside the topological interval, a near-zero doublet separates from the bulk bands. At $\mu=0$, the minimum absolute energy is approximately $4.72\times10^{-12}t$, whereas the next positive excitation is approximately $1.006t$. Thus the edge doublet is separated from bulk excitations by roughly one hopping unit. The visual distinction between the near-zero line and the bulk bands is a strong finite-chain signature, but the spectrum alone does not prove that the state is localized at opposite ends. The later density and Majorana-decomposition figures provide that missing information.
