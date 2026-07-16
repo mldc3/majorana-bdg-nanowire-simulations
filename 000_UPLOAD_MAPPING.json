@@ -1,0 +1,1380 @@
+{
+  "format_version": 1,
+  "purpose": "Map uniquely named loose browser-upload files to their exact final repository paths.",
+  "instructions": "Upload all three batches as loose files to the repository root. After all uploads, give Copilot the supplied organization and validation prompt. Copilot must move/rename files using this mapping without changing bytes.",
+  "source_file_count": 196,
+  "records": [
+    {
+      "temporary_upload_name": "ROOT__GITIGNORE.txt",
+      "final_repository_path": ".gitignore",
+      "batch": 1,
+      "size_bytes": 81,
+      "sha256": "d3f920d8932ae3f63144a7ffc65914542e8bb50994ecd4a8b83d51d51f8233b5"
+    },
+    {
+      "temporary_upload_name": "ROOT__FILE_MANIFEST.json",
+      "final_repository_path": "FILE_MANIFEST.json",
+      "batch": 1,
+      "size_bytes": 44023,
+      "sha256": "50182d68d8027f7533c0a9f3ce30c102039836ced26aeff21e24d85b7c17f825"
+    },
+    {
+      "temporary_upload_name": "ROOT__README.md",
+      "final_repository_path": "README.md",
+      "batch": 1,
+      "size_bytes": 6458,
+      "sha256": "6348fab9f8ab9b777815fac220df4a212ee704123619fef34c3aa6864daf06f9"
+    },
+    {
+      "temporary_upload_name": "ROOT__VALIDATION_REPORT.md",
+      "final_repository_path": "VALIDATION_REPORT.md",
+      "batch": 1,
+      "size_bytes": 6436,
+      "sha256": "93456ba7626c9ecead025368e83396722011975b12e4484b993ee9223c364e97"
+    },
+    {
+      "temporary_upload_name": "M01_KITAEV__README.md",
+      "final_repository_path": "models/01-kitaev-chain/README.md",
+      "batch": 1,
+      "size_bytes": 1430,
+      "sha256": "b9edbeecb7ae59227394752376903dcab065ba078237f8ee7463ffbb27a5fcbc"
+    },
+    {
+      "temporary_upload_name": "M01_KITAEV__CODE__kitaev_chain_1d.py",
+      "final_repository_path": "models/01-kitaev-chain/code/kitaev_chain_1d.py",
+      "batch": 1,
+      "size_bytes": 24698,
+      "sha256": "ec2ebf99ead84354b04bf9fa60e2843070c8cf289b24fb2985b6ff8964871cb4"
+    },
+    {
+      "temporary_upload_name": "M01_KITAEV__RESULTS_AND_CONCLUSIONS.md",
+      "final_repository_path": "models/01-kitaev-chain/results/RESULTS_AND_CONCLUSIONS.md",
+      "batch": 1,
+      "size_bytes": 28124,
+      "sha256": "a74cc20ff0412a59d1f68724195be79f72a1f50b4f452cf7c3cbb10027d5e824"
+    },
+    {
+      "temporary_upload_name": "M01_KITAEV__FIGURE__01_bulk_bands.png",
+      "final_repository_path": "models/01-kitaev-chain/results/figures/01_bulk_bands.png",
+      "batch": 1,
+      "size_bytes": 126054,
+      "sha256": "be2095472ec02176d25f3b3466b5a4688d97826e4d2934f91ed5b5a562823784"
+    },
+    {
+      "temporary_upload_name": "M01_KITAEV__FIGURE__02_finite_spectrum_vs_mu.png",
+      "final_repository_path": "models/01-kitaev-chain/results/figures/02_finite_spectrum_vs_mu.png",
+      "batch": 1,
+      "size_bytes": 234343,
+      "sha256": "5365dd6bf175ed809ff4261d8debbe32fa9e974eb094209f9d96975aa29a2623"
+    },
+    {
+      "temporary_upload_name": "M01_KITAEV__FIGURE__03_min_energy_vs_mu.png",
+      "final_repository_path": "models/01-kitaev-chain/results/figures/03_min_energy_vs_mu.png",
+      "batch": 1,
+      "size_bytes": 93702,
+      "sha256": "5bb5420b6563fde9678350f7170920cf60eb72b5ae3927a61963c4855dc6c9b1"
+    },
+    {
+      "temporary_upload_name": "M01_KITAEV__FIGURE__04_ldos_three_regimes.png",
+      "final_repository_path": "models/01-kitaev-chain/results/figures/04_ldos_three_regimes.png",
+      "batch": 1,
+      "size_bytes": 1238188,
+      "sha256": "199d119a2d703063333de7b80a23156137df44e9919c7c5ff14df03321ea4c93"
+    },
+    {
+      "temporary_upload_name": "M01_KITAEV__FIGURE__05_zero_mode_trivial_topological.png",
+      "final_repository_path": "models/01-kitaev-chain/results/figures/05_zero_mode_trivial_topological.png",
+      "batch": 1,
+      "size_bytes": 87374,
+      "sha256": "148d256cd9c5a240e63d6071b2febaeb51b6efc48175ae3cc3bbc1bd347d446f"
+    },
+    {
+      "temporary_upload_name": "M01_KITAEV__FIGURE__06_majorana_decomposition.png",
+      "final_repository_path": "models/01-kitaev-chain/results/figures/06_majorana_decomposition.png",
+      "batch": 1,
+      "size_bytes": 83537,
+      "sha256": "990254038275c58c4df7503becc8b107fd7308f538e20d84f786417126396d39"
+    },
+    {
+      "temporary_upload_name": "M01_KITAEV__FIGURE__07_particle_hole_content.png",
+      "final_repository_path": "models/01-kitaev-chain/results/figures/07_particle_hole_content.png",
+      "batch": 1,
+      "size_bytes": 73167,
+      "sha256": "45223e5bf50d0af86e06c0ed675d4c23caaf89386c9ed1cf862412aaebabf4d5"
+    },
+    {
+      "temporary_upload_name": "M01_KITAEV__FIGURE__08_splitting_vs_length.png",
+      "final_repository_path": "models/01-kitaev-chain/results/figures/08_splitting_vs_length.png",
+      "batch": 1,
+      "size_bytes": 98827,
+      "sha256": "e260362983340a98537438b444899ee87bb3d3d39aa23fff97623bc8a3fcc00e"
+    },
+    {
+      "temporary_upload_name": "M01_KITAEV__FIGURE__09_pairing_localization.png",
+      "final_repository_path": "models/01-kitaev-chain/results/figures/09_pairing_localization.png",
+      "batch": 1,
+      "size_bytes": 232126,
+      "sha256": "5d58174d28375c5986603b1839225e9cb9a40cb2b948e8fb57949429919329b0"
+    },
+    {
+      "temporary_upload_name": "M01_KITAEV__FIGURE__10_phase_diagram.png",
+      "final_repository_path": "models/01-kitaev-chain/results/figures/10_phase_diagram.png",
+      "batch": 1,
+      "size_bytes": 77149,
+      "sha256": "86c53bc904c57352ebe19f13254289d76630f7cabe4bd6757cc62b069bf7a7f6"
+    },
+    {
+      "temporary_upload_name": "M01_KITAEV__THEORY.md",
+      "final_repository_path": "models/01-kitaev-chain/theory/THEORY.md",
+      "batch": 1,
+      "size_bytes": 65129,
+      "sha256": "99347df1cd582bec64016f2839b306653ad7c4a905ed0a3583e298e702b500b5"
+    },
+    {
+      "temporary_upload_name": "M02_SELF_CONSISTENT_BDG__README.md",
+      "final_repository_path": "models/02-self-consistent-bdg/README.md",
+      "batch": 1,
+      "size_bytes": 1583,
+      "sha256": "c62e188eaab1680697491b9a435c75a1551ba78f2d47fb90b6e8451e4bbdd6d6"
+    },
+    {
+      "temporary_upload_name": "M02_SELF_CONSISTENT_BDG__CODE__self_consistent_bdg_nanowire.py",
+      "final_repository_path": "models/02-self-consistent-bdg/code/self_consistent_bdg_nanowire.py",
+      "batch": 1,
+      "size_bytes": 38816,
+      "sha256": "8b56cfa79d06015efcaa2f58900f3666d2b0f327ec66b3f82004d6801001939f"
+    },
+    {
+      "temporary_upload_name": "M02_SELF_CONSISTENT_BDG__RESULTS_AND_CONCLUSIONS.md",
+      "final_repository_path": "models/02-self-consistent-bdg/results/RESULTS_AND_CONCLUSIONS.md",
+      "batch": 1,
+      "size_bytes": 21766,
+      "sha256": "cedfce2b2dfe5f3ac05f6fa743550885d07caedba5de41f7dae56fc415a85756"
+    },
+    {
+      "temporary_upload_name": "M02_SELF_CONSISTENT_BDG__FIGURE__fig_selfconsistent_bulk_bands.png",
+      "final_repository_path": "models/02-self-consistent-bdg/results/figures/fig_selfconsistent_bulk_bands.png",
+      "batch": 1,
+      "size_bytes": 499296,
+      "sha256": "9743f7db22b37badda246aa53cf24edd22470954fcb03c4f31d49df13e1824d3"
+    },
+    {
+      "temporary_upload_name": "M02_SELF_CONSISTENT_BDG__FIGURE__fig_selfconsistent_bulk_gap_vs_zeeman.png",
+      "final_repository_path": "models/02-self-consistent-bdg/results/figures/fig_selfconsistent_bulk_gap_vs_zeeman.png",
+      "batch": 1,
+      "size_bytes": 123115,
+      "sha256": "c52e62ea1f29ce1085e0210b886564994b64df6486f88a1d5b856a72eaa35a44"
+    },
+    {
+      "temporary_upload_name": "M02_SELF_CONSISTENT_BDG__FIGURE__fig_selfconsistent_convergence.png",
+      "final_repository_path": "models/02-self-consistent-bdg/results/figures/fig_selfconsistent_convergence.png",
+      "batch": 1,
+      "size_bytes": 175220,
+      "sha256": "1f0399b0a68d127edf3c7e0d2a599761da8656d61c64de0ab2fc08edfef2e1f3"
+    },
+    {
+      "temporary_upload_name": "M02_SELF_CONSISTENT_BDG__FIGURE__fig_selfconsistent_gap_profile.png",
+      "final_repository_path": "models/02-self-consistent-bdg/results/figures/fig_selfconsistent_gap_profile.png",
+      "batch": 1,
+      "size_bytes": 178696,
+      "sha256": "08af847d105a526d17d7a1325094e08484ed7421ae9b2cbc2485697f2a257856"
+    },
+    {
+      "temporary_upload_name": "M02_SELF_CONSISTENT_BDG__FIGURE__fig_selfconsistent_gap_vs_interaction.png",
+      "final_repository_path": "models/02-self-consistent-bdg/results/figures/fig_selfconsistent_gap_vs_interaction.png",
+      "batch": 1,
+      "size_bytes": 170974,
+      "sha256": "df140ed173c3520a702473f3b20b38ff9406011c5b4aab531d5c0d0905b6b4df"
+    },
+    {
+      "temporary_upload_name": "M02_SELF_CONSISTENT_BDG__FIGURE__fig_selfconsistent_interaction_localization.png",
+      "final_repository_path": "models/02-self-consistent-bdg/results/figures/fig_selfconsistent_interaction_localization.png",
+      "batch": 1,
+      "size_bytes": 194777,
+      "sha256": "4274c728185533e7fa57ab474a5804f1f794938d07691de97e9cd6b1415ad8e1"
+    },
+    {
+      "temporary_upload_name": "M02_SELF_CONSISTENT_BDG__FIGURE__fig_selfconsistent_ldos_three_regimes.png",
+      "final_repository_path": "models/02-self-consistent-bdg/results/figures/fig_selfconsistent_ldos_three_regimes.png",
+      "batch": 1,
+      "size_bytes": 1540209,
+      "sha256": "4756f574fdc981f55441944e1f1aaeaf0734d3e2a2038923ee8b20f5850a9a3a"
+    },
+    {
+      "temporary_upload_name": "M02_SELF_CONSISTENT_BDG__FIGURE__fig_selfconsistent_majoranas.png",
+      "final_repository_path": "models/02-self-consistent-bdg/results/figures/fig_selfconsistent_majoranas.png",
+      "batch": 1,
+      "size_bytes": 152472,
+      "sha256": "17ae6639c272c5abbcc775c09d3cbfe8515fbffecab91ae16677b283b43a12ec"
+    },
+    {
+      "temporary_upload_name": "M02_SELF_CONSISTENT_BDG__FIGURE__fig_selfconsistent_mode_trivial_topological.png",
+      "final_repository_path": "models/02-self-consistent-bdg/results/figures/fig_selfconsistent_mode_trivial_topological.png",
+      "batch": 1,
+      "size_bytes": 190454,
+      "sha256": "536cdc7cbb989623fec4f7df0fc273fca191eb52215c7b1caf015b1753fdf20e"
+    },
+    {
+      "temporary_upload_name": "M02_SELF_CONSISTENT_BDG__FIGURE__fig_selfconsistent_mu_zeeman_map.png",
+      "final_repository_path": "models/02-self-consistent-bdg/results/figures/fig_selfconsistent_mu_zeeman_map.png",
+      "batch": 1,
+      "size_bytes": 114296,
+      "sha256": "ae0fb19821e7c73e9d832d201879b48aff80ea54ea03c480e4929a71f33def99"
+    },
+    {
+      "temporary_upload_name": "M02_SELF_CONSISTENT_BDG__FIGURE__fig_selfconsistent_particle_hole.png",
+      "final_repository_path": "models/02-self-consistent-bdg/results/figures/fig_selfconsistent_particle_hole.png",
+      "batch": 1,
+      "size_bytes": 181444,
+      "sha256": "a0d63f439a41fc4777b7b14ed4ce9ac882e459198a5533dbd5133307073caea3"
+    },
+    {
+      "temporary_upload_name": "M02_SELF_CONSISTENT_BDG__FIGURE__fig_selfconsistent_spectrum_vs_zeeman.png",
+      "final_repository_path": "models/02-self-consistent-bdg/results/figures/fig_selfconsistent_spectrum_vs_zeeman.png",
+      "batch": 1,
+      "size_bytes": 484588,
+      "sha256": "f17fda41437706a8f42158abe8cad3a727efea4c8c0d8004f3c2a46050c3a0c5"
+    },
+    {
+      "temporary_upload_name": "M02_SELF_CONSISTENT_BDG__FIGURE__fig_selfconsistent_splitting_vs_length.png",
+      "final_repository_path": "models/02-self-consistent-bdg/results/figures/fig_selfconsistent_splitting_vs_length.png",
+      "batch": 1,
+      "size_bytes": 143987,
+      "sha256": "976bb48ae399c0a820730040ad35009e49fb243f7f02a62943e75d357dcbfccc"
+    },
+    {
+      "temporary_upload_name": "M02_SELF_CONSISTENT_BDG__THEORY.md",
+      "final_repository_path": "models/02-self-consistent-bdg/theory/THEORY.md",
+      "batch": 1,
+      "size_bytes": 79974,
+      "sha256": "f312e6a57b684dec9ab89972336672969f2c9f1d3211a71f95c86fe2be522c5e"
+    },
+    {
+      "temporary_upload_name": "M03_REALISTIC_PROXIMITIZED_NANOWIRE__README.md",
+      "final_repository_path": "models/03-realistic-proximitized-nanowire/README.md",
+      "batch": 1,
+      "size_bytes": 1731,
+      "sha256": "80c06548242142fd0f7524abb104d5f96af8ced9bdd0e76da42b34650d2164cf"
+    },
+    {
+      "temporary_upload_name": "M03_REALISTIC_PROXIMITIZED_NANOWIRE__CODE__nanohilosimetricofinal.py",
+      "final_repository_path": "models/03-realistic-proximitized-nanowire/code/nanohilosimetricofinal.py",
+      "batch": 1,
+      "size_bytes": 104603,
+      "sha256": "631cd5ba0cc6d8b73a5ac4b4275dfbe9d4900616c480f8e9fa59210bc8948825"
+    },
+    {
+      "temporary_upload_name": "M03_REALISTIC_PROXIMITIZED_NANOWIRE__RESULTS_AND_CONCLUSIONS.md",
+      "final_repository_path": "models/03-realistic-proximitized-nanowire/results/RESULTS_AND_CONCLUSIONS.md",
+      "batch": 1,
+      "size_bytes": 25928,
+      "sha256": "cec7a1f799767490e43d6bd9a5a91bc0feaa4a9724058a4c5c66693019418821"
+    },
+    {
+      "temporary_upload_name": "M03_REALISTIC_PROXIMITIZED_NANOWIRE__FIGURE__01_proximity_profiles.png",
+      "final_repository_path": "models/03-realistic-proximitized-nanowire/results/figures/01_proximity_profiles.png",
+      "batch": 1,
+      "size_bytes": 49148,
+      "sha256": "b5d178fca299d413d92949dd6cf8d60bbcc83e2a16df0dbf0e6a6db501042c55"
+    },
+    {
+      "temporary_upload_name": "M03_REALISTIC_PROXIMITIZED_NANOWIRE__FIGURE__02_hartree_convergence.png",
+      "final_repository_path": "models/03-realistic-proximitized-nanowire/results/figures/02_hartree_convergence.png",
+      "batch": 1,
+      "size_bytes": 60025,
+      "sha256": "caa64a135525589f00fe377b6c89bbc77aaa07024a1695992ce4d729c4a54f87"
+    },
+    {
+      "temporary_upload_name": "M03_REALISTIC_PROXIMITIZED_NANOWIRE__FIGURE__03_potential_profiles.png",
+      "final_repository_path": "models/03-realistic-proximitized-nanowire/results/figures/03_potential_profiles.png",
+      "batch": 1,
+      "size_bytes": 69234,
+      "sha256": "3d2af835ad728fe1579b1b2e9afd5b14a6fbb14d1887773b96b3333bbfe5bac8"
+    },
+    {
+      "temporary_upload_name": "M03_REALISTIC_PROXIMITIZED_NANOWIRE__FIGURE__04_self_consistent_density.png",
+      "final_repository_path": "models/03-realistic-proximitized-nanowire/results/figures/04_self_consistent_density.png",
+      "batch": 1,
+      "size_bytes": 58449,
+      "sha256": "63fd08f220b279f449f81f36da754d658ffd47fc1b833b0c5b999a7eb6244d91"
+    },
+    {
+      "temporary_upload_name": "M03_REALISTIC_PROXIMITIZED_NANOWIRE__FIGURE__05_bulk_bands_full.png",
+      "final_repository_path": "models/03-realistic-proximitized-nanowire/results/figures/05_bulk_bands_full.png",
+      "batch": 1,
+      "size_bytes": 95046,
+      "sha256": "dbaf9f4f7a0316194fe00ee9fdecddee5100b9472e9584a120acc91fb47d6f0f"
+    },
+    {
+      "temporary_upload_name": "M03_REALISTIC_PROXIMITIZED_NANOWIRE__FIGURE__06_bulk_bands_continuous_discrete.png",
+      "final_repository_path": "models/03-realistic-proximitized-nanowire/results/figures/06_bulk_bands_continuous_discrete.png",
+      "batch": 1,
+      "size_bytes": 137991,
+      "sha256": "167b9a013e54560531106cc1d5dce7ae4dc0e7eae4b4c8a64771a17412fc3d02"
+    },
+    {
+      "temporary_upload_name": "M03_REALISTIC_PROXIMITIZED_NANOWIRE__FIGURE__07_bulk_bands_zoom.png",
+      "final_repository_path": "models/03-realistic-proximitized-nanowire/results/figures/07_bulk_bands_zoom.png",
+      "batch": 1,
+      "size_bytes": 120079,
+      "sha256": "fc4b0752a891441ac1f2a37651abde7ae73291a6bdcf734cf4b86a24e45a771f"
+    },
+    {
+      "temporary_upload_name": "M03_REALISTIC_PROXIMITIZED_NANOWIRE__FIGURE__08_finite_spectrum_zeeman.png",
+      "final_repository_path": "models/03-realistic-proximitized-nanowire/results/figures/08_finite_spectrum_zeeman.png",
+      "batch": 1,
+      "size_bytes": 148179,
+      "sha256": "62e94e48354d996b481adc24e2860b5f6c547e0b0832e0d156bf7b2aca60f644"
+    },
+    {
+      "temporary_upload_name": "M03_REALISTIC_PROXIMITIZED_NANOWIRE__FIGURE__09_finite_spectrum_zeeman_zoom.png",
+      "final_repository_path": "models/03-realistic-proximitized-nanowire/results/figures/09_finite_spectrum_zeeman_zoom.png",
+      "batch": 1,
+      "size_bytes": 56446,
+      "sha256": "485bd13d93b9f362232cbddd0429a40a7e0dd8e2e868506513109bdee10b0826"
+    },
+    {
+      "temporary_upload_name": "M03_REALISTIC_PROXIMITIZED_NANOWIRE__FIGURE__10_finite_spectrum_mu.png",
+      "final_repository_path": "models/03-realistic-proximitized-nanowire/results/figures/10_finite_spectrum_mu.png",
+      "batch": 1,
+      "size_bytes": 166492,
+      "sha256": "35de685a3f6e27fc7603c4c990acc18b393beee1f67a67bfec316e85a9b0048c"
+    },
+    {
+      "temporary_upload_name": "M03_REALISTIC_PROXIMITIZED_NANOWIRE__FIGURE__11_finite_spectrum_mu_zoom.png",
+      "final_repository_path": "models/03-realistic-proximitized-nanowire/results/figures/11_finite_spectrum_mu_zoom.png",
+      "batch": 1,
+      "size_bytes": 76699,
+      "sha256": "723a8b645e916dfde023142ecd7096835929190e02ac4bfd59b61623ef2d74c7"
+    },
+    {
+      "temporary_upload_name": "M03_REALISTIC_PROXIMITIZED_NANOWIRE__FIGURE__12_symmetric_ldos.png",
+      "final_repository_path": "models/03-realistic-proximitized-nanowire/results/figures/12_symmetric_ldos.png",
+      "batch": 1,
+      "size_bytes": 329012,
+      "sha256": "2f94b0e6f1f2b510eafedea16e5358619784a90d47182ae18ff7211d9ba7c7a1"
+    },
+    {
+      "temporary_upload_name": "M03_REALISTIC_PROXIMITIZED_NANOWIRE__FIGURE__13_majorana_decomposition.png",
+      "final_repository_path": "models/03-realistic-proximitized-nanowire/results/figures/13_majorana_decomposition.png",
+      "batch": 1,
+      "size_bytes": 83599,
+      "sha256": "c096930bb3081da5ff827223be7425cf038e85c8405648f3538014b1c84c9eae"
+    },
+    {
+      "temporary_upload_name": "M03_REALISTIC_PROXIMITIZED_NANOWIRE__FIGURE__14_particle_hole_content.png",
+      "final_repository_path": "models/03-realistic-proximitized-nanowire/results/figures/14_particle_hole_content.png",
+      "batch": 1,
+      "size_bytes": 108873,
+      "sha256": "eaff98dc8d568772b350f8edabf0a970a13a2e9818f0eb20c035d76f47f4a1db"
+    },
+    {
+      "temporary_upload_name": "M03_REALISTIC_PROXIMITIZED_NANOWIRE__THEORY.md",
+      "final_repository_path": "models/03-realistic-proximitized-nanowire/theory/THEORY.md",
+      "batch": 1,
+      "size_bytes": 177804,
+      "sha256": "a3f47cfaa66843b08fda71152ed39287ae4ba39be7d59a92c71889490f8e6885"
+    },
+    {
+      "temporary_upload_name": "ROOT__REQUIREMENTS.txt",
+      "final_repository_path": "requirements.txt",
+      "batch": 1,
+      "size_bytes": 23,
+      "sha256": "e13491531df6eeb59d6420ef04d4b5651adec77439da3bccd7409e90f0988035"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__README.md",
+      "final_repository_path": "supplementary/README.md",
+      "batch": 2,
+      "size_bytes": 1007,
+      "sha256": "b049b91916def719a2453b5bb1116d7bda09240337bba3705430cbe553c34ba5"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__PARAMETRIC_STUDY__00_RESUMEN_GLOBAL.csv",
+      "final_repository_path": "supplementary/parametric-study-100-figures/00_resumen_global.csv",
+      "batch": 2,
+      "size_bytes": 5040,
+      "sha256": "a59e6154507635e000c224260f930d70a6b57f37be771f88c1b4cf647042542e"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P01_LONGITUD_HILO__FIGURE__01_majoranas_izquierda_derecha.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/01_longitud_hilo/01_majoranas_izquierda_derecha.png",
+      "batch": 2,
+      "size_bytes": 162521,
+      "sha256": "c845ad0283e2966595fcd0de9e87807fd5130fbe488e8e6b24b1b78efa1605a2"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P01_LONGITUD_HILO__FIGURE__02_contenido_electron_hueco.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/01_longitud_hilo/02_contenido_electron_hueco.png",
+      "batch": 2,
+      "size_bytes": 233884,
+      "sha256": "8f9acf91909aafc60da2beda657e06bd7ade4596a7a1443af05a418350fb58ac"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P01_LONGITUD_HILO__FIGURE__03_LDOS_topologica.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/01_longitud_hilo/03_LDOS_topologica.png",
+      "batch": 2,
+      "size_bytes": 1011748,
+      "sha256": "a3febcf26b2a77d5592eb83e3cba5d07c1af6223f9fea966a89f52cd2ea4b700"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P01_LONGITUD_HILO__FIGURE__04_perfiles_fisicos.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/01_longitud_hilo/04_perfiles_fisicos.png",
+      "batch": 2,
+      "size_bytes": 327675,
+      "sha256": "adc101c924f343426f801cd3f190b7c42bddc9a462d81d33b41ed2c6e88a4521"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P01_LONGITUD_HILO__FIGURE__05_espectro_y_diagnostico.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/01_longitud_hilo/05_espectro_y_diagnostico.png",
+      "batch": 2,
+      "size_bytes": 141004,
+      "sha256": "aa09d1b11d32f96907d6287ca2051812d8dc9f4c2f57911e7e6bcc3659a30896"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P01_LONGITUD_HILO__DESCRIPTION.txt",
+      "final_repository_path": "supplementary/parametric-study-100-figures/01_longitud_hilo/descripcion.txt",
+      "batch": 2,
+      "size_bytes": 58,
+      "sha256": "ab5b757408ce9e93d8d7ebeedc3b611c705092aa4ed0eed5c4cc74fe86584aa4"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P01_LONGITUD_HILO__DIAGNOSTICS.csv",
+      "final_repository_path": "supplementary/parametric-study-100-figures/01_longitud_hilo/diagnostico_variantes.csv",
+      "batch": 2,
+      "size_bytes": 560,
+      "sha256": "f1929c5d82f4937d17bcc507c0ae6df359fb202e3029c87ed5e024638c1515b2"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P02_RESOLUCION_MALLA__FIGURE__01_majoranas_izquierda_derecha.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/02_resolucion_malla/01_majoranas_izquierda_derecha.png",
+      "batch": 2,
+      "size_bytes": 142996,
+      "sha256": "91c8437b6d067f80aa293e6f69ce018704db1756534754ec3400199fbce60db6"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P02_RESOLUCION_MALLA__FIGURE__02_contenido_electron_hueco.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/02_resolucion_malla/02_contenido_electron_hueco.png",
+      "batch": 2,
+      "size_bytes": 206231,
+      "sha256": "6a8153677a7cef9909edd03036677641f9814798351863073bb75678912ed3fc"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P02_RESOLUCION_MALLA__FIGURE__03_LDOS_topologica.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/02_resolucion_malla/03_LDOS_topologica.png",
+      "batch": 2,
+      "size_bytes": 946042,
+      "sha256": "4c2e5981ec5a53bc132900d9e8a46940c3083e6c76941a40bafb3c4bd7c091fe"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P02_RESOLUCION_MALLA__FIGURE__04_perfiles_fisicos.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/02_resolucion_malla/04_perfiles_fisicos.png",
+      "batch": 2,
+      "size_bytes": 319955,
+      "sha256": "0732ce2f9b04d8ff6d97baa1b8a7f7425e9d71d18d52ff4f3c5c7e94f2a1ff81"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P02_RESOLUCION_MALLA__FIGURE__05_espectro_y_diagnostico.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/02_resolucion_malla/05_espectro_y_diagnostico.png",
+      "batch": 2,
+      "size_bytes": 138688,
+      "sha256": "6755c65f5875a8347e90c45175637225c2d5ccee88b7bc255482e81af29a24f5"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P02_RESOLUCION_MALLA__DESCRIPTION.txt",
+      "final_repository_path": "supplementary/parametric-study-100-figures/02_resolucion_malla/descripcion.txt",
+      "batch": 2,
+      "size_bytes": 65,
+      "sha256": "ff79072c493ed112b33f90ffdfb42a3b74b099af821e16ac7f949ffeaaa9e783"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P02_RESOLUCION_MALLA__DIAGNOSTICS.csv",
+      "final_repository_path": "supplementary/parametric-study-100-figures/02_resolucion_malla/diagnostico_variantes.csv",
+      "batch": 2,
+      "size_bytes": 553,
+      "sha256": "7f09b2d752f272fff29a3e68127124075360647cb06b5390e329327c6ad8535a"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P03_POTENCIAL_QUIMICO_MU__FIGURE__01_majoranas_izquierda_derecha.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/03_potencial_quimico_mu/01_majoranas_izquierda_derecha.png",
+      "batch": 2,
+      "size_bytes": 158687,
+      "sha256": "1d1c39e7f3e6a886cb7fff47cada1b912e8d177919ff76f9583aecfffa115457"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P03_POTENCIAL_QUIMICO_MU__FIGURE__02_contenido_electron_hueco.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/03_potencial_quimico_mu/02_contenido_electron_hueco.png",
+      "batch": 2,
+      "size_bytes": 243529,
+      "sha256": "7426aa939a1cfd26725bb7677e012c9e6c294b9aff686f4847156b7207ba99b8"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P03_POTENCIAL_QUIMICO_MU__FIGURE__03_LDOS_topologica.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/03_potencial_quimico_mu/03_LDOS_topologica.png",
+      "batch": 2,
+      "size_bytes": 1060775,
+      "sha256": "1913d7e45d207cf0e0d45277a7dbd6da12a06d99f265d2dd8c3187cfcb1f3e6b"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P03_POTENCIAL_QUIMICO_MU__FIGURE__04_perfiles_fisicos.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/03_potencial_quimico_mu/04_perfiles_fisicos.png",
+      "batch": 2,
+      "size_bytes": 319982,
+      "sha256": "01333656377800d470d8310eea850c58296ad6974c9233145faf1b7501ef1bf4"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P03_POTENCIAL_QUIMICO_MU__FIGURE__05_espectro_y_diagnostico.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/03_potencial_quimico_mu/05_espectro_y_diagnostico.png",
+      "batch": 2,
+      "size_bytes": 144537,
+      "sha256": "8b0f54b18d97c832994d83f39ddf7d0fc6b7ac636fbb8d74d9741c40a33be5ac"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P03_POTENCIAL_QUIMICO_MU__DESCRIPTION.txt",
+      "final_repository_path": "supplementary/parametric-study-100-figures/03_potencial_quimico_mu/descripcion.txt",
+      "batch": 2,
+      "size_bytes": 72,
+      "sha256": "36f27d414df270545e3824d43df1851082388a408c9f3764e3b2c4dae217a740"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P03_POTENCIAL_QUIMICO_MU__DIAGNOSTICS.csv",
+      "final_repository_path": "supplementary/parametric-study-100-figures/03_potencial_quimico_mu/diagnostico_variantes.csv",
+      "batch": 2,
+      "size_bytes": 564,
+      "sha256": "8aa76e632d181d3ee35388751bfed773b1cfbf4e1fd9d81b20896e9871c57a16"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P04_ZEEMAN_TOPOLOGICO__FIGURE__01_majoranas_izquierda_derecha.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/04_zeeman_topologico/01_majoranas_izquierda_derecha.png",
+      "batch": 2,
+      "size_bytes": 166357,
+      "sha256": "983e5d0375a3f9d84cc43c3dd34c3868291fe1e0deebd2bd9fbda26ba7c41ec0"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P04_ZEEMAN_TOPOLOGICO__FIGURE__02_contenido_electron_hueco.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/04_zeeman_topologico/02_contenido_electron_hueco.png",
+      "batch": 2,
+      "size_bytes": 245135,
+      "sha256": "59bf7414202461b2b9a30eb30a67f3ab32fe550e4fd9dcc9e30da0c2353b51ef"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P04_ZEEMAN_TOPOLOGICO__FIGURE__03_LDOS_topologica.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/04_zeeman_topologico/03_LDOS_topologica.png",
+      "batch": 2,
+      "size_bytes": 1081676,
+      "sha256": "74eaaf77685f212a5bfd9ba803e3c41b25c725295659b4321e6caea69eea2615"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P04_ZEEMAN_TOPOLOGICO__FIGURE__04_perfiles_fisicos.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/04_zeeman_topologico/04_perfiles_fisicos.png",
+      "batch": 2,
+      "size_bytes": 339317,
+      "sha256": "bb70365ad227c71febed8a948529e55003a60e58369601d771066a757abc72b9"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P04_ZEEMAN_TOPOLOGICO__FIGURE__05_espectro_y_diagnostico.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/04_zeeman_topologico/05_espectro_y_diagnostico.png",
+      "batch": 2,
+      "size_bytes": 148267,
+      "sha256": "2d0a724cef3b5b52193b1e486433af35b58aaf954026d8291df74ec6aed1da9f"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P04_ZEEMAN_TOPOLOGICO__DESCRIPTION.txt",
+      "final_repository_path": "supplementary/parametric-study-100-figures/04_zeeman_topologico/descripcion.txt",
+      "batch": 2,
+      "size_bytes": 57,
+      "sha256": "3b0c655820cae44024dbc9085631ff6550172e2e0494d93db12c1ef28f015395"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P04_ZEEMAN_TOPOLOGICO__DIAGNOSTICS.csv",
+      "final_repository_path": "supplementary/parametric-study-100-figures/04_zeeman_topologico/diagnostico_variantes.csv",
+      "batch": 2,
+      "size_bytes": 570,
+      "sha256": "9df9f22f22068bf64289537b0039c63d3daddafb68378a71c2ad71e5391ead5f"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P05_RASHBA_ALPHA__FIGURE__01_majoranas_izquierda_derecha.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/05_rashba_alpha/01_majoranas_izquierda_derecha.png",
+      "batch": 2,
+      "size_bytes": 165235,
+      "sha256": "0b07ebaf91b7a810e25a8999182bb5e4e8d6635f8082a7590ed7ec91b0c3a120"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P05_RASHBA_ALPHA__FIGURE__02_contenido_electron_hueco.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/05_rashba_alpha/02_contenido_electron_hueco.png",
+      "batch": 2,
+      "size_bytes": 236958,
+      "sha256": "5435363da9d8fe5df076ae4578472f3b62d14405a515babd5b42f984f0c2e196"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P05_RASHBA_ALPHA__FIGURE__03_LDOS_topologica.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/05_rashba_alpha/03_LDOS_topologica.png",
+      "batch": 2,
+      "size_bytes": 1079471,
+      "sha256": "91b0462f1faee3304f4a9c9516700ecf3fbdd61aed957da7aa94130b8fd2e03f"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P05_RASHBA_ALPHA__FIGURE__04_perfiles_fisicos.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/05_rashba_alpha/04_perfiles_fisicos.png",
+      "batch": 2,
+      "size_bytes": 329386,
+      "sha256": "a1c84c0fa935844c782c5de83a5e189b3409a43caba5aae4b820b0b2fdeb988e"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P05_RASHBA_ALPHA__FIGURE__05_espectro_y_diagnostico.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/05_rashba_alpha/05_espectro_y_diagnostico.png",
+      "batch": 2,
+      "size_bytes": 150671,
+      "sha256": "93a4940d40aca5ddf4feb3e4223e5f505f6292f529df25579d26e7033faafe93"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P05_RASHBA_ALPHA__DESCRIPTION.txt",
+      "final_repository_path": "supplementary/parametric-study-100-figures/05_rashba_alpha/descripcion.txt",
+      "batch": 2,
+      "size_bytes": 78,
+      "sha256": "a2f53e95a403693965e4b4102c241e43fa983f66b0fd1ca2bf0783c0e6a28d10"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P05_RASHBA_ALPHA__DIAGNOSTICS.csv",
+      "final_repository_path": "supplementary/parametric-study-100-figures/05_rashba_alpha/diagnostico_variantes.csv",
+      "batch": 2,
+      "size_bytes": 572,
+      "sha256": "588353c3eebefb579959776db6fa79edbc6e73185fbad612d17ae7e238d6467d"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P06_MASA_EFECTIVA__FIGURE__01_majoranas_izquierda_derecha.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/06_masa_efectiva/01_majoranas_izquierda_derecha.png",
+      "batch": 2,
+      "size_bytes": 151909,
+      "sha256": "04ef76d0afe97dcef17ec524b48536206f48a3fafc89b8fdd9b6a2045098cb47"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P06_MASA_EFECTIVA__FIGURE__02_contenido_electron_hueco.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/06_masa_efectiva/02_contenido_electron_hueco.png",
+      "batch": 2,
+      "size_bytes": 216079,
+      "sha256": "26df9b0259c59da5360eb27e9be5584143c55ca58498399caf1a533f4fa053e9"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P06_MASA_EFECTIVA__FIGURE__03_LDOS_topologica.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/06_masa_efectiva/03_LDOS_topologica.png",
+      "batch": 2,
+      "size_bytes": 1044800,
+      "sha256": "5e3f0fe5c5aa004e35a3a1f050c5819303611182e9964c820ebfe903fa05424b"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P06_MASA_EFECTIVA__FIGURE__04_perfiles_fisicos.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/06_masa_efectiva/04_perfiles_fisicos.png",
+      "batch": 2,
+      "size_bytes": 325245,
+      "sha256": "fa8392ad191bc3c23436e791ccde8d52938509df49f6a01b04eaad596443f74e"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P06_MASA_EFECTIVA__FIGURE__05_espectro_y_diagnostico.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/06_masa_efectiva/05_espectro_y_diagnostico.png",
+      "batch": 2,
+      "size_bytes": 142213,
+      "sha256": "d813d09a6e482db8aef18612d0c5a74cfd8904df81a607aad16b3a1c2c8e83a4"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P06_MASA_EFECTIVA__DESCRIPTION.txt",
+      "final_repository_path": "supplementary/parametric-study-100-figures/06_masa_efectiva/descripcion.txt",
+      "batch": 2,
+      "size_bytes": 70,
+      "sha256": "95d194fd1f0112e48279e9a8494068df548439b431642544b688f5cb74de7d1c"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P06_MASA_EFECTIVA__DIAGNOSTICS.csv",
+      "final_repository_path": "supplementary/parametric-study-100-figures/06_masa_efectiva/diagnostico_variantes.csv",
+      "batch": 2,
+      "size_bytes": 558,
+      "sha256": "c594a182e47fa4a50ebc1f513fdd0bc0cfa2b08eebf9de17d24f667aebe555bd"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P07_ACOPLO_INTERFAZ_GAMMA0__FIGURE__01_majoranas_izquierda_derecha.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/07_acoplo_interfaz_gamma0/01_majoranas_izquierda_derecha.png",
+      "batch": 2,
+      "size_bytes": 154773,
+      "sha256": "9ca08da356af7c659ef726e7ec8e85abee32a4c1fc9774fb3bfd9fa3e826907b"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P07_ACOPLO_INTERFAZ_GAMMA0__FIGURE__02_contenido_electron_hueco.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/07_acoplo_interfaz_gamma0/02_contenido_electron_hueco.png",
+      "batch": 2,
+      "size_bytes": 216351,
+      "sha256": "c75c6a81571c22c6c957731ec14b367857c08259895b3f517bede4b51caeec7b"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P07_ACOPLO_INTERFAZ_GAMMA0__FIGURE__03_LDOS_topologica.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/07_acoplo_interfaz_gamma0/03_LDOS_topologica.png",
+      "batch": 2,
+      "size_bytes": 1086982,
+      "sha256": "bdcf1cb7346976cf28a50809ac87541e1181f52a78abb04333ffa65aaeecdc7e"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P07_ACOPLO_INTERFAZ_GAMMA0__FIGURE__04_perfiles_fisicos.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/07_acoplo_interfaz_gamma0/04_perfiles_fisicos.png",
+      "batch": 2,
+      "size_bytes": 317698,
+      "sha256": "70ae3b1d4e9b58e66a33518f90039b23825a976812b8907039ecda6e2a1567ac"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P07_ACOPLO_INTERFAZ_GAMMA0__FIGURE__05_espectro_y_diagnostico.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/07_acoplo_interfaz_gamma0/05_espectro_y_diagnostico.png",
+      "batch": 2,
+      "size_bytes": 142128,
+      "sha256": "b43dcc1f4e2c331ed5a3bb1be0689d0fbe11ed94ab51a0b4cada62d1ac34c66c"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P07_ACOPLO_INTERFAZ_GAMMA0__DESCRIPTION.txt",
+      "final_repository_path": "supplementary/parametric-study-100-figures/07_acoplo_interfaz_gamma0/descripcion.txt",
+      "batch": 2,
+      "size_bytes": 65,
+      "sha256": "8af394dce8cda607a5d14d6466be9cac8c07b1f274850510dfd88795c8fb6471"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P07_ACOPLO_INTERFAZ_GAMMA0__DIAGNOSTICS.csv",
+      "final_repository_path": "supplementary/parametric-study-100-figures/07_acoplo_interfaz_gamma0/diagnostico_variantes.csv",
+      "batch": 2,
+      "size_bytes": 572,
+      "sha256": "650907a1427fe628a7f7a993d2b7af67ac824af8d31ca50721442a727d4f43de"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P08_GAP_PADRE_DELTA0__FIGURE__01_majoranas_izquierda_derecha.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/08_gap_padre_Delta0/01_majoranas_izquierda_derecha.png",
+      "batch": 2,
+      "size_bytes": 150185,
+      "sha256": "ff77abe0088475da67ebfb3842fc879bb127676430d9e076eed7fdec7285096e"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P08_GAP_PADRE_DELTA0__FIGURE__02_contenido_electron_hueco.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/08_gap_padre_Delta0/02_contenido_electron_hueco.png",
+      "batch": 2,
+      "size_bytes": 244277,
+      "sha256": "8125faee02e1d3050e4255e1a9395ab74cda44cc033774c5449919a11ac0f7c5"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P08_GAP_PADRE_DELTA0__FIGURE__03_LDOS_topologica.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/08_gap_padre_Delta0/03_LDOS_topologica.png",
+      "batch": 2,
+      "size_bytes": 1053447,
+      "sha256": "e09bcc24b21e0b6fa6bc96109cd3785248084301b8c1ac7d94ca6604efe4d70f"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P08_GAP_PADRE_DELTA0__FIGURE__04_perfiles_fisicos.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/08_gap_padre_Delta0/04_perfiles_fisicos.png",
+      "batch": 2,
+      "size_bytes": 314307,
+      "sha256": "3e2fff3b132fba5d80b9cf5c137fbea61ab5a62899be28ced4d0f7281e3eb7e1"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P08_GAP_PADRE_DELTA0__FIGURE__05_espectro_y_diagnostico.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/08_gap_padre_Delta0/05_espectro_y_diagnostico.png",
+      "batch": 2,
+      "size_bytes": 148495,
+      "sha256": "b327234cb9c743e8486e89a5e6901b35829d2f530a0aed31559a95665607bf96"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P08_GAP_PADRE_DELTA0__DESCRIPTION.txt",
+      "final_repository_path": "supplementary/parametric-study-100-figures/08_gap_padre_Delta0/descripcion.txt",
+      "batch": 2,
+      "size_bytes": 53,
+      "sha256": "e04d3d534933edb0a9d5622b1a7d1b31dfa3a0d385070d752ec686956fcd510a"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P08_GAP_PADRE_DELTA0__DIAGNOSTICS.csv",
+      "final_repository_path": "supplementary/parametric-study-100-figures/08_gap_padre_Delta0/diagnostico_variantes.csv",
+      "batch": 2,
+      "size_bytes": 572,
+      "sha256": "141ae52535e57fc3ec76c93b5e1c498d092c7f5534e143070ff41f54a472d782"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P09_POTENCIAL_INTERFAZ_VSC__FIGURE__01_majoranas_izquierda_derecha.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/09_potencial_interfaz_VSC/01_majoranas_izquierda_derecha.png",
+      "batch": 2,
+      "size_bytes": 155204,
+      "sha256": "3300f531a613548b984d14650d31f20ef7d22416bbc88048f6216228f1d98e16"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P09_POTENCIAL_INTERFAZ_VSC__FIGURE__02_contenido_electron_hueco.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/09_potencial_interfaz_VSC/02_contenido_electron_hueco.png",
+      "batch": 2,
+      "size_bytes": 244688,
+      "sha256": "dac61c4dcc6a7381d6412e9fc3a4feb45e6b4b70b859c5c52a4597bf238db10a"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P09_POTENCIAL_INTERFAZ_VSC__FIGURE__03_LDOS_topologica.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/09_potencial_interfaz_VSC/03_LDOS_topologica.png",
+      "batch": 2,
+      "size_bytes": 1057659,
+      "sha256": "519fd5df3d889d98fb17bebc941c7478e5ea7fe76010667e77e327b72ff6229d"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P09_POTENCIAL_INTERFAZ_VSC__FIGURE__04_perfiles_fisicos.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/09_potencial_interfaz_VSC/04_perfiles_fisicos.png",
+      "batch": 2,
+      "size_bytes": 320974,
+      "sha256": "3ec5584eb58ef7f2818d1bcac15ae05ace8a60176588c65139becf1a12acd29f"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P09_POTENCIAL_INTERFAZ_VSC__FIGURE__05_espectro_y_diagnostico.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/09_potencial_interfaz_VSC/05_espectro_y_diagnostico.png",
+      "batch": 2,
+      "size_bytes": 144740,
+      "sha256": "636ce2344648ed9aa7ba94279328bbb39566add53762f49ad1afb7c0a20773dc"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P09_POTENCIAL_INTERFAZ_VSC__DESCRIPTION.txt",
+      "final_repository_path": "supplementary/parametric-study-100-figures/09_potencial_interfaz_VSC/descripcion.txt",
+      "batch": 2,
+      "size_bytes": 84,
+      "sha256": "10b125e5b7ddc13c094b166af3c5f4e29891c4207255061fa9cada761e5f3cb0"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P09_POTENCIAL_INTERFAZ_VSC__DIAGNOSTICS.csv",
+      "final_repository_path": "supplementary/parametric-study-100-figures/09_potencial_interfaz_VSC/diagnostico_variantes.csv",
+      "batch": 2,
+      "size_bytes": 568,
+      "sha256": "8536537231e906ae6b0f8c8be3e319e75fa8c6e33c147aededc724aa77b8e1d5"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P10_GATE_GLOBAL_VG__FIGURE__01_majoranas_izquierda_derecha.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/10_gate_global_Vg/01_majoranas_izquierda_derecha.png",
+      "batch": 2,
+      "size_bytes": 157237,
+      "sha256": "4237dda2b7d1708ef71dea6fca3351a1b59f5dbfca336e04f03b02214f0d0545"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P10_GATE_GLOBAL_VG__FIGURE__02_contenido_electron_hueco.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/10_gate_global_Vg/02_contenido_electron_hueco.png",
+      "batch": 2,
+      "size_bytes": 244024,
+      "sha256": "4e5e4baa6040ae745e06099a56032eca214a6cf132fc73ef5ca50167f722cd43"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P10_GATE_GLOBAL_VG__FIGURE__03_LDOS_topologica.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/10_gate_global_Vg/03_LDOS_topologica.png",
+      "batch": 2,
+      "size_bytes": 1065143,
+      "sha256": "5dfbef7153264ca3df9e5e63a78519c2e38aa83c90011b53d40b1c4a4c3e46b2"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P10_GATE_GLOBAL_VG__FIGURE__04_perfiles_fisicos.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/10_gate_global_Vg/04_perfiles_fisicos.png",
+      "batch": 2,
+      "size_bytes": 309446,
+      "sha256": "c37e7c1b97f6e94dc0ef18c628d7191d7e0efb118f747b9ee01128fe70f2afdb"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P10_GATE_GLOBAL_VG__FIGURE__05_espectro_y_diagnostico.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/10_gate_global_Vg/05_espectro_y_diagnostico.png",
+      "batch": 2,
+      "size_bytes": 151517,
+      "sha256": "8fd6922d02b461c147a5d1d79f44215a001f60cf566d9f88014001d29b113ea0"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P10_GATE_GLOBAL_VG__DESCRIPTION.txt",
+      "final_repository_path": "supplementary/parametric-study-100-figures/10_gate_global_Vg/descripcion.txt",
+      "batch": 2,
+      "size_bytes": 68,
+      "sha256": "b9eed28b60cba39c6054ad8d788607168501ff592435b0af3f85240702daa38d"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P10_GATE_GLOBAL_VG__DIAGNOSTICS.csv",
+      "final_repository_path": "supplementary/parametric-study-100-figures/10_gate_global_Vg/diagnostico_variantes.csv",
+      "batch": 2,
+      "size_bytes": 566,
+      "sha256": "b76be5adacc72a7a640d852e53fc0b12907f0d01e5bb2503101ae09c36d380dd"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P11_HARTREE_U0__FIGURE__01_majoranas_izquierda_derecha.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/11_hartree_U0/01_majoranas_izquierda_derecha.png",
+      "batch": 3,
+      "size_bytes": 144518,
+      "sha256": "e948a23df8a52ea08da0f8eef3010985f6aedbc7dfd48ce51c8439b05aad9534"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P11_HARTREE_U0__FIGURE__02_contenido_electron_hueco.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/11_hartree_U0/02_contenido_electron_hueco.png",
+      "batch": 3,
+      "size_bytes": 240184,
+      "sha256": "eb64791a318eaa069d601f0e252f506782f3b42e5aa55be836db46fee423b61b"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P11_HARTREE_U0__FIGURE__03_LDOS_topologica.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/11_hartree_U0/03_LDOS_topologica.png",
+      "batch": 3,
+      "size_bytes": 737331,
+      "sha256": "6a799c7eadb368df37062aa11cdd858e21a558a11dc74761a3a145ff0008abee"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P11_HARTREE_U0__FIGURE__04_perfiles_fisicos.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/11_hartree_U0/04_perfiles_fisicos.png",
+      "batch": 3,
+      "size_bytes": 295483,
+      "sha256": "27ea3b47ee850dea02ad0f5a381b2a13045bd8504abb4d4bdc7cdaeaa5142087"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P11_HARTREE_U0__FIGURE__05_espectro_y_diagnostico.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/11_hartree_U0/05_espectro_y_diagnostico.png",
+      "batch": 3,
+      "size_bytes": 147585,
+      "sha256": "63335dd0e81fd7a3806041babb3a808e150ef2b631eaf455f5f82d115a9295ce"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P11_HARTREE_U0__DESCRIPTION.txt",
+      "final_repository_path": "supplementary/parametric-study-100-figures/11_hartree_U0/descripcion.txt",
+      "batch": 3,
+      "size_bytes": 57,
+      "sha256": "bff0e1ceb199bc4884dfbd229d6343c1770911531eb5a73d8d9754256f53fe46"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P11_HARTREE_U0__DIAGNOSTICS.csv",
+      "final_repository_path": "supplementary/parametric-study-100-figures/11_hartree_U0/diagnostico_variantes.csv",
+      "batch": 3,
+      "size_bytes": 556,
+      "sha256": "2429a872a02c6122aa11cf0bed67d4b55461fa3a66707b68762974d2108f2ddd"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P12_APANTALLAMIENTO_LAMBDA__FIGURE__01_majoranas_izquierda_derecha.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/12_apantallamiento_lambda/01_majoranas_izquierda_derecha.png",
+      "batch": 3,
+      "size_bytes": 145757,
+      "sha256": "721a40ebb359c609fcd5d773df6001df7c026659551e7b07a1cedce67591e70e"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P12_APANTALLAMIENTO_LAMBDA__FIGURE__02_contenido_electron_hueco.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/12_apantallamiento_lambda/02_contenido_electron_hueco.png",
+      "batch": 3,
+      "size_bytes": 239465,
+      "sha256": "3102fa4c69abaab52fee1e057b8ebb21936aabdfd5aad4890bd57caae6f8a2ab"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P12_APANTALLAMIENTO_LAMBDA__FIGURE__03_LDOS_topologica.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/12_apantallamiento_lambda/03_LDOS_topologica.png",
+      "batch": 3,
+      "size_bytes": 668563,
+      "sha256": "9f4996791782edcb713a825c53f5707f5506dc39a34e8d9c6138038344e71394"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P12_APANTALLAMIENTO_LAMBDA__FIGURE__04_perfiles_fisicos.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/12_apantallamiento_lambda/04_perfiles_fisicos.png",
+      "batch": 3,
+      "size_bytes": 339177,
+      "sha256": "a19c0aa47e0908bb794b84622f72c45124385d4812af0121e38a6f052e3f33d4"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P12_APANTALLAMIENTO_LAMBDA__FIGURE__05_espectro_y_diagnostico.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/12_apantallamiento_lambda/05_espectro_y_diagnostico.png",
+      "batch": 3,
+      "size_bytes": 146471,
+      "sha256": "909b12f1e7e56179a65c1c1f45d9c218eb63351c0ef106233423f55bbbbedb14"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P12_APANTALLAMIENTO_LAMBDA__DESCRIPTION.txt",
+      "final_repository_path": "supplementary/parametric-study-100-figures/12_apantallamiento_lambda/descripcion.txt",
+      "batch": 3,
+      "size_bytes": 65,
+      "sha256": "729209b7292622ed141dbe287ff217b77638583b46e652e187d22a96073df8ef"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P12_APANTALLAMIENTO_LAMBDA__DIAGNOSTICS.csv",
+      "final_repository_path": "supplementary/parametric-study-100-figures/12_apantallamiento_lambda/diagnostico_variantes.csv",
+      "batch": 3,
+      "size_bytes": 566,
+      "sha256": "3580725fa6180307863af0156ffe024e58b5c0229da2444f8e1b59d380f05f05"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P13_ALTURA_BARRERA__FIGURE__01_majoranas_izquierda_derecha.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/13_altura_barrera/01_majoranas_izquierda_derecha.png",
+      "batch": 3,
+      "size_bytes": 147180,
+      "sha256": "9c8b72e214c7a546ef947f24003cc452b2d80e2f1c358f07b4d83034925e94d2"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P13_ALTURA_BARRERA__FIGURE__02_contenido_electron_hueco.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/13_altura_barrera/02_contenido_electron_hueco.png",
+      "batch": 3,
+      "size_bytes": 242023,
+      "sha256": "fef56a2583ae15a1dd137cf445aaccb204af828574d5402a26b88e26133e3cb9"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P13_ALTURA_BARRERA__FIGURE__03_LDOS_topologica.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/13_altura_barrera/03_LDOS_topologica.png",
+      "batch": 3,
+      "size_bytes": 834452,
+      "sha256": "a404e4b985af187a3d933fec5e072505a564ecce100a9066fbbbac570687af3c"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P13_ALTURA_BARRERA__FIGURE__04_perfiles_fisicos.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/13_altura_barrera/04_perfiles_fisicos.png",
+      "batch": 3,
+      "size_bytes": 302588,
+      "sha256": "51bb686187835f633decf03873dabf1c924e008058b601b7cc2ff8880d47d5b1"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P13_ALTURA_BARRERA__FIGURE__05_espectro_y_diagnostico.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/13_altura_barrera/05_espectro_y_diagnostico.png",
+      "batch": 3,
+      "size_bytes": 147840,
+      "sha256": "8adb5d8bb645863f33d840c34efe534e11b9a28abe29e12e762a03cc8aba0300"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P13_ALTURA_BARRERA__DESCRIPTION.txt",
+      "final_repository_path": "supplementary/parametric-study-100-figures/13_altura_barrera/descripcion.txt",
+      "batch": 3,
+      "size_bytes": 62,
+      "sha256": "5ddc4944e9ef75f21fbac1199291c30d4018db4d9d224e454ccc7596702f28aa"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P13_ALTURA_BARRERA__DIAGNOSTICS.csv",
+      "final_repository_path": "supplementary/parametric-study-100-figures/13_altura_barrera/diagnostico_variantes.csv",
+      "batch": 3,
+      "size_bytes": 558,
+      "sha256": "7a13f3bbd1b32bece6339b99afa36be1f6c6b519ddd39e9cb839f72a07472885"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P14_POSICION_BARRERA__FIGURE__01_majoranas_izquierda_derecha.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/14_posicion_barrera/01_majoranas_izquierda_derecha.png",
+      "batch": 3,
+      "size_bytes": 145260,
+      "sha256": "a935884e71b8a7c9b078e55e0bccec9703f78275604edb927dbaf132bc3d6b26"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P14_POSICION_BARRERA__FIGURE__02_contenido_electron_hueco.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/14_posicion_barrera/02_contenido_electron_hueco.png",
+      "batch": 3,
+      "size_bytes": 240097,
+      "sha256": "37e25d3bb67c736d12c7e7cd1f06c6e5d159248e4c2ff222529d028e0414f384"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P14_POSICION_BARRERA__FIGURE__03_LDOS_topologica.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/14_posicion_barrera/03_LDOS_topologica.png",
+      "batch": 3,
+      "size_bytes": 668213,
+      "sha256": "7e13887d712c3706286093400d76cf87a2c037d33cfe920cb41578f74de348cc"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P14_POSICION_BARRERA__FIGURE__04_perfiles_fisicos.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/14_posicion_barrera/04_perfiles_fisicos.png",
+      "batch": 3,
+      "size_bytes": 307455,
+      "sha256": "78eeb14a982e76f7535f45280ac7fda9a3f32ea9b4eeffd7070a71e12c75db08"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P14_POSICION_BARRERA__FIGURE__05_espectro_y_diagnostico.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/14_posicion_barrera/05_espectro_y_diagnostico.png",
+      "batch": 3,
+      "size_bytes": 148132,
+      "sha256": "c7dc5ea7523baa0785f3a7a54e6b31b800d539c4638805af4c10095eb815d64e"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P14_POSICION_BARRERA__DESCRIPTION.txt",
+      "final_repository_path": "supplementary/parametric-study-100-figures/14_posicion_barrera/descripcion.txt",
+      "batch": 3,
+      "size_bytes": 64,
+      "sha256": "bdea393d60070c434fafbfb4fd5fe03a9bbe78be060fefad97032f7e3c21bac5"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P14_POSICION_BARRERA__DIAGNOSTICS.csv",
+      "final_repository_path": "supplementary/parametric-study-100-figures/14_posicion_barrera/diagnostico_variantes.csv",
+      "batch": 3,
+      "size_bytes": 559,
+      "sha256": "4767ba37a127add19a3d2fb96f56c0be4542add802085c81c10c47bed692e36e"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P15_ANCHURA_BARRERA__FIGURE__01_majoranas_izquierda_derecha.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/15_anchura_barrera/01_majoranas_izquierda_derecha.png",
+      "batch": 3,
+      "size_bytes": 145943,
+      "sha256": "392ea973dc5e71f2909cc6750970a2d609228823cb84a058e376b6db10431542"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P15_ANCHURA_BARRERA__FIGURE__02_contenido_electron_hueco.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/15_anchura_barrera/02_contenido_electron_hueco.png",
+      "batch": 3,
+      "size_bytes": 241347,
+      "sha256": "c3711d63fb31e215ecad810392247951aadda1c0cd7001807e312967c9775e3f"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P15_ANCHURA_BARRERA__FIGURE__03_LDOS_topologica.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/15_anchura_barrera/03_LDOS_topologica.png",
+      "batch": 3,
+      "size_bytes": 687218,
+      "sha256": "3077c3f834ef173649aae5b650d94007bdf9f8837e654ace7eae81bc173a0556"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P15_ANCHURA_BARRERA__FIGURE__04_perfiles_fisicos.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/15_anchura_barrera/04_perfiles_fisicos.png",
+      "batch": 3,
+      "size_bytes": 314000,
+      "sha256": "cbd1004239ce57fe78afefd4942c9d298bfce243cd7ccc6b0679a7147992493d"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P15_ANCHURA_BARRERA__FIGURE__05_espectro_y_diagnostico.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/15_anchura_barrera/05_espectro_y_diagnostico.png",
+      "batch": 3,
+      "size_bytes": 155368,
+      "sha256": "13d843309ad5fd3bad34a3614b99eab8cba6c9afedf0e88bf09077eedf83bdf0"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P15_ANCHURA_BARRERA__DESCRIPTION.txt",
+      "final_repository_path": "supplementary/parametric-study-100-figures/15_anchura_barrera/descripcion.txt",
+      "batch": 3,
+      "size_bytes": 50,
+      "sha256": "1466f6203b518f89def9e6f0198e1bd332b6d1ff17b0bcf8409e9388d62761e3"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P15_ANCHURA_BARRERA__DIAGNOSTICS.csv",
+      "final_repository_path": "supplementary/parametric-study-100-figures/15_anchura_barrera/diagnostico_variantes.csv",
+      "batch": 3,
+      "size_bytes": 569,
+      "sha256": "3fd3f8e9ae48b7ac3bd328ff4bdc3a3b994b2913f9446c4df8533cde310788d6"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P16_INICIO_COBERTURA_SC__FIGURE__01_majoranas_izquierda_derecha.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/16_inicio_cobertura_SC/01_majoranas_izquierda_derecha.png",
+      "batch": 3,
+      "size_bytes": 163274,
+      "sha256": "11ee87cd76fed6c23b0797ddc7fab48ae0c9405709cdd3e624875d5526ef6023"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P16_INICIO_COBERTURA_SC__FIGURE__02_contenido_electron_hueco.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/16_inicio_cobertura_SC/02_contenido_electron_hueco.png",
+      "batch": 3,
+      "size_bytes": 249442,
+      "sha256": "1bf0dec7495aa26370a157120eb9ceb6f9f548994a6c3c10faf216701cba2bba"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P16_INICIO_COBERTURA_SC__FIGURE__03_LDOS_topologica.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/16_inicio_cobertura_SC/03_LDOS_topologica.png",
+      "batch": 3,
+      "size_bytes": 1026403,
+      "sha256": "4a26c1ec6d2b385341484efbd43bcd92ef70d6921484a87492dbfaa39cc34359"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P16_INICIO_COBERTURA_SC__FIGURE__04_perfiles_fisicos.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/16_inicio_cobertura_SC/04_perfiles_fisicos.png",
+      "batch": 3,
+      "size_bytes": 327404,
+      "sha256": "4db97a37771c0893b9ac825b43f8c71f0e1e288d0675c1ee056d85375136bd86"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P16_INICIO_COBERTURA_SC__FIGURE__05_espectro_y_diagnostico.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/16_inicio_cobertura_SC/05_espectro_y_diagnostico.png",
+      "batch": 3,
+      "size_bytes": 147618,
+      "sha256": "5323c91fe87d4cb2bd495469d37838e2693d70e531e5d9402ac632bef682bb43"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P16_INICIO_COBERTURA_SC__DESCRIPTION.txt",
+      "final_repository_path": "supplementary/parametric-study-100-figures/16_inicio_cobertura_SC/descripcion.txt",
+      "batch": 3,
+      "size_bytes": 67,
+      "sha256": "8343aa786bbccf09d52503d7d20a9cec002fb850b25233991206df532f42b333"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P16_INICIO_COBERTURA_SC__DIAGNOSTICS.csv",
+      "final_repository_path": "supplementary/parametric-study-100-figures/16_inicio_cobertura_SC/diagnostico_variantes.csv",
+      "batch": 3,
+      "size_bytes": 561,
+      "sha256": "8a6a7ba480f89897e6fdae376e5c82870172b9b6eb8feb38f21be3d4da11b3ce"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P17_SUAVIDAD_COBERTURA_SC__FIGURE__01_majoranas_izquierda_derecha.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/17_suavidad_cobertura_SC/01_majoranas_izquierda_derecha.png",
+      "batch": 3,
+      "size_bytes": 149527,
+      "sha256": "5bb4a66bf46a5c6d15516e23c3532b322329b0add550c3987cddf2b84f94b8e5"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P17_SUAVIDAD_COBERTURA_SC__FIGURE__02_contenido_electron_hueco.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/17_suavidad_cobertura_SC/02_contenido_electron_hueco.png",
+      "batch": 3,
+      "size_bytes": 243112,
+      "sha256": "26856d957a742c433ddcfd05ebfcadfeb65f7bf8bec0d10a277071c595186fb6"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P17_SUAVIDAD_COBERTURA_SC__FIGURE__03_LDOS_topologica.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/17_suavidad_cobertura_SC/03_LDOS_topologica.png",
+      "batch": 3,
+      "size_bytes": 913661,
+      "sha256": "5f80c8826d551f5db604a6524f9d9ecead1b6838776c3e4786ea4404ac0795c0"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P17_SUAVIDAD_COBERTURA_SC__FIGURE__04_perfiles_fisicos.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/17_suavidad_cobertura_SC/04_perfiles_fisicos.png",
+      "batch": 3,
+      "size_bytes": 317502,
+      "sha256": "faaaef79ef65396fcef822c1067d3dbc99b5b88f8ad75eb3173830d7ec10601a"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P17_SUAVIDAD_COBERTURA_SC__FIGURE__05_espectro_y_diagnostico.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/17_suavidad_cobertura_SC/05_espectro_y_diagnostico.png",
+      "batch": 3,
+      "size_bytes": 147140,
+      "sha256": "3e698889a4ba199ca95a6b6c2476af7555aad191c32da345e6484c5810d55291"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P17_SUAVIDAD_COBERTURA_SC__DESCRIPTION.txt",
+      "final_repository_path": "supplementary/parametric-study-100-figures/17_suavidad_cobertura_SC/descripcion.txt",
+      "batch": 3,
+      "size_bytes": 44,
+      "sha256": "3dde69de86effb5bdbcd3b9c4b6bf26d0e6e55bf84ec22c2965013f2c0e5f294"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P17_SUAVIDAD_COBERTURA_SC__DIAGNOSTICS.csv",
+      "final_repository_path": "supplementary/parametric-study-100-figures/17_suavidad_cobertura_SC/diagnostico_variantes.csv",
+      "batch": 3,
+      "size_bytes": 559,
+      "sha256": "99f274df647d983116a37b01b58fb5de27f6d4d7d0f036820a936039e84a272b"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P18_TEMPERATURA__FIGURE__01_majoranas_izquierda_derecha.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/18_temperatura/01_majoranas_izquierda_derecha.png",
+      "batch": 3,
+      "size_bytes": 142095,
+      "sha256": "7db71be612cd84ed230bef33dfb7c3da4d4ca5185330de97d62a9659cbc8e92c"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P18_TEMPERATURA__FIGURE__02_contenido_electron_hueco.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/18_temperatura/02_contenido_electron_hueco.png",
+      "batch": 3,
+      "size_bytes": 239519,
+      "sha256": "d7e13e236795845d3848077f2353daf57c1c9bbc79e54c495e20b4fb9d6f563f"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P18_TEMPERATURA__FIGURE__03_LDOS_topologica.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/18_temperatura/03_LDOS_topologica.png",
+      "batch": 3,
+      "size_bytes": 543263,
+      "sha256": "b0dab6fef26411c980fa977fa23ecca3903cb2c41fd82fd8c14d15448872d2a6"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P18_TEMPERATURA__FIGURE__04_perfiles_fisicos.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/18_temperatura/04_perfiles_fisicos.png",
+      "batch": 3,
+      "size_bytes": 308270,
+      "sha256": "931c31e78fb450bcfd2a3a650a20d7ede62ba989903c6810cfa3e8c889cd079b"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P18_TEMPERATURA__FIGURE__05_espectro_y_diagnostico.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/18_temperatura/05_espectro_y_diagnostico.png",
+      "batch": 3,
+      "size_bytes": 146289,
+      "sha256": "fc38be6dd20111e73036a8d1c4d83de655be9050a120982c323708bf24cbdfb3"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P18_TEMPERATURA__DESCRIPTION.txt",
+      "final_repository_path": "supplementary/parametric-study-100-figures/18_temperatura/descripcion.txt",
+      "batch": 3,
+      "size_bytes": 62,
+      "sha256": "c0842635b6ca2d5dd33491a0c384ccefe88c0b92c9b1ce7846202b7840423981"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P18_TEMPERATURA__DIAGNOSTICS.csv",
+      "final_repository_path": "supplementary/parametric-study-100-figures/18_temperatura/diagnostico_variantes.csv",
+      "batch": 3,
+      "size_bytes": 559,
+      "sha256": "3fd0143c2aa23d967ae5b42e0711ba85e1a8e13d1e3a819e3f28263f4b66af6d"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P19_ENSANCHAMIENTO_LDOS__FIGURE__01_majoranas_izquierda_derecha.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/19_ensanchamiento_LDOS/01_majoranas_izquierda_derecha.png",
+      "batch": 3,
+      "size_bytes": 144910,
+      "sha256": "02e9fd07f6374dc6ae7fbcdc6a907fff3b63a57a0a1c423f525e4f41e44bbeed"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P19_ENSANCHAMIENTO_LDOS__FIGURE__02_contenido_electron_hueco.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/19_ensanchamiento_LDOS/02_contenido_electron_hueco.png",
+      "batch": 3,
+      "size_bytes": 239555,
+      "sha256": "778221ad58b94b96ed80bda3e44ce0447562563efa31ac8a0eb45cb1b96ace08"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P19_ENSANCHAMIENTO_LDOS__FIGURE__03_LDOS_topologica.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/19_ensanchamiento_LDOS/03_LDOS_topologica.png",
+      "batch": 3,
+      "size_bytes": 947702,
+      "sha256": "03c8b18dbdd74d74a3963504765052b9edf4c93679c0c2a2092efc3f45d1dd6e"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P19_ENSANCHAMIENTO_LDOS__FIGURE__04_perfiles_fisicos.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/19_ensanchamiento_LDOS/04_perfiles_fisicos.png",
+      "batch": 3,
+      "size_bytes": 305172,
+      "sha256": "6de7fce1caf300acaf35ec776333087dd6023816cf5bf12f23bb4450e14fb639"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P19_ENSANCHAMIENTO_LDOS__FIGURE__05_espectro_y_diagnostico.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/19_ensanchamiento_LDOS/05_espectro_y_diagnostico.png",
+      "batch": 3,
+      "size_bytes": 146305,
+      "sha256": "f3da0d183cb210643e65a349bd69584694c5edbedc1d97b826637ffc9b89879d"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P19_ENSANCHAMIENTO_LDOS__DESCRIPTION.txt",
+      "final_repository_path": "supplementary/parametric-study-100-figures/19_ensanchamiento_LDOS/descripcion.txt",
+      "batch": 3,
+      "size_bytes": 68,
+      "sha256": "c139842dc9bc27f5796e55f7af996739f4dcff9741e9bc04f54b956e0a5d8e4e"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P19_ENSANCHAMIENTO_LDOS__DIAGNOSTICS.csv",
+      "final_repository_path": "supplementary/parametric-study-100-figures/19_ensanchamiento_LDOS/diagnostico_variantes.csv",
+      "batch": 3,
+      "size_bytes": 568,
+      "sha256": "dd4bfd520216b532e7d3187b6963a73c466339bc7a89748ecc00a21854da3de1"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P20_ASIMETRIA_PUERTAS_INTERFAZ__FIGURE__01_majoranas_izquierda_derecha.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/20_asimetria_puertas_interfaz/01_majoranas_izquierda_derecha.png",
+      "batch": 3,
+      "size_bytes": 147328,
+      "sha256": "04fbefe1fdcd3ef188e1391ff26c8f4ff6f26f723a9ec1e186c6a8195efca856"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P20_ASIMETRIA_PUERTAS_INTERFAZ__FIGURE__02_contenido_electron_hueco.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/20_asimetria_puertas_interfaz/02_contenido_electron_hueco.png",
+      "batch": 3,
+      "size_bytes": 241565,
+      "sha256": "25b6e3ffbeb7bd6b0ca490b5f5bec86ee38e90e490aca501deeb190ed843ce42"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P20_ASIMETRIA_PUERTAS_INTERFAZ__FIGURE__03_LDOS_topologica.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/20_asimetria_puertas_interfaz/03_LDOS_topologica.png",
+      "batch": 3,
+      "size_bytes": 902529,
+      "sha256": "ae628ba67711704c04df5909f0b244050a004185a103550394157dfb853110d8"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P20_ASIMETRIA_PUERTAS_INTERFAZ__FIGURE__04_perfiles_fisicos.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/20_asimetria_puertas_interfaz/04_perfiles_fisicos.png",
+      "batch": 3,
+      "size_bytes": 337412,
+      "sha256": "1bb5d526ca101ea26350cb5b471602b574d0b1f44a20f058e26da2ca4f4c3b29"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P20_ASIMETRIA_PUERTAS_INTERFAZ__FIGURE__05_espectro_y_diagnostico.png",
+      "final_repository_path": "supplementary/parametric-study-100-figures/20_asimetria_puertas_interfaz/05_espectro_y_diagnostico.png",
+      "batch": 3,
+      "size_bytes": 158638,
+      "sha256": "acb5e25a2c68a2c9c9283c854ecd528cd8bd51f65293c184bfae89898adebbd4"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P20_ASIMETRIA_PUERTAS_INTERFAZ__DESCRIPTION.txt",
+      "final_repository_path": "supplementary/parametric-study-100-figures/20_asimetria_puertas_interfaz/descripcion.txt",
+      "batch": 3,
+      "size_bytes": 102,
+      "sha256": "b05516b352d062b9cdeb030413a038d14ebb039771b80f52d83b08985789a45a"
+    },
+    {
+      "temporary_upload_name": "SUPPLEMENTARY__P20_ASIMETRIA_PUERTAS_INTERFAZ__DIAGNOSTICS.csv",
+      "final_repository_path": "supplementary/parametric-study-100-figures/20_asimetria_puertas_interfaz/diagnostico_variantes.csv",
+      "batch": 3,
+      "size_bytes": 578,
+      "sha256": "d76fe7b93e22f08e76f2721931e06157f318ab585276a6a58b5125469e4a6a3b"
+    }
+  ]
+}
